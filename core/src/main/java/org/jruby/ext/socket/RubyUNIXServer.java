@@ -148,7 +148,7 @@ public class RubyUNIXServer extends RubyUNIXSocket {
 
     @JRubyMethod
     public IRubyObject listen(ThreadContext context, IRubyObject log) {
-        // TODO listen backlog
+        System.out.println("SATD ID: 320");
         return asFixnum(context, 0);
     }
 

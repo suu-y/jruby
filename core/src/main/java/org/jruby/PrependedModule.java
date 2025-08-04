@@ -175,12 +175,12 @@ public class PrependedModule extends RubyClass implements DelegatedModule {
 
     @Override
     protected IRubyObject constantTableStore(String name, IRubyObject value) {
-        // FIXME: legal here? may want UnsupportedOperationException
+        System.out.println("SATD ID: 511");
         return origin.constantTableStore(name, value);
     }
 
     protected IRubyObject constantTableStore(String name, IRubyObject value, boolean hidden) {
-        // FIXME: legal here? may want UnsupportedOperationException
+        System.out.println("SATD ID: 435");
         return origin.constantTableStore(name, value, hidden);
     }
 

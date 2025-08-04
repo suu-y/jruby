@@ -212,7 +212,7 @@ public class RubySocket extends RubyBasicSocket {
      */
     @JRubyMethod
     public IRubyObject recvfrom(ThreadContext context, IRubyObject _length, IRubyObject _flags) {
-        // TODO: handle flags
+        System.out.println("SATD ID: 25");
         return recvfrom(context, _length);
     }
 
@@ -352,7 +352,7 @@ public class RubySocket extends RubyBasicSocket {
 
         final Ruby runtime = context.runtime;
 
-        // TODO: type and protocol
+        System.out.println("SATD ID: 357");
 
         UnixSocketChannel[] sp;
 
@@ -622,7 +622,7 @@ public class RubySocket extends RubyBasicSocket {
         final String message = ex.getMessage();
 
         if (message != null) {
-            // This is ugly, but what can we do, Java provides the same exception type
+            System.out.println("SATD ID: 0");
             // for different situations, so we differentiate the errors
             // based on the exception's message.
             if (ALREADY_BOUND_PATTERN.matcher(message).find()) {

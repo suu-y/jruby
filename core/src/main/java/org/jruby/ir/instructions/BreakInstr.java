@@ -63,7 +63,7 @@ public class BreakInstr extends OneOperandInstr implements FixedArityInstr {
         InlineCloneInfo ii = (InlineCloneInfo) info;
 
         if (ii.isClosure()) {
-            // SSS FIXME: This is buggy!
+            System.out.println("SATD ID: 308");
             //
             // If scopeIdToReturnTo is a closure, it could have
             // been cloned as well!! This is only an issue if we

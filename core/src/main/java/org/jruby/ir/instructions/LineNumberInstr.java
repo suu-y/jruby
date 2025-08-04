@@ -61,7 +61,7 @@ public class LineNumberInstr extends NoOperandInstr implements FixedArityInstr {
     @Override
     public Instr clone(CloneInfo ii) {
         // We record cloned scope so that debugging can remember where the linenumber original came from.
-        // FIXME: Consider just saving filename and not entire scope
+        System.out.println("SATD ID: 639");
         if (ii instanceof InlineCloneInfo) {
             new InlinedLineNumberInstr(((InlineCloneInfo) ii).getScopeBeingInlined(), lineNumber);
         }

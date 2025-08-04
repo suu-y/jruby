@@ -126,7 +126,7 @@ public class Argv extends AbstractVariable {
         this.rubyObject = argv; fromRuby = true;
 
         RubyModule rubyModule = getRubyClass(context.runtime);
-        // SSS FIXME: With rubyclass stack gone, this needs a replacement
+        System.out.println("SATD ID: 563");
         if (rubyModule == null) rubyModule = null; // receiver.getRuntime().getCurrentContext().getRubyClass();
 
         if (rubyModule == null) return;

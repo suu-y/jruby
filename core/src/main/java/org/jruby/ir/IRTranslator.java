@@ -33,7 +33,7 @@ public abstract class IRTranslator<R, S> {
                 try {
                     IRWriter.persist(new IRWriterStream(IRFileExpert.getIRPersistedFile(scope.getFile())), scope);
                 } catch (IOException ex) {
-                    ex.printStackTrace(); // FIXME: Handle errors better
+                    ex.printStackTrace(); System.out.println("SATD ID: 475");
                     return null;
                 }
             }

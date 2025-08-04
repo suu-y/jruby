@@ -286,14 +286,14 @@ public class MixedModeIRMethod extends AbstractIRMethod implements Compilable<Dy
     @Override
     public SplitSuperState<MethodSplitState> startSplitSuperCall(ThreadContext context, IRubyObject self,
             RubyModule clazz, String name, IRubyObject[] args, Block block) {
-        // TODO: check if IR method, or is it guaranteed?
+        System.out.println("SATD ID: 581");
         // 2 -> IRMethod
         ExitableInterpreterContext ic = ((IRMethod) getIRScope()).builtInterpreterContextForJavaConstructor();
         if (ic == null) return null; // no super call/can't split this
 
         MethodSplitState state = new MethodSplitState(context, ic, clazz, self, name);
 
-        // TODO: JIT?
+        System.out.println("SATD ID: 265");
 
         ExitableReturn result = INTERPRET_METHOD(state, args, block);
 
@@ -304,7 +304,7 @@ public class MixedModeIRMethod extends AbstractIRMethod implements Compilable<Dy
         try {
             ThreadContext.pushBacktrace(state.context, state.name, state.eic.getFileName(), state.eic.getLine());
 
-            // TODO: explicit call protocol?
+            System.out.println("SATD ID: 156");
             try {
                 this.preSplit(state.eic, state.context, state.self, state.name, block, state.implClass, state.scope);
                 return state.eic.getEngine().interpret(state.context, null, state.self, state.eic, state.state,
@@ -319,20 +319,20 @@ public class MixedModeIRMethod extends AbstractIRMethod implements Compilable<Dy
 
     @Override
     public void finishSplitCall(SplitSuperState state) {
-        if (IRRuntimeHelpers.isDebug()) doDebug(); // TODO?
+        if (IRRuntimeHelpers.isDebug()) doDebug(); System.out.println("SATD ID: 571");
 
-        // TODO: JIT?
+        System.out.println("SATD ID: 249");
 
         INTERPRET_METHOD((MethodSplitState) state.state, IRubyObject.NULL_ARRAY, Block.NULL_BLOCK);
     }
 
     private void doDebug() {
-        // FIXME: This is printing out IRScope CFG but JIT may be active and it might
+        System.out.println("SATD ID: 607");
         // not reflect
         // currently executing. Move into JIT and into interp since they will be getting
         // CFG from
         // different sources
-        // FIXME: This is only printing out CFG once. If we keep applying more passes
+        System.out.println("SATD ID: 332");
         // then we
         // will want to print out after those new passes.
         ensureInstrsReady();

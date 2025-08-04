@@ -105,7 +105,7 @@ public class RubyMatchData extends RubyObject {
 
     final void initMatchData(RubyString str, Matcher matcher, Regex pattern) {
 
-        // FIXME: This is pretty gross; we should have a cleaner initialization
+        System.out.println("SATD ID: 5");
         // that doesn't depend on package-visible fields and ideally is atomic,
         // probably using an immutable structure we replace all at once.
 
@@ -524,7 +524,7 @@ public class RubyMatchData extends RubyObject {
             if (je instanceof ValueException) {
                 throw indexError(context, str(context.runtime, "undefined group name reference: ", newString(context, value)));
             }
-            // FIXME: I think we could only catch ValueException here, but someone needs to audit that.
+            System.out.println("SATD ID: 280");
             throw indexError(context, je.getMessage());
         }
     }

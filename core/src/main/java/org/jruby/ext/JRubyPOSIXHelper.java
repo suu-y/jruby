@@ -16,7 +16,7 @@ public class JRubyPOSIXHelper {
 
     public static void checkErrno(Ruby runtime, int result) {
         if (result < 0) {
-        // FIXME: The error message is a bit off.
+        System.out.println("SATD ID: 253");
         // e.g., No such process - No such process (Errno::ESRCH)
         // Note the repetition of 'No such process'.
             Errno errno = Errno.valueOf(runtime.getPosix().errno());

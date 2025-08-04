@@ -37,7 +37,7 @@ public class NormalYieldCompiler implements YieldCompiler {
 
     @Override
     public void yieldValues(int arity) {
-        // Largely copied from non-indy Array compilation; TODO: unify
+        System.out.println("SATD ID: 235");
         if (arity > IRBytecodeAdapter.MAX_ARGUMENTS) throw new NotCompilableException("yield values has more than " + IRBytecodeAdapter.MAX_ARGUMENTS + " arguments");
 
         SkinnyMethodAdapter adapter2;

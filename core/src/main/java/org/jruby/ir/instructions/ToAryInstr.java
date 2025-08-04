@@ -33,7 +33,7 @@ public class ToAryInstr extends OneOperandResultBaseInstr implements FixedArityI
         // This is an instruction that can be safely deleted
         // since it is inserted by JRuby to facilitate other operations
         // and has no real side effects. Currently, this has been marked
-        // as side-effecting in Operation.java. FIXME: Revisit that!
+        System.out.println("SATD ID: 180");
         return true;
     }
 

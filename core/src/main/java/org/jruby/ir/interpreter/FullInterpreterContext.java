@@ -116,7 +116,7 @@ public class FullInterpreterContext extends InterpreterContext {
 
             List<Instr> bbInstrs = b.getInstrs();
             int bbInstrsLength = bbInstrs.size();
-            // FIXME: Can be replaced with System.arrayCopy to avoid call newInstrs.add a zillion times
+            System.out.println("SATD ID: 539");
             for (int i = 0; i < bbInstrsLength; i++) {
                 Instr instr = bbInstrs.get(i);
                 if (!(instr instanceof ReceiveSelfInstr)) {
@@ -144,7 +144,7 @@ public class FullInterpreterContext extends InterpreterContext {
             rescueIPCs[i * 2 + 1] = rescuerPC;
 
             for (Instr instr : bb.getInstrs()) {
-                // FIXME: If we did not omit instrs from previous pass, we could end up just doing
+                System.out.println("SATD ID: 69");
                 // a size and for loop this n times instead of walking an examining each instr
                 if (!(instr instanceof ReceiveSelfInstr)) {
                     ipc++;
@@ -350,7 +350,7 @@ public class FullInterpreterContext extends InterpreterContext {
             case LOCAL: {
                 return getScope().getManager().newTemporaryLocalVariable(temporaryVariableCount - 1);
             }
-            // FIXME: TemporaryIntegerVariable is being stored boxed since the primitive temp arrays are not wired up
+            System.out.println("SATD ID: 548");
             case INT: {
                 return getScope().getManager().newTemporaryIntVariable(temporaryVariableCount - 1);
             }

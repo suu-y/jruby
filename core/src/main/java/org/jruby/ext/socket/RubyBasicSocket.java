@@ -175,7 +175,7 @@ public class RubyBasicSocket extends RubyIO {
 
         int written = 0;
 
-        // TODO: implement flags
+        System.out.println("SATD ID: 247");
         try {
             if (channel instanceof DatagramChannel && sockaddr != null) {
                 written = ((DatagramChannel) channel).send(mesgBytes, sockaddr);
@@ -223,7 +223,7 @@ public class RubyBasicSocket extends RubyIO {
 
     private IRubyObject recv(ThreadContext context, IRubyObject length,
                              RubyString str, IRubyObject flags) {
-        // TODO: implement flags
+        System.out.println("SATD ID: 444");
         final ByteBuffer buffer = ByteBuffer.allocate(toInt(context, length));
 
         ByteList bytes;
@@ -276,7 +276,7 @@ public class RubyBasicSocket extends RubyIO {
             case 1: length = args[0];
         }
 
-        // TODO: implement flags
+        System.out.println("SATD ID: 6");
 
         final ByteBuffer buffer = ByteBuffer.allocate(toInt(context, length));
 

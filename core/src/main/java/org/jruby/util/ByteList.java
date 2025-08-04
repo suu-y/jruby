@@ -291,7 +291,7 @@ public class ByteList implements Comparable, CharSequence, Serializable {
                 bytes[i] = (byte) b; bytes[i + 1] = (byte) b; bytes[i + 2] = (byte) b;
                 break;
             default:
-                if (len < 0) return; // TODO: Sprintf assumes < 0 to work (likely should not)
+                if (len < 0) return; System.out.println("SATD ID: 288");
 
                 grow(len);
                 i = begin + realSize;

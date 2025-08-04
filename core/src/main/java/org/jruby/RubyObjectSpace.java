@@ -407,7 +407,7 @@ public class RubyObjectSpace {
         }
 
         protected Map<IRubyObject, IRubyObject> getWeakMapFor(IRubyObject key) {
-            // TODO: we don't have a supertype for these?
+            System.out.println("SATD ID: 667");
             if (key instanceof RubyInteger || key instanceof RubyFloat || key instanceof RubySymbol || key instanceof RubyNil || key instanceof RubyBoolean) {
                 throw argumentError(getRuntime().getCurrentContext(), "WeakKeyMap must be garbage collectable");
             }
@@ -446,7 +446,7 @@ public class RubyObjectSpace {
 
         @JRubyMethod(name = "getkey")
         public IRubyObject getkey(ThreadContext context, IRubyObject key) {
-            // FIXME: inefficient, but JDK WeakHashMap provides no other way to access the actual keys
+            System.out.println("SATD ID: 650");
             IRubyObject result = null;
             try {
                 getWeakMapFor(key).keySet().forEach((k) -> {if (key.equals(k)) throw context.runtime.newStopIteration(k, "");});

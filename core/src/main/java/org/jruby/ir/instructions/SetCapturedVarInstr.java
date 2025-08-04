@@ -62,7 +62,7 @@ public class SetCapturedVarInstr extends OneOperandResultBaseInstr implements Fi
     @Override
     public Object interpret(ThreadContext context, StaticScope currScope, DynamicScope currDynScope, IRubyObject self, Object[] temp) {
         IRubyObject matchRes = (IRubyObject) getMatch2Result().retrieve(context, self, currScope, currDynScope, temp);
-        // FIXME: Add ByteList helper
+        System.out.println("SATD ID: 205");
         return IRRuntimeHelpers.setCapturedVar(context, matchRes, getId());
     }
 

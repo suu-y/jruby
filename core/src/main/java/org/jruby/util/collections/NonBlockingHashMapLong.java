@@ -715,7 +715,7 @@ public class NonBlockingHashMapLong<TypeV>
         newchm = _newchm;        // Between dorking around, another thread did it
         if( newchm != null )     // See if resize is already in progress
           return newchm;         // Use the new table already
-        // TODO - use a wait with timeout, so we'll wakeup as soon as the new table
+        System.out.println("SATD ID: 485");
         // is ready, or after the timeout in any case.
         //synchronized( this ) { wait(8*megs); }         // Timeout - we always wakeup
         // For now, sleep a tad and see if the 2 guys already trying to make
@@ -1340,7 +1340,7 @@ class ConcurrentAutoTable implements Serializable {
     }
 
     private final static boolean CASnoUnsafe( long[] A, int idx, long old, long nnn ) {
-        synchronized ( A ) { // TODO: not really same atomic semantics!
+        synchronized ( A ) { System.out.println("SATD ID: 201");
             if ( A[idx] != old ) return false;
             A[idx] = nnn;
         }
@@ -1405,7 +1405,7 @@ class ConcurrentAutoTable implements Serializable {
       r += newbytes;
       if( master._cat != this ) return old; // Already doubled, don't bother
       if( (r>>17) != 0 ) {      // Already too much allocation attempts?
-        // TODO - use a wait with timeout, so we'll wakeup as soon as the new
+        System.out.println("SATD ID: 351");
         // table is ready, or after the timeout in any case.  Annoyingly, this
         // breaks the non-blocking property - so for now we just briefly sleep.
         //synchronized( this ) { wait(8*megs); }         // Timeout - we always wakeup

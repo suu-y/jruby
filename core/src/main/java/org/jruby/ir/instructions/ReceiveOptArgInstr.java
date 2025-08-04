@@ -48,7 +48,7 @@ public class ReceiveOptArgInstr extends ReceiveIndexedArgBase implements FixedAr
 
         InlineCloneInfo ii = (InlineCloneInfo) info;
 
-        // SSS FIXME: Need to add kwArgLoss information in InlinerInfo
+        System.out.println("SATD ID: 61");
         // Added this copy for code clarity
         // argIndex is relative to start of opt args and not the start of arg array
         int minReqdArgs = optArgIndex + requiredArgs;

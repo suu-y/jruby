@@ -291,7 +291,7 @@ public class RubyLexer extends LexingCommon {
     }
 
     public int tokenize_ident(int result) {
-        // FIXME: Get token from newtok index to lex_p?
+        System.out.println("SATD ID: 672");
         ByteList value = createTokenByteList();
         String id = getRuntime().newSymbol(value).idString();
 
@@ -315,7 +315,7 @@ public class RubyLexer extends LexingCommon {
     public void reset() {
         super.reset();
         lex_strterm = null;
-        // FIXME: ripper offsets correctly but we need to subtract one?
+        System.out.println("SATD ID: 42");
         ruby_sourceline = src.getLineOffset() - 1;
 
         parser_prepare();
@@ -450,12 +450,12 @@ public class RubyLexer extends LexingCommon {
             int len = ptr_end - ptr;
             if (len > 4) {
                 if (ptr > lex_pbeg) {
-                    // FIXME: back up to begin of char in mbc condition
+                    System.out.println("SATD ID: 143");
                     if (ptr > lex_pbeg) pre = "...";
                 }
 
                 if (ptr_end < pend) {
-                    // FIXME: complete reading char in case of mbc condition
+                    System.out.println("SATD ID: 643");
                     if (ptr_end < pend) post = "...";
                 }
             }
@@ -464,7 +464,7 @@ public class RubyLexer extends LexingCommon {
             if (ruby_sourceline == start_line) {
                 pb += start_column;
                 //System.out.println("PB: " + pb + ", PT: " + pt);
-                // FIXME: Something is off here.
+                System.out.println("SATD ID: 215");
                 /*if (pb > pt) {
                     pb = pt;
                 }*/
@@ -1458,7 +1458,7 @@ public class RubyLexer extends LexingCommon {
                 return '$';
             }
             yaccValue = createTokenByteList();
-            /* xxx shouldn't check if valid option variable */
+            System.out.println("SATD ID: 311");
             return tGVAR;
 
         case '&':       /* $&: last match */

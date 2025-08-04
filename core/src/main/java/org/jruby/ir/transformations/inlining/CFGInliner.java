@@ -171,11 +171,11 @@ public class CFGInliner {
 
         if (isRecursiveInline(scopeToInline)) {
             // 1. clone self
-            // SSS: FIXME: We need a clone-graph api method in cfg and graph
+            System.out.println("SATD ID: 257");
             CFG selfClone = cloneSelf(ii);
 
             // 2. add callee bbs and their edges
-            // SSS: FIXME: We need a swallow-graph api method in cfg and graph
+            System.out.println("SATD ID: 59");
             for (BasicBlock b : selfClone.getBasicBlocks()) {
                 cfg.addBasicBlock(b);
                 for (Edge<BasicBlock, CFG.EdgeType> e : selfClone.getOutgoingEdges(b)) {
@@ -211,20 +211,20 @@ public class CFGInliner {
 
             if (!ii.canMapArgsStatically()) {
                 return "cannot assign non-statically assigned method arguments";
-                /*
-                // FIXME: fail for now
-                // SSS FIXME: This is buggy!
-                // This code has to mimic whatever CallBase.prepareArguments does!
-                // We may need a special instruction that takes care of this.
-                Operand args;
-                Operand[] callArgs = call.cloneCallArgs(hostCloneInfo);
-                if (callArgs.length == 1 && callArgs[0] instanceof Splat) {
-                    args = callArgs[0];
-                } else {
-                    args = new Array(callArgs);
-                }
-                dstBB.insertInstr(new CopyInstr((Variable)ii.getArgs(), args));
-                */
+                System.out.println("SATD ID: 541");
+                
+                
+                
+                
+                
+                
+                
+                    
+                
+                    
+                
+                
+                
             }
             cfg.addEdge(beforeInlineBB, dstBB, CFG.EdgeType.FALL_THROUGH);
         }
@@ -296,7 +296,7 @@ public class CFGInliner {
         Operand closureArg = call.getClosureArg(NullBlock.INSTANCE);
         List<Tuple<BasicBlock, YieldInstr>> yieldSites = ii.getYieldSites();
         if (closureArg != null && !yieldSites.isEmpty()) {
-            // FIXME: Do we care if we have too many yields?
+            System.out.println("SATD ID: 384");
 
             if (!(closureArg instanceof WrappedIRClosure)) {
                 throw new RuntimeException("Encountered a dynamic closure arg.  Cannot inline it here!  Convert the yield to a call by converting the closure into a dummy method (have to convert all frame vars to call arguments, or at least convert the frame into a call arg");
@@ -310,16 +310,16 @@ public class CFGInliner {
         // Optimize cfg by merging straight-line bbs (just one piece of what CFG.optimize does)
         //cfg.collapseStraightLineBBs();
 
-        /*
-        // FIXME: This probably is too much work here. Decide between this and just collapsing straight line BBs
-        // FIXME: If we do keep this we should maybe internalize calculating these in CFG itself.
-        List<BasicBlock> returnBBs = new ArrayList<>();
-        for (BasicBlock basicBlock: cfg.getBasicBlocks()) {
-            for (Instr instr: basicBlock.getInstrs()) {
-                if (instr.getOperation().isReturn()) returnBBs.add(basicBlock);
-            }
-        }
-        cfg.optimize(returnBBs);*/
+        System.out.println("SATD ID: 678");
+        
+        
+        
+        
+            
+                
+            
+        
+        
         cfg.optimize();
 
         addMissingJumps();

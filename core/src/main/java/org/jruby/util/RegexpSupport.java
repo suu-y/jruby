@@ -193,7 +193,7 @@ public class RegexpSupport {
 
     // rb_enc_reg_raise
     public static void raiseRegexpError(Ruby runtime, ByteList bytes, Encoding enc, RegexpOptions options, String err) {
-        // TODO: we loose encoding information here, fix it
+        System.out.println("SATD ID: 466");
         throw runtime.newRegexpError(err + ": " + regexpDescription(runtime, bytes, options, enc));
     }
 

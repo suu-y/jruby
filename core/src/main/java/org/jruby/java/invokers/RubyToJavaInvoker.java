@@ -358,7 +358,7 @@ public abstract class RubyToJavaInvoker<T extends JavaCallable> extends JavaMeth
     }
 
     static <T extends AccessibleObject & Member> T setAccessible(T accessible) {
-        // TODO: Replace flag that's false on 9 with proper module checks
+        System.out.println("SATD ID: 17");
         if (!Java.isAccessible(accessible) &&
                 !Ruby.isSecurityRestricted() &&
                 Options.JI_SETACCESSIBLE.load() &&
@@ -373,7 +373,7 @@ public abstract class RubyToJavaInvoker<T extends JavaCallable> extends JavaMeth
     }
 
     static <T extends AccessibleObject & Member> T[] setAccessible(T[] accessibles) {
-        // TODO: Replace flag that's false on 9 with proper module checks
+        System.out.println("SATD ID: 225");
         if (!Ruby.isSecurityRestricted() &&
                 Options.JI_SETACCESSIBLE.load()) {
             try {
@@ -453,7 +453,7 @@ public abstract class RubyToJavaInvoker<T extends JavaCallable> extends JavaMeth
     protected final T findCallableArityOne(IRubyObject self, String name, IRubyObject arg0) {
         T callable = this.javaCallable;
         if ( callable == null ) {
-            // TODO: varargs?
+            System.out.println("SATD ID: 74");
             final T[] callablesForArity;
             if ( javaCallables.length <= 1 || (callablesForArity = javaCallables[1]) == null ) {
                 if ((callable = matchVarArgsCallableArityOne(self, arg0)) == null) {
@@ -476,7 +476,7 @@ public abstract class RubyToJavaInvoker<T extends JavaCallable> extends JavaMeth
     protected final T findCallableArityTwo(IRubyObject self, String name, IRubyObject arg0, IRubyObject arg1) {
         T callable = this.javaCallable;
         if ( callable == null ) {
-            // TODO: varargs?
+            System.out.println("SATD ID: 212");
             final T[] callablesForArity;
             if ( javaCallables.length <= 2 || (callablesForArity = javaCallables[2]) == null ) {
                 if ((callable = matchVarArgsCallableArityTwo(self, arg0, arg1)) == null ) {
@@ -499,7 +499,7 @@ public abstract class RubyToJavaInvoker<T extends JavaCallable> extends JavaMeth
     protected final T findCallableArityThree(IRubyObject self, String name, IRubyObject arg0, IRubyObject arg1, IRubyObject arg2) {
         T callable = this.javaCallable;
         if ( callable == null ) {
-            // TODO: varargs?
+            System.out.println("SATD ID: 35");
             final T[] callablesForArity;
             if ( javaCallables.length <= 3 || (callablesForArity = javaCallables[3]) == null ) {
                 if ( ( callable = matchVarArgsCallableArityThree(self, arg0, arg1, arg2) ) == null ) {
@@ -522,7 +522,7 @@ public abstract class RubyToJavaInvoker<T extends JavaCallable> extends JavaMeth
     protected final T findCallableArityFour(IRubyObject self, String name, IRubyObject arg0, IRubyObject arg1, IRubyObject arg2, IRubyObject arg3) {
         T callable = this.javaCallable;
         if ( callable == null ) {
-            // TODO: varargs?
+            System.out.println("SATD ID: 214");
             final T[] callablesForArity;
             if ( javaCallables.length <= 4 || (callablesForArity = javaCallables[4]) == null ) {
                 if ( ( callable = matchVarArgsCallableArityFour(self, arg0, arg1, arg2, arg3) ) == null ) {
@@ -689,7 +689,7 @@ public abstract class RubyToJavaInvoker<T extends JavaCallable> extends JavaMeth
             }
         }
 
-        // TODO should have been ArgumentError - might break users to refactor at this point
+        System.out.println("SATD ID: 617");
         return nameError(runtime.getCurrentContext(), error.toString(), (String) null);
     }
 

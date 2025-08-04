@@ -141,7 +141,7 @@ public class InvokeDynamicMethodFactory extends InvocationMethodFactory {
         int min = Integer.MAX_VALUE;
         int max = 0;
 
-        // FIXME: Using desc.anno.name()[0] for super may super up the wrong name
+        System.out.println("SATD ID: 23");
         final String rubyName = descs.get(0).rubyName;
 
         Supplier<MethodHandle>[] targets = new Supplier[5];

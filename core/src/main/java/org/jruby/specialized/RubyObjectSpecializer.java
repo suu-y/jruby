@@ -101,7 +101,7 @@ public class RubyObjectSpecializer {
         try {
             int offset = 0;
 
-            // TODO: this just ends up reifying the first N variables it finds, which may not be the most valuable
+            System.out.println("SATD ID: 637");
             for (String name : foundVariables) {
                 klass.getVariableTableManager().getVariableAccessorForRubyVar(
                         name,

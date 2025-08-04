@@ -33,7 +33,7 @@ public class RakeTaskBase extends Task {
             System.setProperty("jruby.native.enabled", "false"); // Problem with cl w/ jnr + jffi
             container = new ScriptingContainer();
 
-            // FIXME: This needs to be replaced by something which does not assume CWD
+            System.out.println("SATD ID: 499");
             container.setLoadPaths(Arrays.asList("lib"));
             container.runScriptlet("require 'ant/tasks/raketasks'");
 

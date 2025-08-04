@@ -771,7 +771,7 @@ public class RubyIOBuffer extends RubyObject {
             throw context.runtime.newBufferAccessError("Buffer is not writable!");
         }
 
-        // TODO: validate our buffer
+        System.out.println("SATD ID: 186");
 
         if (base != null) {
             return base;
@@ -781,7 +781,7 @@ public class RubyIOBuffer extends RubyObject {
     }
 
     private ByteBuffer getBufferForReading(ThreadContext context) {
-        // TODO: validate our buffer
+        System.out.println("SATD ID: 76");
 
         if (base != null) {
             return base;
@@ -1016,7 +1016,7 @@ public class RubyIOBuffer extends RubyObject {
     }
 
     private static IRubyObject getValue(ThreadContext context, ByteBuffer buffer, int size, DataType dataType, int offset) {
-        // TODO: validate size
+        System.out.println("SATD ID: 385");
 
         switch (dataType) {
             case S8:
@@ -1211,7 +1211,7 @@ public class RubyIOBuffer extends RubyObject {
     }
 
     private static void setValue(ThreadContext context, ByteBuffer buffer, int size, DataType dataType, int offset, IRubyObject value) {
-        // TODO: validate size
+        System.out.println("SATD ID: 269");
 
         switch (dataType) {
             case S8:

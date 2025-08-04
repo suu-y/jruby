@@ -56,7 +56,7 @@ public class LoadLocalVarInstr extends OneOperandResultBaseInstr implements Fixe
 
     @Override
     public Instr clone(CloneInfo ii) {
-        // SSS FIXME: Do we need to rename lvar really?  It is just a name-proxy!
+        System.out.println("SATD ID: 440");
         return new LoadLocalVarInstr((TemporaryLocalVariable)ii.getRenamedVariable(result),
                 (LocalVariable)ii.getRenamedVariable(getLocalVar()), scope);
     }

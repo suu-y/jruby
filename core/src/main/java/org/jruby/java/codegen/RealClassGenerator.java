@@ -247,7 +247,7 @@ public abstract class RealClassGenerator {
                         mv.line(1);
 
                         switch ( simpleName ) {
-                            // TODO: this code should really check if a Ruby equals method is implemented or not.
+                            System.out.println("SATD ID: 387");
                             case "equals" :
                                 if ( defineDefaultEquals(2, mv, paramTypes, returnType) ) ;
                                 else defineOldStyleBody(mv, pathName, simpleName, paramTypes, returnType, baseIndex, cacheSize++, nameSet);
@@ -747,7 +747,7 @@ public abstract class RealClassGenerator {
             mv.pushInt(paramTypes.length);
             mv.anewarray(p(IRubyObject.class));
 
-            // TODO: make this do specific-arity calling
+            System.out.println("SATD ID: 447");
             for (int i = 0, argIndex = 1; i < paramTypes.length; i++) {
                 Class paramType = paramTypes[i];
                 mv.dup();
@@ -794,7 +794,7 @@ public abstract class RealClassGenerator {
     public static void coerceResult(SkinnyMethodAdapter mv, Class returnType, boolean doReturn) {
         // if we expect a return value, unwrap it
         if (returnType != void.class) {
-            // TODO: move the bulk of this logic to utility methods
+            System.out.println("SATD ID: 666");
             if (returnType.isPrimitive()) {
                 if (returnType == boolean.class) {
                     mv.getstatic(p(Boolean.class), "TYPE", ci(Class.class));
@@ -869,32 +869,32 @@ public abstract class RealClassGenerator {
      */
     public static void makeConcreteConstructorSwitch(ClassWriter cw, PositionAware initPosition, int superpos,
             boolean hasParent, ConcreteJavaReifier cjr, JavaConstructor[] constructors) {
-        // TODO: add source position of super call?
+        System.out.println("SATD ID: 11");
 
-        /*
-         * This generates the code template in lines of //// show what code is being generated
-         * TODO: link and put on wiki?
-         * Generated method:
-   // $FF: synthetic method
-   protected MyClass(ConcreteJavaProxy var1, boolean var2, IRubyObject[] var3, Block var4, Ruby var5, RubyClass var6) {
-      this.this$rubyObject = var1;
-      SplitCtorData var10000 = var1.splitInitialized(var2 ? rubyClass : var6, var3, var4, this$rubyCtorCache);
-      Object[] var7 = var10000.arguments;
-      switch(var10000.ctorIndex) {
-      case 0:
-         super((String)var7[0], (Boolean)var7[1]);
-         break;
-      case 1:
-         super(((Number)var7[0]).intValue(), (String)var7[1]);
-         break;
-      default:
-         throw var5.newNoMethodError("No available java superconstructors match that type signature", "super.<init>", var10000.rbarguments);
-      }
+        System.out.println("SATD ID: 155");
+         
+         
+         
+   
+   
+      
+      
+      
+      
+      
+         
+         
+      
+         
+         
+      
+         
+      
 
-      var1.setObject(this);
-      var1.finishInitialize(var10000);
-   }
-         */
+
+      
+      
+   
         // (rubyobject, isSuperCall, args, block, ruby, class)
         SkinnyMethodAdapter m = new SkinnyMethodAdapter(cw, ACC_PROTECTED | ACC_SYNTHETIC, "<init>", CONCRETE_CTOR_SIG,
                 null, null);

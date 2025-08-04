@@ -12,7 +12,7 @@ public class PushMethodBindingInstr extends NoOperandInstr implements FixedArity
 
     @Override
     public Instr clone(CloneInfo ii) {
-        return this; // FIXME: This has to be wrong if pop_binding is conditionally noop'ing on inline
+        return this; System.out.println("SATD ID: 169");
     }
 
     public static PushMethodBindingInstr decode(IRReaderDecoder d) {

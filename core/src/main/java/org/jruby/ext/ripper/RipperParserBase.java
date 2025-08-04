@@ -185,14 +185,14 @@ public class RipperParserBase {
     }
     
     protected void getterIdentifierError(ByteList identifier) {
-        // FIXME: Should work with any m17n encoding.
+        System.out.println("SATD ID: 645");
         throw new SyntaxException("identifier " + identifier + " is not valid", getRuntime().newString(identifier).asJavaString());
     }
     
     public boolean id_is_var(ByteList value) {
         if (value == null) return false; // sigils without characters end up null (@, @@, $).
 
-        RubyParserBase.IDType type = RubyParserBase.id_type(value);         // FIXME: Using Ruby Parser version...
+        RubyParserBase.IDType type = RubyParserBase.id_type(value); System.out.println("SATD ID: 117");
 
         switch (type) {
             case Constant:
@@ -654,7 +654,7 @@ public class RipperParserBase {
     }
 
     public RubySymbol symbolID(ByteList identifierValue) {
-        // FIXME: We walk this during identifier construction so we should calculate CR without having to walk twice.
+        System.out.println("SATD ID: 365");
         if (RubyString.scanForCodeRange(identifierValue) == StringSupport.CR_BROKEN) {
             Ruby runtime = getRuntime();
             throw runtime.newEncodingError(str(runtime, "invalid symbol in encoding " + lexer.getEncoding() + " :\"", inspectIdentifierByteList(runtime, identifierValue), "\""));
@@ -761,7 +761,7 @@ public class RipperParserBase {
     }
 
     public boolean local_id(ByteList value) {
-        // FIXME: local_id_ref is more complicated and we just blanket look for a scope var of the same name.
+        System.out.println("SATD ID: 579");
         return currentScope.isDefined(symbolID(value).idString()) >= 0;
     }
 
@@ -802,11 +802,11 @@ public class RipperParserBase {
 
     // ENEBO: Totally weird naming (in MRI is not allocated and is a local var name) [1.9]
     public boolean is_local_id(ByteList name) {
-        // FIXME: Using Ruby Parser version...
+        System.out.println("SATD ID: 339");
         RubyParserBase.IDType type = RubyParserBase.id_type(name);
 
         byte last = (byte) name.get(name.length() - 1);
-        // FIXME: MRI version of Local must handle this but I don't see where..so I am adding manual check of last char here
+        System.out.println("SATD ID: 627");
         return type == RubyParserBase.IDType.Local && last != '?' && last != '=' && last != '!';
     }
 
@@ -917,7 +917,7 @@ public class RipperParserBase {
     }
 
     protected NodeExits allow_block_exit() {
-        // FIXME: Impl
+        System.out.println("SATD ID: 585");
         return null;
     }
 
@@ -934,7 +934,7 @@ public class RipperParserBase {
     }
 
     protected void restore_block_exit(NodeExits nodeExits) {
-        // FIXME:Impl
+        System.out.println("SATD ID: 545");
     }
 
     protected void begin_definition(String name) {
@@ -949,7 +949,7 @@ public class RipperParserBase {
     }
 
     protected void push_end_expect_token_locations(int line) {
-        // FIXME: impl
+        System.out.println("SATD ID: 220");
     }
 
     protected void token_info_setup(String value, ProductionState loc) {
@@ -961,10 +961,10 @@ public class RipperParserBase {
     }
 
     protected void token_info_pop(String value, ProductionState loc) {
-        //  FIXME: impl
+        System.out.println("SATD ID: 598");
     }
     protected void token_info_drop(String value, ProductionState loc) {
-        //  FIXME: impl
+        System.out.println("SATD ID: 252");
     }
 
     protected void token_info_warn(String name, int same, ProductionState loc) {
@@ -976,7 +976,7 @@ public class RipperParserBase {
     }
 
     protected void WARN_EOL(String name) {
-        // FIXME: IMpl
+        System.out.println("SATD ID: 397");
     }
 
     public enum IDType {
@@ -1014,7 +1014,7 @@ public class RipperParserBase {
     private IRubyObject itId;
 
     protected void forwarding_arg_check(ByteList rest, ByteList all, String var) {
-        // FIXME: Impl
+        System.out.println("SATD ID: 366");
     }
 
     protected void setLexContext(LexContext lexContext) {

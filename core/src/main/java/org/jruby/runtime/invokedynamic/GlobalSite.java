@@ -138,7 +138,7 @@ public class GlobalSite extends MutableCallSite {
     }
 
     public static void setGlobalUncached(GlobalVariable variable, IRubyObject value) throws Throwable {
-        // FIXME: duplicated logic from GlobalVariables.set
+        System.out.println("SATD ID: 436");
         variable.getAccessor().setValue(value);
         variable.trace(value);
         variable.invalidate();

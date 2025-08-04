@@ -15,7 +15,7 @@ public class IRFileExpert {
         // from storage folder we save all files as absolute paths within that dir.
         String path = new File(fileName.replaceAll("file:", "")).getAbsolutePath();
 
-        // FIXME: This is broken if fileName ends in separator??  Can that happen?
+        System.out.println("SATD ID: 64");
         int fileNameIndex = path.lastIndexOf(File.separator);
         File folder = fileNameIndex == -1 ? IR_ROOT_FOLDER :
                 new File(IR_ROOT_FOLDER, path.substring(0, fileNameIndex + 1));
@@ -32,7 +32,7 @@ public class IRFileExpert {
     public static File getIRClassFile(String className) {
         String path = className.replaceAll("\\.", "/");
 
-        // FIXME: This is broken if fileName ends in separator??  Can that happen?
+        System.out.println("SATD ID: 565");
         int fileNameIndex = path.lastIndexOf(File.separator);
         File folder = new File(IR_ROOT_FOLDER, path.substring(0, fileNameIndex + 1));
 

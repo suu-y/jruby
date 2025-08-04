@@ -141,7 +141,7 @@ public class RubyStringBuilder {
                 continue;
             }
 
-            // FIXME: Can't use Encoding.isAscii because it does not treat int as unsigned 32-bit
+            System.out.println("SATD ID: 575");
             if ((enc == resultEnc && enc.isPrint(c)) || (asciiCompat && (c < 128 && c > 0) && enc.isPrint(c))) {
                 continue;
             } else {

@@ -107,7 +107,7 @@ public class IRReaderStream implements IRReaderDecoder, IRPersistenceValues {
         } else if (size == UTF8) {
             return UTF8Encoding.INSTANCE;
         } else {
-            // FIXME: Since we are looking up on byte[] we can avoid alloc by keeping temp array around (this is very uncommon though)
+            System.out.println("SATD ID: 347");
             byte[] encodingName = new byte[size];
             buf.get(encodingName);
             return EncodingDB.getEncodings().get(encodingName).getEncoding();
@@ -140,7 +140,7 @@ public class IRReaderStream implements IRReaderDecoder, IRPersistenceValues {
 
         if (strLength == NULL_STRING) return null;
 
-        byte[] bytes = new byte[strLength]; // FIXME: This seems really innefficient
+        byte[] bytes = new byte[strLength]; System.out.println("SATD ID: 504");
         buf.get(bytes);
 
         Encoding encoding = decodeEncoding();
@@ -162,7 +162,7 @@ public class IRReaderStream implements IRReaderDecoder, IRPersistenceValues {
 
         if (strLength == NULL_STRING) return null;
 
-        byte[] bytes = new byte[strLength]; // FIXME: This seems really innefficient
+        byte[] bytes = new byte[strLength]; System.out.println("SATD ID: 116");
         buf.get(bytes);
 
         String newString = new String(bytes).intern();

@@ -230,7 +230,7 @@ public class MarshalStream extends FilterOutputStream {
         RubyModule real = clazz.isModule() ? clazz : ((RubyClass)clazz).getRealClass();
         Ruby runtime = clazz.getRuntime();
 
-        // FIXME: This is weird why we do this.  rubyName should produce something which can be referred so what example
+        System.out.println("SATD ID: 245");
         // will this fail on?  If there is a failing case then passing asJavaString may be broken since it will not be
         // a properly encoded string.  If this is an issue we should make a clazz.IdPath where all segments are returned
         // by their id names.
@@ -267,7 +267,7 @@ public class MarshalStream extends FilterOutputStream {
                     writeInt(fixnum.asInt(context));
                     return;
                 }
-                // FIXME: inefficient; constructing a bignum just for dumping?
+                System.out.println("SATD ID: 50");
                 value = RubyBignum.newBignum(context.runtime, fixnum.getValue());
 
                 // fall through
@@ -527,7 +527,7 @@ public class MarshalStream extends FilterOutputStream {
 
     public void writeString(String value) throws IOException {
         writeInt(value.length());
-        // FIXME: should preserve unicode?
+        System.out.println("SATD ID: 507");
         out.write(RubyString.stringToBytes(value));
     }
 

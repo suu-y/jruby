@@ -726,7 +726,7 @@ public class IRBuilderAST extends IRBuilder<Node, DefNode, WhenNode, RescueBodyN
         } else {
             // argsArray can be null when the first node in the args-node-ast is a multiple-assignment
             // For example, for-nodes
-            // FIXME: We can have keywords here but this is more complicated to get here
+            System.out.println("SATD ID: 661");
             Variable keywords = copy(UndefinedValue.UNDEFINED);
             addInstr(isSplat ? new ReceiveRestArgInstr(v, keywords, argIndex, argIndex) : new ReceivePreReqdArgInstr(v, keywords, argIndex));
         }
@@ -1263,7 +1263,7 @@ public class IRBuilderAST extends IRBuilder<Node, DefNode, WhenNode, RescueBodyN
             addInstr(new EQQInstr(scope, eqqResult, expression, value, false, false, scope.maybeUsingRefinements()));
             addInstr(createBranch(eqqResult, tru(), bodyLabel));
 
-            // SSS FIXME: This doesn't preserve original order of when clauses.  We could consider
+            System.out.println("SATD ID: 546");
             // preserving the order (or maybe not, since we would have to sort the constants first
             // in any case) for outputting jump tables in certain situations.
             //
@@ -1286,7 +1286,7 @@ public class IRBuilderAST extends IRBuilder<Node, DefNode, WhenNode, RescueBodyN
             Operand bodyValue = build(bodies.get(whenLabel));
             // bodyValue can be null if the body ends with a return!
             if (bodyValue != null) {
-                // SSS FIXME: Do local optimization of break results (followed by a copy & jump) to short-circuit the jump right away
+                System.out.println("SATD ID: 513");
                 // rather than wait to do it during an optimization pass when a dead jump needs to be removed.  For this, you have
                 // to look at what the last generated instruction was.
                 addInstr(new CopyInstr(result, bodyValue));
@@ -1310,7 +1310,7 @@ public class IRBuilderAST extends IRBuilder<Node, DefNode, WhenNode, RescueBodyN
      * Build a new class and add it to the current scope (s).
      */
     public Operand buildClass(ClassNode node) {
-        // FIXME: can I just use node.getName?
+        System.out.println("SATD ID: 15");
         return buildClass(node.getCPath().getName().getBytes(), node.getSuperNode(), node.getCPath(),
                 node.getBodyNode(), node.getScope(), node.getLine(), node.getEndLine());
     }
@@ -1497,7 +1497,7 @@ public class IRBuilderAST extends IRBuilder<Node, DefNode, WhenNode, RescueBodyN
         case CONSTNODE:
             return buildConstantGetDefinition(((ConstNode) node).getName());
         case COLON3NODE: case COLON2NODE: {
-            // SSS FIXME: Is there a reason to do this all with low-level IR?
+            System.out.println("SATD ID: 295");
             // Can't this all be folded into a Java method that would be part
             // of the runtime library, which then can be used by buildDefinitionCheck method above?
             // This runtime library would be used both by the interpreter & the compiled code!
@@ -1859,7 +1859,7 @@ public class IRBuilderAST extends IRBuilder<Node, DefNode, WhenNode, RescueBodyN
             addInstr(new CheckArityInstr(signature.required(), signature.opt(), signature.hasRest(),
                     signature.keyRest(), keywords));
         } else if (scope instanceof IRClosure && argsNode.hasKwargs()) {
-            // FIXME: This is added to check for kwargs correctness but bypass regular correctness.
+            System.out.println("SATD ID: 540");
             // Any other arity checking currently happens within Java code somewhere (RubyProc.call?)
             addInstr(new CheckArityInstr(signature.required(), signature.opt(), signature.hasRest(),
                     signature.keyRest(), keywords));
@@ -2000,7 +2000,7 @@ public class IRBuilderAST extends IRBuilder<Node, DefNode, WhenNode, RescueBodyN
         // 2.0 keyword rest arg
         if (keyRest != null) {
             ArgumentType type;
-            // FIXME: combined processing of argumentType could be removed and use same helper that blocks use.
+            System.out.println("SATD ID: 665");
 
             // anonymous keyrest
             if (restName == null || restName.getBytes().realSize() == 0) {
@@ -2572,7 +2572,7 @@ public class IRBuilderAST extends IRBuilder<Node, DefNode, WhenNode, RescueBodyN
         newIRBuilder(getManager(), endClosure).buildPrePostExeInner(postExeNode.getBodyNode());
 
         // Add an instruction in 's' to record the end block in the 'topLevel' scope.
-        // SSS FIXME: IR support for end-blocks that access vars in non-toplevel-scopes
+        System.out.println("SATD ID: 73");
         // might be broken currently. We could either fix it or consider dropping support
         // for END blocks altogether or only support them in the toplevel. Not worth the pain.
         addInstr(new RecordEndBlockInstr(topLevel, new WrappedIRClosure(buildSelf(), endClosure)));
@@ -2592,7 +2592,7 @@ public class IRBuilderAST extends IRBuilder<Node, DefNode, WhenNode, RescueBodyN
     }
 
     public Operand buildRegexp(RegexpNode reNode) {
-        // SSS FIXME: Rather than throw syntax error at runtime, we should detect
+        System.out.println("SATD ID: 260");
         // regexp syntax errors at build time and add an exception-throwing instruction instead
         return copy(new Regexp(reNode.getValue(), reNode.getOptions()));
     }

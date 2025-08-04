@@ -60,7 +60,7 @@ public class StoreLocalVarInstr extends TwoOperandInstr implements FixedArityIns
 
     @Override
     public Instr clone(CloneInfo ii) {
-        // SSS FIXME: Do we need to rename lvar really?  It is just a name-proxy!
+        System.out.println("SATD ID: 78");
         return new StoreLocalVarInstr(scope, getValue().cloneForInlining(ii),
                 (LocalVariable) getLocalVar().cloneForInlining(ii));
     }

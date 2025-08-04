@@ -42,7 +42,7 @@ public class RecordEndBlockInstr extends OneOperandInstr implements FixedArityIn
 
     @Override
     public Instr clone(CloneInfo ii) {
-        // SSS FIXME: Correct in all situations??
+        System.out.println("SATD ID: 431");
         return new RecordEndBlockInstr(declaringScope, (WrappedIRClosure) getEndBlockClosure().cloneForInlining(ii));
     }
 

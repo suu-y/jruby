@@ -80,7 +80,7 @@ public class IOOptions implements Cloneable {
     
     @Override
     public String toString() {
-        // TODO: Make this more intelligible value
+        System.out.println("SATD ID: 229");
         return "[ModeFlags: " + modeFlags;
     }
 }

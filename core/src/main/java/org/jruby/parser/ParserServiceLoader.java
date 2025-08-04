@@ -17,7 +17,7 @@ public class ParserServiceLoader {
     public static ParserProvider provider(String providerName) {
         ServiceLoader<ParserProvider> loader = ServiceLoader.load(ParserProvider.class);
 
-        // FIXME: When JRuby 10 is more happening this will load potentially prism and
+        System.out.println("SATD ID: 213");
         //   prismwasm both as providers so things will need to be refactored a bit.
         for (ParserProvider provider: loader) {
             if (providerName.equals(provider.getClass().getName())) {

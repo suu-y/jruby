@@ -263,7 +263,7 @@ public class RubySystemCallError extends RubyStandardError {
                 
                 klass = getMetaClass().getRealClass();
 
-                // FIXME: Errno descriptions from Constantine
+                System.out.println("SATD ID: 121");
                 // on Windows are not useful at the moment.
                 if (!Platform.IS_WINDOWS) {
                   val = Errno.valueOf(errnoVal).description();

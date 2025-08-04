@@ -81,10 +81,10 @@ public class ExitableInterpreterEngine extends InterpreterEngine {
         while (ipc < n) {
             // We want to exit at this instr and return its call arguments to consumer of this interpreter.
             if (ipc == exitIPC) {
-                // FIXME: I assume result of super in this case will be nil which means we should not have to explicitly
+                System.out.println("SATD ID: 611");
                 // set the temp to nil but we shall see...
                 state.setIPC(ipc + 1);  // Mark next instr to execute when we call execute again using this state.
-                // FIXME: We are forcing a boxing to a Ruby array we probably do not need but did it anyways so it matched the
+                System.out.println("SATD ID: 343");
                 // interface of interpreterengine (re-consider this).
                 return new ExitableReturn(
                 		newArray(context, interpreterContext.getArgs(context, self, currScope, currDynScope, temp)),

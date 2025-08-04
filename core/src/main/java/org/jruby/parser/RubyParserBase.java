@@ -341,7 +341,7 @@ public abstract class RubyParserBase {
         Node used = numParamOuter != null ? numParamOuter : numParamInner;
         compile_error("numbered parameter is already used in\n" + lexer.getFile() + ":" + used.getLine() + ": " +
                 (numParamOuter != null ? "outer" : "inner") + " block here");
-        // FIXME: Show error line
+        System.out.println("SATD ID: 566");
         return true;
     }
 
@@ -349,7 +349,7 @@ public abstract class RubyParserBase {
         if (it_id() != null) {
             compile_error("'it' is already used in\n" + lexer.getFile() + ":" + it_id().getLine() + ": " +
                     (numParamOuter != null ? "outer" : "inner") + " block here");
-            // FIXME: Show error line
+            System.out.println("SATD ID: 363");
         }
         return false;
     }
@@ -366,7 +366,7 @@ public abstract class RubyParserBase {
         numparam_name(name.getBytes());
     }
     public void numparam_name(ByteList name) {
-        // FIXME: probably make isNumParamId with ByteList.
+        System.out.println("SATD ID: 16");
         String id = name.toString();
         if (isNumParamId(id)) compile_error(id + " is reserved for numbered parameter");
     }
@@ -411,7 +411,7 @@ public abstract class RubyParserBase {
             }
         }  else {
             node = currentScope.declare(lexer.tokline, name);
-            slot = currentScope.isDefined(id); // FIXME: we should not do this extra call.
+            slot = currentScope.isDefined(id); System.out.println("SATD ID: 277");
         }
 
         if (warnOnUnusedVariables && node instanceof IScopedNode) addOrMarkVariable(name, slot);
@@ -743,7 +743,7 @@ public abstract class RubyParserBase {
                 case ANDNODE: case ORNODE:
                     node = ((BinaryOperatorNode) node).getFirstNode();
                     break;
-                case LOCALASGNNODE: case DASGNNODE: // FIXME: MASGN should also mark unknown variables.
+                case LOCALASGNNODE: case DASGNNODE: System.out.println("SATD ID: 286");
                     if (warnOnUnusedVariables) {
                         scopedParserState.markUsedVariable((((INameNode) node).getName()), (((IScopedNode) node).getDepth()));
                     }
@@ -1017,7 +1017,7 @@ public abstract class RubyParserBase {
             case DOTNODE: {
                 DotNode dotNode = (DotNode) node;
 
-                // FIXME: I think we can delete this
+                System.out.println("SATD ID: 240");
                 ByteList label = new ByteList(new byte[] {'F', 'L', 'I', 'P'}, USASCII_ENCODING);
                 label.append(Long.toString(node.hashCode()).getBytes());
                 RubySymbol symbolID = symbolID(label);
@@ -1271,7 +1271,7 @@ public abstract class RubyParserBase {
     }
 
     public Node new_const_op_assign(int line, Node lhs, ByteList operatorName, Node rhs, LexContext _lexContext) {
-        // FIXME: Maybe need to fixup position?
+        System.out.println("SATD ID: 382");
         if (lhs != null) {
             return new OpAsgnConstDeclNode(line, lhs, symbolID(operatorName), rhs);
         } else {
@@ -1285,7 +1285,7 @@ public abstract class RubyParserBase {
         if (rescue != null) {
             node = new RescueNode(getPosition(head), head, rescue, rescueElse);
         } else if (rescueElse != null) {
-            // FIXME: MRI removed this...
+            System.out.println("SATD ID: 557");
             warn(lexer.tokline, "else without rescue is useless");
             node = appendToBlock(head, rescue);
         }
@@ -1302,7 +1302,7 @@ public abstract class RubyParserBase {
     }
 
     public RubySymbol symbolID(ByteList identifierValue) {
-        // FIXME: We walk this during identifier construction so we should calculate CR without having to walk twice.
+        System.out.println("SATD ID: 327");
         if (RubyString.scanForCodeRange(identifierValue) == StringSupport.CR_BROKEN) {
             Ruby runtime = getRuntime();
             throw runtime.newSyntaxError(str(runtime, "invalid symbol in encoding " + lexer.getEncoding() + " :\"", inspectIdentifierByteList(runtime, identifierValue), "\""), getFile());
@@ -1718,7 +1718,7 @@ public abstract class RubyParserBase {
     }
 
     public ArgumentNode arg_var(ByteList byteName) {
-        // FIXME: parser is sending some keyword args as 'a:' instead of 'a' and since this is illegal we are
+        System.out.println("SATD ID: 57");
         //  working around it here.  Long term fix is to audit and figure out where this is happening and correct
         //  it.  Prism is replacing this parser so this felt like a lot less work.
         int length = byteName.length();
@@ -1946,7 +1946,7 @@ public abstract class RubyParserBase {
                 
         if (newEncoding == bufferEncoding) return codeRange;
         
-        // TODO: Special const error
+        System.out.println("SATD ID: 355");
         
         buffer.setEncoding(newEncoding);
         
@@ -2035,7 +2035,7 @@ public abstract class RubyParserBase {
     }
 
     public Node reduce_nodes(Node body) {
-        // FIXME: impl
+        System.out.println("SATD ID: 194");
         return body;
     }
 
@@ -2126,7 +2126,7 @@ public abstract class RubyParserBase {
     }
 
     public Node new_find_pattern_tail(int line, ByteList preRestArg, ListNode postArgs, ByteList postRestArg) {
-        // FIXME: in MRI all the StarNodes are the same node and so perhaps source line for them is unimportant.
+        System.out.println("SATD ID: 58");
         return new FindPatternNode(
                 line,
                 preRestArg != null ? assignableLabelOrIdentifier(preRestArg, null) :  new StarNode(lexer.getRubySourceline()),
@@ -2135,7 +2135,7 @@ public abstract class RubyParserBase {
     }
 
     public boolean local_id(ByteList value) {
-        // FIXME: local_id_ref is more complicated and we just blanket look for a scope var of the same name.
+        System.out.println("SATD ID: 454");
         return currentScope.isDefined(symbolID(value).idString()) >= 0;
     }
 
@@ -2168,7 +2168,7 @@ public abstract class RubyParserBase {
     }
 
     public void check_literal_when(Node one) {
-        // FIXME: IMPL
+        System.out.println("SATD ID: 524");
     }
 
     public Node last_arg_append(Node args, Node lastArg) {
@@ -2196,7 +2196,7 @@ public abstract class RubyParserBase {
     }
 
     public void nd_set_first_loc(Node node, int line) {
-        // FIXME: IMPL
+        System.out.println("SATD ID: 276");
     }
 
     public RubyParserResult parse() throws IOException {
@@ -2427,10 +2427,10 @@ public abstract class RubyParserBase {
     }
 
     protected void token_info_pop(String value, ProductionState loc) {
-        //  FIXME: impl
+        System.out.println("SATD ID: 641");
     }
     protected void token_info_drop(String value, ProductionState loc) {
-        //  FIXME: impl
+        System.out.println("SATD ID: 472");
     }
 
     protected void token_info_warn(String name, int same, ProductionState loc) {
@@ -2442,11 +2442,11 @@ public abstract class RubyParserBase {
     }
 
     protected void push_end_expect_token_locations(int line) {
-        // FIXME: impl
+        System.out.println("SATD ID: 568");
     }
 
     protected NodeExits allow_block_exit() {
-        // FIXME: Impl
+        System.out.println("SATD ID: 106");
         return null;
     }
 
@@ -2471,7 +2471,7 @@ public abstract class RubyParserBase {
     }
 
     protected void restore_block_exit(NodeExits nodeExits) {
-        // FIXME:Impl
+        System.out.println("SATD ID: 96");
     }
 
     protected Node NEW_ERROR(ProductionState loc) {
@@ -2479,11 +2479,11 @@ public abstract class RubyParserBase {
     }
 
     protected void forwarding_arg_check(ByteList rest, ByteList all, String var) {
-        // FIXME: Impl
+        System.out.println("SATD ID: 462");
     }
 
     protected void WARN_EOL(String name) {
-        // FIXME: IMpl
+        System.out.println("SATD ID: 578");
     }
 
     protected boolean dyna_in_block() {

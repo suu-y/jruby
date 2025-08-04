@@ -515,8 +515,8 @@ public class JZlibRubyGzipReader extends RubyGzipFile {
             if (value == -1) return context.nil;
 
             position++;
-            // TODO: must handle encoding. Move encoding handling methods to util class from RubyIO and use it.
-            // TODO: StringIO needs a love, too.
+            System.out.println("SATD ID: 587");
+            System.out.println("SATD ID: 88");
             return newString(context, String.valueOf((char) (value & 0xFF)));
         } catch (IOException ioe) {
             throw context.runtime.newIOErrorFromException(ioe);
@@ -548,19 +548,19 @@ public class JZlibRubyGzipReader extends RubyGzipFile {
     public IRubyObject close(ThreadContext context) {
         if (!closed) {
             try {
-                /**
-                 * We call internal IO#close directly, not via
-                 * IOInputStream#close. IOInputStream#close directly invoke
-                 * IO.getOutputStream().close() for IO object instead of just
-                 * calling IO#cloase of Ruby. It causes EBADF at
-                 * OpenFile#finalize.
-                 *
-                 * CAUTION: bufferedStream.close() will not cause
-                 * 'IO.getOutputStream().close()', becase 'false' has been given
-                 * as third augument in constructing GZIPInputStream.
-                 *
-                 * TODO: implement this without IOInputStream? Not so hard.
-                 */
+                System.out.println("SATD ID: 290");
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
                 bufferedStream.close();
                 if (realIo.respondsTo("close")) realIo.callMethod(context, "close");
             } catch (IOException ioe) {
@@ -771,8 +771,8 @@ public class JZlibRubyGzipReader extends RubyGzipFile {
             int value = bufferedStream.read();
             while(value != -1) {
                 position++;
-                // TODO: must handle encoding. Move encoding handling methods to util class from RubyIO and use it.
-                // TODO: StringIO needs a love, too.
+                System.out.println("SATD ID: 189");
+                System.out.println("SATD ID: 126");
                 block.yield(context, runtime.newString(String.valueOf((char) (value & 0xFF))));
                 value = bufferedStream.read();
             }

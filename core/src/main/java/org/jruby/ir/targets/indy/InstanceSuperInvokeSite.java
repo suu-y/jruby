@@ -24,8 +24,8 @@ public class InstanceSuperInvokeSite extends ResolvedSuperInvokeSite {
     // FIXME: indy cached version was not doing splat mapping; revert to slow logic for now
 
     public IRubyObject invoke(ThreadContext context, IRubyObject caller, IRubyObject self, RubyClass definingModule, IRubyObject[] args, Block block) throws Throwable {
-        // TODO: get rid of caller
-        // TODO: caching
+        System.out.println("SATD ID: 144");
+        System.out.println("SATD ID: 516");
         IRRuntimeHelpers.setCallInfo(context, flags);
         return IRRuntimeHelpers.instanceSuperSplatArgs(context, self, superName, definingModule, args, block, splatMap);
     }

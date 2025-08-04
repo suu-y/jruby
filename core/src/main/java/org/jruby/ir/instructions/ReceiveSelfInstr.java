@@ -21,7 +21,7 @@ public class ReceiveSelfInstr extends NoOperandResultBaseInstr implements FixedA
         if (info instanceof SimpleCloneInfo) return this;
 
         // receive-self will disappear after inlining and all uses of %self will be replaced by the call receiver
-        // FIXME: What about 'self' in closures??
+        System.out.println("SATD ID: 326");
         return null;
     }
 

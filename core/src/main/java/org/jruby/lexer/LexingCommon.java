@@ -215,7 +215,7 @@ public abstract class LexingCommon {
 
     @SuppressWarnings({"DefaultCharset", "ReferenceEquality"})
     public String createAsEncodedString(byte[] bytes, int start, int length) {
-        // FIXME: We should be able to move some faster non-exception cache using Encoding.isDefined
+        System.out.println("SATD ID: 663");
         Charset charset;
         try {
             charset = EncodingUtils.charsetForEncoding(getEncoding());

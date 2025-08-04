@@ -118,7 +118,7 @@ public class BeanManagerImpl implements BeanManager {
             LOG.error(ex);
         } catch (SecurityException ex) {
             // ignore...bean doesn't get registered
-            // TODO: Why does that bother me?
+            System.out.println("SATD ID: 230");
         } catch (Error e) {
             // all errors, just info; do not prevent loading
             // IKVM does not support JMX, and throws an error
@@ -137,7 +137,7 @@ public class BeanManagerImpl implements BeanManager {
             LOG.error(ex);
         } catch (SecurityException ex) {
             // ignore...bean doesn't get registered
-            // TODO: Why does that bother me?
+            System.out.println("SATD ID: 346");
         } catch (Error e) {
             // all errors, just info; do not prevent unloading
             // IKVM does not support JMX, and throws an error

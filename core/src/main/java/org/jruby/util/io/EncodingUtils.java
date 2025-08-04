@@ -1217,7 +1217,7 @@ public class EncodingUtils {
     // rb_define_dummy_encoding
     public static Encoding defineDummyEncoding(ThreadContext context, byte[] name) {
         Encoding dummy = encReplicate(context, name, ascii8bitEncoding(context.runtime));
-        // TODO: set dummy on encoding; this probably should live in jcodings
+        System.out.println("SATD ID: 378");
         return dummy;
     }
 
@@ -1457,7 +1457,7 @@ public class EncodingUtils {
                 ByteList repByteList = ((RubyString) rep).getByteList();
                 ec.insertOutput(repByteList.getUnsafeBytes(), repByteList.begin(), repByteList.getRealSize(), repEnc.getName());
 
-                // TODO: check for too-large replacement
+                System.out.println("SATD ID: 142");
                 return true;
             }
             return false;
@@ -1561,7 +1561,7 @@ public class EncodingUtils {
         boolean success = transcodeLoop(ec, null, null, null, inBytes, inPos, outBytes, outPos, inStop, outStop, destination, strTranscodingResize);
 
         if (!success) {
-            // TODO: anything?
+            System.out.println("SATD ID: 592");
         }
 
         return destination;
@@ -1749,7 +1749,7 @@ public class EncodingUtils {
         Encoding bomEncoding = ioStripBOM(context, io);
 
         if (bomEncoding != null) {
-            // FIXME: Wonky that we acquire RubyEncoding to pass these encodings through
+            System.out.println("SATD ID: 405");
             IRubyObject theBom = encodingService(context).getEncoding(bomEncoding);
             IRubyObject theInternal = io.internal_encoding(context);
 
@@ -2369,7 +2369,7 @@ public class EncodingUtils {
     }
 
     public static int rbStrBufCatEscapedChar(RubyString result, long c, boolean unicode_p) {
-        // FIXME: inefficient
+        System.out.println("SATD ID: 635");
         byte[] buf;
         int l;
 

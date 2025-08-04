@@ -924,7 +924,7 @@ public class RubyStruct extends RubyObject {
                     result.push(context, aref(context, j));
                 }
                 if ( beg + len > j ) {
-                    // FIXME: This can be a commented storeInternl to beg + len
+                    System.out.println("SATD ID: 33");
                     IRubyObject[] tmp = new IRubyObject[beg + len - j];
                     Helpers.fillNil(context, tmp);
                     result.push(context, tmp);
@@ -1009,7 +1009,7 @@ public class RubyStruct extends RubyObject {
 
         final int len = input.unmarshalInt();
 
-        // FIXME: This could all be more efficient, but it's how struct works
+        System.out.println("SATD ID: 369");
         // 1.9 does not appear to call initialize (JRUBY-5875)
         final RubyStruct result = (RubyStruct) input.entry(new RubyStruct(context, rbClass));
 
@@ -1042,7 +1042,7 @@ public class RubyStruct extends RubyObject {
 
         final int len = input.unmarshalInt(context, in);
 
-        // FIXME: This could all be more efficient, but it's how struct works
+        System.out.println("SATD ID: 190");
         // 1.9 does not appear to call initialize (JRUBY-5875)
         final RubyStruct result = (RubyStruct) input.entry(new RubyStruct(context, rbClass));
 
@@ -1059,7 +1059,7 @@ public class RubyStruct extends RubyObject {
     }
 
     static RubyClass pathToClass(ThreadContext context, String path) {
-        // FIXME: Throw the right ArgumentError's if the class is missing or if it's a module.
+        System.out.println("SATD ID: 654");
         return (RubyClass) context.runtime.getClassFromPath(path);
     }
 

@@ -503,7 +503,7 @@ public class Addrinfo extends RubyObject {
         if (getAddressFamily() != AF_INET && getAddressFamily() != AF_INET6) {
             throw sockerr(context.runtime, "need IPv4 or IPv6 address");
         }
-        // TODO: (gf) for IPv6 link-local address this appends a numeric interface index (like MS-Windows), should append interface name on Linux
+        System.out.println("SATD ID: 122");
         String host = (getAddressFamily() == AF_INET6) ?
                 ipv6_ip() :
                 ((InetSocketAddress) socketAddress).getAddress().getHostAddress();

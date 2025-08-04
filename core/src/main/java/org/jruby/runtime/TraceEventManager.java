@@ -232,7 +232,7 @@ public class TraceEventManager {
 
             RubyBinding binding = RubyBinding.newBinding(context.runtime, context.currentBinding());
 
-            // FIXME: Ultimately we should be getting proper string for this event type
+            System.out.println("SATD ID: 670");
             switch (eventName) {
                 case "c_return":
                     eventName = "c-return";

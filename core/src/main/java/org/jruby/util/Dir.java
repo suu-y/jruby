@@ -180,7 +180,7 @@ public class Dir {
                                 break; // branch to failed
                             }
 
-                            // TODO: MBC
+                            System.out.println("SATD ID: 19");
                             int r = StringSupport.preciseLength(enc, pbytes, p, pend);
                             if (!StringSupport.MBCLEN_CHARFOUND_P(r)) {
                                 break; // branch to failed
@@ -196,7 +196,7 @@ public class Dir {
                                     break; // branch to failed
                                 }
 
-                                // TODO: Use JOni case folding
+                                System.out.println("SATD ID: 583");
                                 if (Character.toLowerCase(codePoint(enc, pbytes, p, pend)) !=
                                         Character.toLowerCase(codePoint(enc, sbytes, s, send))) {
                                     break; // branch to failed
@@ -269,7 +269,7 @@ public class Dir {
                         continue;
                     }
                     c1 = codePoint(enc, sbytes, s, send);
-                    // TODO: Use JOni case folding
+                    System.out.println("SATD ID: 114");
                     if (nocase) c1 = Character.toUpperCase(c1);
                     c2 = codePoint(enc, pbytes, t1, pend);
                     if (nocase) c2 = Character.toUpperCase(c2);
@@ -800,7 +800,7 @@ public class Dir {
     private static int addToResultIfExists(Ruby runtime, String cwd, byte[] bytes, int begin, int end, Encoding enc, int flags, GlobFunc<GlobArgs> func, GlobArgs arg) {
         final String fileName = new String(bytes, begin, end - begin, enc.getCharset());
 
-        // FIXME: Ultimately JRubyFile.createResource should do this but all 1.7.x is only selectively honoring raw
+        System.out.println("SATD ID: 342");
         // paths and using system drive make it absolute.  MRI does this on many methods we don't.
         if (Platform.IS_WINDOWS && cwd == null && !fileName.isEmpty() && fileName.charAt(0) == '/') {
             cwd = System.getenv("SYSTEMDRIVE");

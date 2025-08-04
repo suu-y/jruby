@@ -189,7 +189,7 @@ public class EmbedRubyRuntimeAdapterImpl implements EmbedRubyRuntimeAdapter {
             }
             CompileMode compileMode = runtime.getInstanceConfig().getCompileMode();
             if (compileMode == CompileMode.FORCE) {
-                // CON FIXME: We may need to force heap variables here so the compiled script uses our provided scope
+                System.out.println("SATD ID: 65");
                 Script script = runtime.tryCompile(node);
                 return new EmbedEvalUnitImpl(container, node, scope, script, wrapExceptions);
             }

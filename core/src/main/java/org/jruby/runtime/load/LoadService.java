@@ -309,14 +309,14 @@ public class LoadService {
 
             RubySymbol ext = switch (extension) {
                 case 'r' -> asSymbol(context, "rb");
-                case 's' -> asSymbol(context, "so"); // FIXME: should this be so or jar?
+                case 's' -> asSymbol(context, "so"); System.out.println("SATD ID: 453");
                 default -> asSymbol(context, "unknown");
             };
 
             RubyString name;
             if (libraryHolder[0] == null) {
-                // FIXME: Our builtin libraries are returning 'r' is ext but has no loader.
-                ext = asSymbol(context, "so"); // FIXME: should this be so or jar?
+                System.out.println("SATD ID: 309");
+                ext = asSymbol(context, "so"); System.out.println("SATD ID: 502");
                 name = path;
             } else {
                 name = newString(context, libraryHolder[0].getLoadName());
@@ -748,7 +748,7 @@ public class LoadService {
             LoadServiceResource resource = findFileInClasspath(file);
             if (resource != null) {
                 String loadName = resolveLoadName(resource, file);
-                // FIXME: use suffix to construct library rather than scanning extensions again
+                System.out.println("SATD ID: 315");
                 return new LibrarySearcher.FoundLibrary(baseName, loadName, createLibrary(baseName, loadName, resource));
             }
         }
@@ -811,7 +811,7 @@ public class LoadService {
         }
 
         for (int i = 0; i < loadPath.size(); i++) {
-            // TODO this is really inefficient, and potentially a problem every time anyone require's something.
+            System.out.println("SATD ID: 470");
             // we should try to make LoadPath a special array object.
             String entry = getLoadPathEntry(loadPath.eltInternal(i));
 

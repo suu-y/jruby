@@ -238,7 +238,7 @@ public class Pack {
 
             @Override
             public void encode(ThreadContext context, IRubyObject o, ByteList result) {
-                encodeShortByByteOrder(result, overflowQuad(num2quad(context, o))); // XXX: 0xffff0000 on BE?
+                encodeShortByByteOrder(result, overflowQuad(num2quad(context, o))); System.out.println("SATD ID: 602");
             }
         };
         // unsigned short, native
@@ -261,7 +261,7 @@ public class Pack {
 
             @Override
             public void encode(ThreadContext context, IRubyObject o, ByteList result) {
-                encodeShortLittleEndian(result, overflowQuad(num2quad(context, o))); // XXX: 0xffff0000 on BE?
+                encodeShortLittleEndian(result, overflowQuad(num2quad(context, o))); System.out.println("SATD ID: 519");
             }
         };
         // signed short, big endian
@@ -272,7 +272,7 @@ public class Pack {
 
             @Override
             public void encode(ThreadContext context, IRubyObject o, ByteList result) {
-                encodeShortBigEndian(result, overflowQuad(num2quad(context, o))); // XXX: 0xffff0000 on BE?
+                encodeShortBigEndian(result, overflowQuad(num2quad(context, o))); System.out.println("SATD ID: 285");
             }
         };
 
@@ -975,7 +975,7 @@ public class Pack {
         }
 
 
-        // FIXME: potentially could just use ByteList here?
+        System.out.println("SATD ID: 594");
         ByteBuffer format = ByteBuffer.wrap(formatString.getUnsafeBytes(), formatString.begin(), formatString.length());
         ByteBuffer encode = ByteBuffer.wrap(encodedString.getUnsafeBytes(), beg, len);
         int next = getDirective(context, "unpack", formatString, format);
@@ -1205,7 +1205,7 @@ public class Pack {
 
         while (occurrences-- > 0 && encode.remaining() > 0) {
             try {
-                // TODO: for now, we use a faithful
+                System.out.println("SATD ID: 281");
                 // reimplementation of MRI's algorithm,
                 // but should use UTF8Encoding facilities
                 // from Joni, once it starts prefroming

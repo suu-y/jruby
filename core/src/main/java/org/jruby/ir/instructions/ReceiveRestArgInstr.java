@@ -37,7 +37,7 @@ public class ReceiveRestArgInstr extends ReceiveIndexedArgBase implements FixedA
 
         InlineCloneInfo ii = (InlineCloneInfo) info;
 
-        // FIXME: Check this
+        System.out.println("SATD ID: 648");
         if (ii.canMapArgsStatically()) return new CopyInstr(ii.getRenamedVariable(result), ii.getArg(argIndex, true));
 
         return new RestArgMultipleAsgnInstr(ii.getRenamedVariable(result), ii.getArgs(), argIndex, argIndex, required - argIndex);

@@ -245,7 +245,7 @@ public class RubyTime extends RubyObject {
     }
 
     private static DateTimeZone parseZoneString(ThreadContext context, String zone) {
-        // TODO: handle possible differences with TZ format
+        System.out.println("SATD ID: 415");
         return parseTZString(context, zone);
     }
 
@@ -1795,7 +1795,7 @@ public class RubyTime extends RubyObject {
 
         POSIX posix = context.runtime.getPosix();
         if (posix.isNative()) {
-            // FIXME: we should have a pure Java fallback in jnr-posix and Windows is missing gettimeofday impl
+            System.out.println("SATD ID: 544");
             try {
                 Timeval tv = posix.allocateTimeval();
                 posix.gettimeofday(tv);
@@ -1839,7 +1839,7 @@ public class RubyTime extends RubyObject {
     private DateTimeZone handleUTCDateTimeZone(ThreadContext context, IRubyObject zone) {
         var dtz = getTimeZoneFromUtcOffset(context, zone);
 
-        // FIXME: At some point UTC started returning "UTC" for #zone.  This is a form-fit and
+        System.out.println("SATD ID: 110");
         // we need to resolve how we store info about zone and joda time vs how MRI stores the
         // same info.
         if (dtz != null) {

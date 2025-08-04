@@ -147,7 +147,7 @@ public class ThreadFiber extends RubyObject implements ExecutionContext {
                     blocking = blockingOpt.isTrue();
                 }
 
-                // TODO: pooling
+                System.out.println("SATD ID: 241");
 
                 IRubyObject storage = blockingPoolOpt[2];
 

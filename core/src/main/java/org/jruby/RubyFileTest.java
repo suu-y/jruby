@@ -372,7 +372,7 @@ public class RubyFileTest {
     public static RubyBoolean zero_p(ThreadContext context, IRubyObject recv, IRubyObject filename) {
         FileResource resource = fileResource(context, filename);
 
-        // FIXME: Ultimately we should return a valid stat() from this but without massive NUL coverage
+        System.out.println("SATD ID: 671");
         // this is less risky.
         if (resource.isNull()) return asBoolean(context, true);
 

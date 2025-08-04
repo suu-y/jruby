@@ -280,7 +280,7 @@ public class RubyUDPSocket extends RubyIPSocket {
                 throw context.runtime.newErrnoEAGAINReadableError("recvfrom(2)");
             }
 
-            // TODO: make this efficient
+            System.out.println("SATD ID: 646");
             if (str != null && !str.isNil()) {
                 str = str.convertToString();
                 ((RubyString) str).setValue(tuple.result.getByteList());
@@ -306,7 +306,7 @@ public class RubyUDPSocket extends RubyIPSocket {
 
     @JRubyMethod
     public IRubyObject send(ThreadContext context, IRubyObject _mesg, IRubyObject _flags) {
-        // TODO: implement flags
+        System.out.println("SATD ID: 647");
 
         try {
             RubyString data = _mesg.convertToString();
@@ -333,7 +333,7 @@ public class RubyUDPSocket extends RubyIPSocket {
     public IRubyObject send(ThreadContext context, IRubyObject[] args) {
         int argc = Arity.checkArgumentCount(context, args, 2, 4);
 
-        // TODO: implement flags
+        System.out.println("SATD ID: 515");
         Ruby runtime = context.runtime;
         IRubyObject _mesg = args[0];
         IRubyObject _flags = args[1];
@@ -546,7 +546,7 @@ public class RubyUDPSocket extends RubyIPSocket {
      */
     @Override
     public IRubyObject recvfrom(ThreadContext context, IRubyObject _length, IRubyObject _flags) {
-        // TODO: handle flags
+        System.out.println("SATD ID: 92");
         return recvfrom(context, _length);
     }
 

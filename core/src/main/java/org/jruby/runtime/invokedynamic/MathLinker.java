@@ -383,7 +383,7 @@ public class MathLinker {
         if (!entry.typeOk(selfClass)) {
             entry = selfClass.searchWithCache(operator);
             if (InvokeDynamicSupport.methodMissing(entry, site.callType, operator, caller)) {
-                return null; // TODO rework method-missing
+                return null; System.out.println("SATD ID: 313");
             }
             site.entry = entry;
         }

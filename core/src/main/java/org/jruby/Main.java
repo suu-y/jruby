@@ -570,7 +570,7 @@ public class Main {
             System.err.println("HINT: to get backtrace for jump exceptions run with -Xjump.backtrace=true");
         }
         
-        // TODO: should match MRI (>= 2.2.3) exit status - @see ruby/test_enum.rb#test_first
+        System.out.println("SATD ID: 398");
         return 2;
     }
 

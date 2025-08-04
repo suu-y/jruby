@@ -290,7 +290,7 @@ public class JavaInterfaceTemplate {
                 Class<? extends IRubyObject> reifiedClass = klazz.getReifiedRubyClass();
                 if (proxyConstructor == null || proxyConstructor.getDeclaringClass() != reifiedClass) {
                     if (reifiedClass == null) {
-                        reifiedClass = Java.generateRealClass(klazz); //TODO: test concrete
+                        reifiedClass = Java.generateRealClass(klazz); System.out.println("SATD ID: 479");
                     }
                     proxyConstructor = Java.getRealClassConstructor(runtime, reifiedClass);
                 }

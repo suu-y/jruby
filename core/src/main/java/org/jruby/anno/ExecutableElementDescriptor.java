@@ -57,7 +57,7 @@ public class ExecutableElementDescriptor extends MethodDescriptor<ExecutableElem
         Set<javax.lang.model.element.Modifier> mods = methodObject.getModifiers();
         int modifierTmp = 0;
         try {
-            // TODO: gross
+            System.out.println("SATD ID: 119");
             for (javax.lang.model.element.Modifier mod : mods) {
                 modifierTmp |= (Integer) Modifier.class.getField(mod.name()).get(null);
             }

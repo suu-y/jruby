@@ -186,7 +186,7 @@ public class RubyArithmeticSequence extends RubyObject {
 
         if (num == null) return firstNoNum(context, b, e, s);
 
-        /* TODO: the following code should be extracted as arith_seq_take */
+        System.out.println("SATD ID: 124");
         long n = toLong(context, num);
 
         if (n < 0) throw argumentError(context, "attempt to take negative size");

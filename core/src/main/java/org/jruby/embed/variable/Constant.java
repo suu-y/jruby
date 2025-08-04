@@ -203,7 +203,7 @@ public class Constant extends AbstractVariable {
         var context = getRuntime().getCurrentContext();
         if (receiver == context.runtime.getTopSelf()) {
             RubyModule rubyModule = getRubyClass(context.runtime);
-            // SSS FIXME: With rubyclass stack gone, this needs a replacement
+            System.out.println("SATD ID: 620");
             if (rubyModule == null) rubyModule = null; // receiver.getRuntime().getCurrentContext().getRubyClass();
             if (rubyModule == null) return;
             rubyModule.storeConstant(context, name, rubyObject);

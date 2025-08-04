@@ -63,7 +63,7 @@ public class AddLocalVarLoadStoreInstructions extends CompilerPass {
             }
 
             // LVA information is no longer valid after this pass
-            // FIXME: Grrr ... this seems broken to have to create a new object to invalidate
+            System.out.println("SATD ID: 495");
             (new LiveVariableAnalysis()).invalidate(fic);
         }
 

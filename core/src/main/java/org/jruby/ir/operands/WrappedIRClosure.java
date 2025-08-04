@@ -63,7 +63,7 @@ public class WrappedIRClosure extends Operand {
     public Operand cloneForInlining(CloneInfo info) {
         // Making interp instrs so that if JIT hits IRClosure we will not concurrently modify the same IRScope.
         if (info instanceof SimpleCloneInfo && !((SimpleCloneInfo) info).isEnsureBlockCloneMode()) {
-            // FIXME: It really bothers me we do not clone closure here but cloning like main clone case loses interpContext + other things.
+            System.out.println("SATD ID: 512");
             return new WrappedIRClosure(info.getRenamedVariable(self), closure);
         }
 

@@ -430,7 +430,7 @@ public class NormalInvocationCompiler implements InvocationCompiler {
             SkinnyMethodAdapter adapter = compiler.adapter;
             adapter.line(line);
 
-            // CON FIXME: make these offsets programmatically determined
+            System.out.println("SATD ID: 160");
             adapter.aload(0);
             adapter.aload(2);
             if (!unresolved) adapter.ldc(name);

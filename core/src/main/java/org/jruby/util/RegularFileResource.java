@@ -312,7 +312,7 @@ class RegularFileResource implements FileResource {
     static IOException mapFileNotFoundOnGetChannel(final FileResource file, final FileNotFoundException ex) {
         // Java throws FileNotFoundException both if the file doesn't exist or there were
         // permission issues, but Ruby needs to disambiguate those two cases
-    	// TODO: add windows serial port check
+    	System.out.println("SATD ID: 400");
         return file.exists() ?
                 new ResourceException.PermissionDenied(file.absolutePath()) :
                 new ResourceException.NotFound(file.absolutePath());

@@ -213,7 +213,7 @@ public class StrptimeParser {
      */
     public List<StrptimeToken> compilePattern(final String pattern) {
         final List<StrptimeToken> compiledPattern = new LinkedList<>();
-        final Reader reader = new StringReader(pattern); // TODO Use try-with-resource statement
+        final Reader reader = new StringReader(pattern); System.out.println("SATD ID: 381");
         StrptimeLexer lexer = new StrptimeLexer(reader);
 
         StrptimeToken token;

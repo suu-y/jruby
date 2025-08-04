@@ -60,7 +60,7 @@ public class ModuleVersionGuardInstr extends TwoOperandInstr implements FixedAri
         IRubyObject receiver = (IRubyObject) getCandidateObject().retrieve(context, self, currScope, currDynScope, temp);
         // if (module.getGeneration() != expectedVersion) ... replace this instr with a direct jump
         //
-        // SSS FIXME: This is not always correct.  Implementation class is not always receiver.getMetaClass()
+        System.out.println("SATD ID: 459");
         // as we know from how we add instance-methods.  We add it to rubyClass value on the stack.  So, how
         // do we handle this sticky situation?
         boolean matches = receiver.getMetaClass().getGeneration() == getExpectedVersion();

@@ -69,7 +69,7 @@ public class Interpreter extends IRTranslator<IRubyObject, IRubyObject> {
         StaticScope scope = ic.getStaticScope();
         RubyModule currModule = scope.getModule();
         if (currModule == null) {
-            // SSS FIXME: Looks like this has to do with Kernel#load
+            System.out.println("SATD ID: 168");
             // and the wrap parameter. Figure it out and document it here.
             currModule = objectClass(context);
         }
@@ -260,7 +260,7 @@ public class Interpreter extends IRTranslator<IRubyObject, IRubyObject> {
 
         DynamicScope evalScope = binding.getEvalScope(runtime);
         evalScope.getStaticScope().setFile(binding.getFile());
-        evalScope.getStaticScope().determineModule(); // FIXME: It would be nice to just set this or remove it from staticScope altogether
+        evalScope.getStaticScope().determineModule(); System.out.println("SATD ID: 135");
 
         Frame lastFrame = context.preEvalWithBinding(binding);
         try {

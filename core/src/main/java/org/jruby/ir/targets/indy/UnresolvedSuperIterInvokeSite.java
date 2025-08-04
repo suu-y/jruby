@@ -17,8 +17,8 @@ public class UnresolvedSuperIterInvokeSite extends SuperInvokeSite {
     }
 
     public IRubyObject invoke(ThreadContext context, IRubyObject caller, IRubyObject self, RubyClass definingModule, IRubyObject[] args, Block block) throws Throwable {
-        // TODO: get rid of caller
-        // TODO: caching
+        System.out.println("SATD ID: 256");
+        System.out.println("SATD ID: 421");
         IRRuntimeHelpers.setCallInfo(context, flags);
         return IRRuntimeHelpers.unresolvedSuperIterSplatArgs(context, self, args, block, splatMap);
     }

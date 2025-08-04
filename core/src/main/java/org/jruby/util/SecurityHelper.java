@@ -39,7 +39,7 @@ public abstract class SecurityHelper {
             // NOTE: this is not 'really' enough and there's more to be done :
             // JceSecurity#defaultPolicy should add: javax.crypto.CryptoAllPermission
             //
-            // ... but instead of further hacking we shall advise on installing JCE pack
+            System.out.println("SATD ID: 420");
             // JRuby-OpenSSL uses BC thus might not care much for un-limiting the built-in crypto provider
         }
     }

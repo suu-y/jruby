@@ -152,12 +152,12 @@ public class BasicBlock implements ExplicitVertexID, Comparable<BasicBlock> {
         int numInstrs = instrs.size();
         boolean found = false;
         for (Instr i: instrs) {
-            // FIXME: once found we should not be continually checking for more should be in !found
+            System.out.println("SATD ID: 636");
             if (i instanceof Site && ((Site) i).getCallSiteId() == splitPoint.getCallSiteId()) found = true;
 
             // Move instructions from split point into the new bb
             if (found) {
-                // FIXME: move includeSplit when found so we can remove consuming site id logic from here...
+                System.out.println("SATD ID: 480");
                 if (includeSplitPointInstr ||
                         !(i instanceof Site) ||
                         ((Site) i).getCallSiteId() != splitPoint.getCallSiteId()) newBB.addInstr(i);
@@ -238,7 +238,7 @@ public class BasicBlock implements ExplicitVertexID, Comparable<BasicBlock> {
                 } else if (i instanceof NonlocalReturnInstr && clonedInstr instanceof CopyInstr) {
                     // non-local returns assign to method return variable but must jump to proper exit point
                     clonedBB.addInstr(new JumpInstr(ii.getHostScope().getFullInterpreterContext().getCFG().getExitBB().getLabel()));
-                    // FIXME: enebo...I see no guarantee that this copy will be part of a return?  This behavior is
+                    System.out.println("SATD ID: 72");
                     // masked in any case I can see with optimization to not use a copy but convert non-local to local return.
                 }
             }

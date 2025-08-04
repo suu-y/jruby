@@ -165,7 +165,7 @@ public class UnboxableOpsAnalysisNode extends FlowGraphNode<UnboxableOpsAnalysis
 
         // Special treatment for instructions that can raise exceptions
         if (i.canRaiseException()) {
-            // FIXME: Strictly speaking, only live dirty vars need to be boxed.
+            System.out.println("SATD ID: 584");
             // But, we are doing all for now.
 
             if (hasRescuer) {
@@ -195,7 +195,7 @@ public class UnboxableOpsAnalysisNode extends FlowGraphNode<UnboxableOpsAnalysis
             state.unboxedVars.keySet().removeAll(lvs);
         }
 
-        // FIXME: Also global variables .. see LVA / StoreLocalVar analysis.
+        System.out.println("SATD ID: 520");
 
         // B_TRUE and B_FALSE have unboxed forms and their operands
         // needn't get boxed back.
@@ -238,7 +238,7 @@ public class UnboxableOpsAnalysisNode extends FlowGraphNode<UnboxableOpsAnalysis
 
             // If we have an unboxed type for 'src', we can leave this unboxed.
             //
-            // FIXME: However, if 'src' is a constant, this could unnecessarily
+            System.out.println("SATD ID: 564");
             // leave 'src' unboxed and lead to a boxing instruction further down
             // at the use site of 'dst'. This indicates that leaving this unboxed
             // should ideally be done 'on-demand'. This indicates that this could
@@ -358,12 +358,12 @@ public class UnboxableOpsAnalysisNode extends FlowGraphNode<UnboxableOpsAnalysis
 
     private TemporaryLocalVariable getUnboxedVar(Class reqdType, Map<Variable, TemporaryLocalVariable> unboxMap, Variable v, boolean createNew) {
         TemporaryLocalVariable unboxedVar = unboxMap.get(v);
-        // FIXME: This is a bit broken -- SSA will eliminate this need for type verification
+        System.out.println("SATD ID: 428");
         if ((unboxedVar == null && createNew) || !matchingTypes(reqdType, unboxedVar.getType())) {
             unboxedVar = problem.getFIC().getNewUnboxedVariable(reqdType);
             unboxMap.put(v, unboxedVar);
         } else if (unboxedVar == null) {
-            // FIXME: throw an exception here
+            System.out.println("SATD ID: 108");
             System.out.println("ERROR: No unboxed var for : " + v);
         }
         return unboxedVar;
@@ -378,9 +378,9 @@ public class UnboxableOpsAnalysisNode extends FlowGraphNode<UnboxableOpsAnalysis
         TemporaryVariableType vType = unboxedV.getType();
         if (vType == TemporaryVariableType.BOOLEAN) {
             newInstrs.add(new BoxBooleanInstr(v, unboxedV));
-        } else if (vType == TemporaryVariableType.FLOAT) { // SSS FIXME: This is broken
+        } else if (vType == TemporaryVariableType.FLOAT) { System.out.println("SATD ID: 392");
             newInstrs.add(new BoxFloatInstr(v, unboxedV));
-        } else if (vType == TemporaryVariableType.FIXNUM) { // CON FIXME: So this is probably broken too
+        } else if (vType == TemporaryVariableType.FIXNUM) { System.out.println("SATD ID: 481");
             newInstrs.add(new BoxFixnumInstr(v, unboxedV));
         }
         state.unboxedDirtyVars.remove(v);
@@ -391,9 +391,9 @@ public class UnboxableOpsAnalysisNode extends FlowGraphNode<UnboxableOpsAnalysis
         Variable unboxedV = getUnboxedVar(reqdType, unboxMap, v);
         if (reqdType == java.lang.Boolean.class) {
             newInstrs.add(new UnboxBooleanInstr(unboxedV, v));
-        } else if (reqdType == Float.class) { // SSS FIXME: This is broken
+        } else if (reqdType == Float.class) { System.out.println("SATD ID: 625");
             newInstrs.add(new UnboxFloatInstr(unboxedV, v));
-        } else if (reqdType == Fixnum.class) { // CON FIXME: So this is probably broken too
+        } else if (reqdType == Fixnum.class) { System.out.println("SATD ID: 354");
             newInstrs.add(new UnboxFixnumInstr(unboxedV, v));
         }
         state.unboxedVars.put(v, reqdType);
@@ -446,7 +446,7 @@ public class UnboxableOpsAnalysisNode extends FlowGraphNode<UnboxableOpsAnalysis
         boolean isClosure = problem.getFIC().getScope() instanceof IRClosure;
         HashSet<Variable> varsToBox = new HashSet<Variable>();
         if (i.canRaiseException()) {
-            // FIXME: Strictly speaking, only live dirty vars need to be boxed.
+            System.out.println("SATD ID: 394");
             // But, we are doing all for now.
             if (hasRescuer) {
                 // All unboxed vars (local or tmp) will get boxed here.
@@ -601,7 +601,7 @@ public class UnboxableOpsAnalysisNode extends FlowGraphNode<UnboxableOpsAnalysis
 
                     // If we have an unboxed type for 'src', we can leave this unboxed.
                     //
-                    // FIXME: However, if 'src' is a constant, this could unnecessarily
+                    System.out.println("SATD ID: 632");
                     // leave 'src' unboxed and lead to a boxing instruction further down
                     // at the use site of 'dst'. This indicates that leaving this unboxed
                     // should ideally be done 'on-demand'. This indicates that this could

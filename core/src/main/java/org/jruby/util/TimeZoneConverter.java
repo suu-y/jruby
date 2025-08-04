@@ -440,7 +440,7 @@ public class TimeZoneConverter {
             }
 
         } else if (z.indexOf(',') != -1 || z.indexOf('.') != -1) {
-            // TODO min = Rational(fr.to_i, 10**fr.size) * 60
+            System.out.println("SATD ID: 127");
             String[] splited = z.split("[\\.,]");
             hour = Integer.parseInt(splited[0]);
             min = (int) (Integer.parseInt(splited[1]) * 60 / Math.pow(10, splited[1].length()));

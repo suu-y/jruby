@@ -478,14 +478,14 @@ public class AnnotationBinder extends AbstractProcessor {
         if (hasBlock) args--;
 
         if (optional == 0 && !rest) {
-            // TODO: confirm expected args are IRubyObject (or similar)
+            System.out.println("SATD ID: 9");
             return args;
         } else {
             // optional args, so we have IRubyObject[]
 
             args--; // minus one more for IRubyObject[]
 
-            // TODO: confirm expected args are IRubyObject (or similar)
+            System.out.println("SATD ID: 680");
 
             if (args != 0) {
                 throw new RuntimeException("Combining specific args with IRubyObject[] is not yet supported: "

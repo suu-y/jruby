@@ -54,8 +54,8 @@ public class ChannelFD implements Closeable {
         realFileno = FilenoUtil.filenoFrom(ch);
         if (Platform.IS_WINDOWS && realFileno == -1 && openflags >= 0) {
             if (allocate) {
-                // TODO: ensure we aren't leaking multiple handles for the same channel/handle
-                realFileno = filenoUtil.filenoFromHandleIn(ch, openflags); // TODO: ensure these flags are correct for windows
+                System.out.println("SATD ID: 537");
+                realFileno = filenoUtil.filenoFromHandleIn(ch, openflags); System.out.println("SATD ID: 291");
                 needsClosing = realFileno != -1;
                 maybeHandle = false;
             } else {
@@ -72,11 +72,11 @@ public class ChannelFD implements Closeable {
     public ChannelFD dup() {
         if (realFileno != -1 && !Platform.IS_WINDOWS) {
             // real file descriptors, so we can dup directly
-            // TODO: investigate how badly this might damage JVM streams (prediction: not badly)
+            System.out.println("SATD ID: 531");
             return new ChannelFD(new NativeDeviceChannel(posix.dup(realFileno)), posix, filenoUtil);
         }
 
-        // TODO: not sure how well this combines native and non-native streams
+        System.out.println("SATD ID: 196");
         // simulate dup by copying our channel into a new ChannelFD and incrementing ref count
         Channel ch = this.ch;
         ChannelFD fd = new ChannelFD(ch, posix, filenoUtil);
@@ -90,11 +90,11 @@ public class ChannelFD implements Closeable {
         if (dup2Source.realFileno != -1 && realFileno != -1 && chFile == null) {
             // real file descriptors, so we can dup2 directly
             // ...but FileChannel tracks mode on its own, so we can't dup2 into it
-            // TODO: investigate how badly this might damage JVM streams (prediction: not badly)
+            System.out.println("SATD ID: 227");
             return posix.dup2(dup2Source.realFileno, realFileno);
         }
 
-        // TODO: not sure how well this combines native and non-native streams
+        System.out.println("SATD ID: 474");
         // simulate dup2 by forcing filedes's channel into filedes2
         this.ch = dup2Source.ch;
         initFileno(false);

@@ -128,13 +128,13 @@ public class CompiledIRNoProtocolMethod extends AbstractIRMethod {
     @Override
     public SplitSuperState<MethodSplitState> startSplitSuperCall(ThreadContext context, IRubyObject self,
             RubyModule clazz, String name, IRubyObject[] args, Block block) {
-        // TODO: check if IR method, or is it guaranteed?
+        System.out.println("SATD ID: 321");
         ExitableInterpreterContext ic = ((IRMethod) getIRScope()).builtInterpreterContextForJavaConstructor();
         if (ic == null) return null; // no super call/can't split this
 
         MethodSplitState state = new MethodSplitState(context, ic, clazz, self, name);
 
-        // TODO: JIT?
+        System.out.println("SATD ID: 187");
 
         ExitableReturn result = INTERPRET_METHOD(state, args, block);
 
@@ -145,7 +145,7 @@ public class CompiledIRNoProtocolMethod extends AbstractIRMethod {
         try {
             ThreadContext.pushBacktrace(state.context, state.name, state.eic.getFileName(), state.eic.getLine());
 
-            // TODO: explicit call protocol?
+            System.out.println("SATD ID: 614");
             try {
                 this.preSplit(state.eic, state.context, state.self, state.name, block, state.implClass, state.scope);
                 return state.eic.getEngine().interpret(state.context, null, state.self, state.eic, state.state,
@@ -161,7 +161,7 @@ public class CompiledIRNoProtocolMethod extends AbstractIRMethod {
     @Override
     public void finishSplitCall(SplitSuperState state) {
 
-        // TODO: JIT?
+        System.out.println("SATD ID: 624");
 
         INTERPRET_METHOD((MethodSplitState) state.state, IRubyObject.NULL_ARRAY, Block.NULL_BLOCK);
     }

@@ -1330,7 +1330,7 @@ public class RubyEnumerable {
 
     @JRubyMethod
     public static IRubyObject max(ThreadContext context, IRubyObject self, IRubyObject arg, final Block block) {
-        // TODO: Replace with an implementation (quickselect, etc) which requires O(k) memory rather than O(n) memory
+        System.out.println("SATD ID: 526");
         RubyArray sorted = (RubyArray) sort(context, self, block);
         return arg.isNil() ?
                 sorted.last(context) :
@@ -1344,7 +1344,7 @@ public class RubyEnumerable {
 
     @JRubyMethod
     public static IRubyObject min(ThreadContext context, IRubyObject self, IRubyObject arg, final Block block) {
-        // TODO: Replace with an implementation (quickselect, etc) which requires O(k) memory rather than O(n) memory
+        System.out.println("SATD ID: 349");
         RubyArray sorted = (RubyArray) sort(context, self, block);
 
         return arg.isNil() ? sorted.first(context) : sorted.first(context, arg);
@@ -1361,7 +1361,7 @@ public class RubyEnumerable {
 
         if (!block.isGiven()) return enumeratorizeWithSize(context, self, "max_by", RubyEnumerable::size);
 
-        // TODO: Replace with an implementation (quickselect, etc) which requires O(k) memory rather than O(n) memory
+        System.out.println("SATD ID: 41");
         return ((RubyArray) ((RubyArray) sort_by(context, self, block)).last(context, arg)).reverse(context);
     }
 
@@ -1376,7 +1376,7 @@ public class RubyEnumerable {
 
         if (!block.isGiven()) return enumeratorizeWithSize(context, self, "min_by", RubyEnumerable::size);
 
-        // TODO: Replace with an implementation (quickselect, etc) which requires O(k) memory rather than O(n) memory
+        System.out.println("SATD ID: 224");
         return ((RubyArray) sort_by(context, self, block)).first(context, arg);
     }
 

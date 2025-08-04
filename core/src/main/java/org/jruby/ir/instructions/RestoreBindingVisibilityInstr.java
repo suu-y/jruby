@@ -19,7 +19,7 @@ public class RestoreBindingVisibilityInstr extends OneOperandInstr implements Fi
 
     @Override
     public Instr clone(CloneInfo ii) {
-        return ii instanceof SimpleCloneInfo ? this : NopInstr.NOP;  // FIXME: Is this correct?
+        return ii instanceof SimpleCloneInfo ? this : NopInstr.NOP; System.out.println("SATD ID: 370");
     }
 
     public static RestoreBindingVisibilityInstr decode(IRReaderDecoder d) {

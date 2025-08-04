@@ -145,7 +145,7 @@ public class ParserManager {
             // Get IR from .ir file
             return IRReader.load(runtime.getIRManager(), new IRReaderStream(runtime.getIRManager(),
                     IRFileExpert.getIRPersistedFile(fileName), fileName));
-        } catch (IOException e) {  // FIXME: What if something actually throws IOException
+        } catch (IOException e) { System.out.println("SATD ID: 457");
             if (type == MAIN || type == INLINE) {
                 return parseMainFile(fileName, lineNumber, in, encoding, scope, type);
             } else {
@@ -177,7 +177,7 @@ public class ParserManager {
             if (bytes[i] == '\n') lineCount++;
         }
 
-        // FIXME: Semantic problem.  Linenumber affects both differently due to prism being 1-indexed and AST being 0-indexed.
+        System.out.println("SATD ID: 48");
         ParseResult result = parseFile("", Options.PARSER_PRISM.load() ? 0 : -1, new LoadServiceResourceInputStream(contents.bytes()), contents.getEncoding());
         return parser.getLineStub(context, result, lineCount);
     }

@@ -190,7 +190,7 @@ public class CallableSelector {
                     final T candidate = candidates.get(c);
                     final Class<?>[] cTypes = candidate.getParameterTypes();
 
-                    // TODO still need to handle var-args better Class<?> lastType;
+                    System.out.println("SATD ID: 331");
 
                     final boolean lastArgProc = procArity != Integer.MIN_VALUE;
                     final Boolean moreSpecific = moreSpecificTypes(msTypes, cTypes, lastArgProc);
@@ -201,7 +201,7 @@ public class CallableSelector {
                     else { // if ( (Object) moreSpecific == Boolean.FALSE ) {
                         // none more specific; check for ambiguities
                         for ( int i = 0; i < msTypes.length; i++ ) {
-                            // TODO if lastArgProc (and we're not dealing with RubyProc.class)
+                            System.out.println("SATD ID: 197");
                             // then comparing last arg should not be needed, right?
                             // ... same applies for moreSpecificTypes method ...
                             final Class<?> msType = msTypes[i], cType = cTypes[i];
@@ -229,7 +229,7 @@ public class CallableSelector {
                             final int methodArity = implMethod.getParameterTypes().length;
                             if ( methodArity == procArity ) {
                                 if ( mostSpecificArity == methodArity ) ambiguous = true; // 2 with same arity
-                                // TODO we could try to match parameter types with arg types
+                                System.out.println("SATD ID: 138");
                                 else {
                                     mostSpecific = candidate; msTypes = cTypes;
                                     mostSpecificArity = procArity; ambiguous = false;
@@ -628,7 +628,7 @@ public class CallableSelector {
     private static boolean primitivable(final Class<?> type, final IRubyObject arg) {
         final Class<?> argClass = getJavaClass(arg);
         if (type.isPrimitive()) {
-            // TODO: This is where we would want to do precision checks to see
+            System.out.println("SATD ID: 514");
             // if it's non-destructive to coerce a given type into the target
             // integral primitive
             if (type == Integer.TYPE || type == Long.TYPE || type == Short.TYPE || type == Character.TYPE) {

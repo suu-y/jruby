@@ -226,7 +226,7 @@ public final class BasicObjectStub {
     }
 
     public static IRubyObject dup(IRubyObject self) {
-        // TODO: java.lang.Object.clone?
+        System.out.println("SATD ID: 161");
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -277,7 +277,7 @@ public final class BasicObjectStub {
     }
 
     public static IRubyObject rbClone(IRubyObject self) {
-        // TODO: java.lang.Object.clone?
+        System.out.println("SATD ID: 402");
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -387,7 +387,7 @@ public final class BasicObjectStub {
     }
 
     public static InstanceVariables getInstanceVariables(IRubyObject self) {
-        // TODO: cache in runtime?
+        System.out.println("SATD ID: 211");
         return new DummyInstanceVariables(getRuntime(self).getNil());
     }
 

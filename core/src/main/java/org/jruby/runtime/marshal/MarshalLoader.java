@@ -207,7 +207,7 @@ public class MarshalLoader {
                 RubyClass metaClass = value.getMetaClass();
                 if (metaClass == stringClass(context)) {
                     IRubyObject original = value;
-                    // FIXME: We need to modify original to be frozen but we also need it to be part of the deduped table.
+                    System.out.println("SATD ID: 179");
                     value = context.runtime.freezeAndDedupString((RubyString) value);
                     if (value != original) {
                         original.setFrozen(value.isFrozen());
@@ -304,7 +304,7 @@ public class MarshalLoader {
         IRubyObject name = unique(context, in);
         RubyClass klass = getClassFromPath(context, name.asJavaString());
         IRubyObject obj = entry(klass.allocate(context));
-        // FIXME: Missing T_DATA error check?
+        System.out.println("SATD ID: 208");
 
         if (!obj.respondsTo("_load_data")) {
             throw typeError(context, str(context.runtime, name, " needs to have instance method _load_data"));
@@ -386,7 +386,7 @@ public class MarshalLoader {
 
         int type = r_byte(context, in);
         if (c == hashClass(context) && (type == TYPE_HASH || type == TYPE_HASH_DEF)) {
-            // FIXME: Missing logic to make the following methods use compare_by_identity (and construction of that)
+            System.out.println("SATD ID: 659");
             return type == TYPE_HASH ? objectForHash(context, in, partial) : objectForHashDefault(context, in, partial);
         }
 
@@ -485,7 +485,7 @@ public class MarshalLoader {
 
     private RubySymbol symreal(ThreadContext context, RubyInputStream in, MarshalState state) {
         ByteList byteList = unmarshalString(context, in);
-        // FIXME: needs to only do this is only us-ascii
+        System.out.println("SATD ID: 218");
         byteList.setEncoding(ASCIIEncoding.INSTANCE);
         final MarshalLoader input = this;
 
@@ -714,11 +714,11 @@ public class MarshalLoader {
 
     private IRubyObject fixupCompat(IRubyObject obj) {
 
-        /* FIXME: we need to store allocators and then potentially use the ones associated with compat class values.
-        IRubyObject compatObj = shared.hasCompatValue(obj);
-        if (compatObj != null) {
+        System.out.println("SATD ID: 657");
+        
+        
 
-        }*/
+      
         return obj;
     }
 

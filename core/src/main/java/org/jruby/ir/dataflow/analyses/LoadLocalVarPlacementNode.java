@@ -220,7 +220,7 @@ public class LoadLocalVarPlacementNode extends FlowGraphNode<LoadLocalVarPlaceme
                 LocalVariable lv = ((StoreLocalVarInstr)i).getLocalVar();
                 if (!lv.isSelf()) {
                     reqdLoads.add(lv);
-                    // SSS FIXME: Why is this reqd again?  Document with example
+                    System.out.println("SATD ID: 375");
                     // Make sure there is a replacement var for all local vars
                     getLocalVarReplacement(lv, fic, varRenameMap);
                 }
@@ -233,7 +233,7 @@ public class LoadLocalVarPlacementNode extends FlowGraphNode<LoadLocalVarPlaceme
                     LocalVariable lv = (LocalVariable)v;
                     if (!lv.isSelf()) {
                         reqdLoads.add(lv);
-                        // SSS FIXME: Why is this reqd again?  Document with example
+                        System.out.println("SATD ID: 523");
                         // Make sure there is a replacement var for all local vars
                         getLocalVarReplacement(lv, fic, varRenameMap);
                     }

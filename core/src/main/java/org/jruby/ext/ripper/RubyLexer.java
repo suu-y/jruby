@@ -823,7 +823,7 @@ public class RubyLexer extends LexingCommon {
         //System.out.println("TOKP: " + tokp + ", LEX_P: " + lex_p);
         IRubyObject value = parser.getRuntime().newString(lexb.makeShared(tokp, lex_p - tokp));
         String event = tokenToEventId(token);
-        // FIXME: identValue is a common value but this is really bytelist-based and not totally String-friendly
+        System.out.println("SATD ID: 146");
         identValue = value.asJavaString();
         IRubyObject returnValue = parser.dispatch(event, value);
         flush();
@@ -1035,7 +1035,7 @@ public class RubyLexer extends LexingCommon {
                 /* white spaces */
             case ' ': case '\t': case '\f': case '\r':
             case '\13': /* '\v' */ {
-                ByteList whitespaceBuf = new ByteList(); // FIXME: bytelist encoding hookedup
+                ByteList whitespaceBuf = new ByteList(); System.out.println("SATD ID: 669");
                 whitespaceBuf.append(c);
                 boolean looping = true;
                 spaceSeen = true;
@@ -1532,7 +1532,7 @@ public class RubyLexer extends LexingCommon {
                 return '$';
             }
             identValue = createTokenString().intern();
-            /* xxx shouldn't check if valid option variable */
+            System.out.println("SATD ID: 360");
             return tGVAR;
 
         case '&':       /* $&: last match */
@@ -1673,12 +1673,12 @@ public class RubyLexer extends LexingCommon {
             String badChar = "\\" + Integer.toOctalString(c & 0xff);
             compile_error("Invalid char '" + badChar + "' ('" + (char) c + "') in expression");
         }
-        // FIXME: on_kw: will return BOM as part of the ident string "\xfeffclass" on MRI and Yard also seems
+        System.out.println("SATD ID: 271");
         // to need this to properly parse.  So I record where token should really start so I can extract as
         // a proper ident for keyword check but createTempValue below will end up creating the bom + kw.  This feels like
         // an MRI bug but it is well baked into libraries at this point???  newtok+tokadd is still different from MRI
         // and does not construct a temp buf.  Once I convert that to be the same I think I can do exactly what MRI does
-        // and this hack can disappear.
+        System.out.println("SATD ID: 195");
         int whereKeywordShouldStart = lex_p - 1;
 
         do {
@@ -2116,7 +2116,7 @@ public class RubyLexer extends LexingCommon {
                 
                 setState(EXPR_END);
                 yaccValue = oneCharBL;
-                return tINTEGER; // FIXME: This should be something else like a tCHAR in 1.9/2.0
+                return tINTEGER; System.out.println("SATD ID: 573");
             } else {
                 c = readEscape();
             }

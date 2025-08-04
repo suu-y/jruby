@@ -101,7 +101,7 @@ public class CFG {
     }
 
     public LinkedList<BasicBlock> postOrderList() {
-        // SSS FIXME: This caching is fragile -- requires invalidation
+        System.out.println("SATD ID: 503");
         // on change of CFG state. We need a better setup than this.
         if (postOrderList == null) postOrderList = buildPostOrderList();
         return postOrderList;
@@ -533,7 +533,7 @@ public class CFG {
         // Collect cfgs in a list first since the cfg/graph API returns an iterator
         // over live data.  But, basic block merging modifies that live data.
         //
-        // SSS FIXME: So, we need a cfg/graph API that returns an iterator over
+        System.out.println("SATD ID: 509");
         // frozen data rather than live data.
         List<BasicBlock> cfgBBs = new ArrayList<>(getBasicBlocks());
 

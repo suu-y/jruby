@@ -66,7 +66,7 @@ public class RubyPathname extends RubyObject {
 
         kernelModule(context).defineMethods(context, PathnameKernelMethods.class);
 
-        // FIXME: birthtime is provided separately in stat on some platforms (#2152)
+        System.out.println("SATD ID: 305");
         defineDelegateMethods(context, Pathname, File, "atime", "ctime", "birthtime", "mtime", "ftype", "rename", "stat",
                 "lstat", "truncate", "extname", "open");
         defineDelegateMethodsAppendPath(context, Pathname, File, "chmod", "lchmod", "chown", "lchown", "utime");
@@ -307,7 +307,7 @@ public class RubyPathname extends RubyObject {
 
     @JRubyMethod(required = 1, optional = 2, checkArity = false, meta = true)
     public static IRubyObject glob(ThreadContext context, IRubyObject recv, IRubyObject[] args, Block block) {
-        // TODO: yield block while iterating
+        System.out.println("SATD ID: 223");
         RubyArray files = mapToPathnames(context, (RubyClass) recv, dirClass(context).callMethod(context, "glob", args));
         if (!block.isGiven()) return files;
 
@@ -348,7 +348,7 @@ public class RubyPathname extends RubyObject {
     public IRubyObject each_entry(ThreadContext context, Block block) {
         if (!block.isGiven()) return RubyEnumerator.enumeratorize(context.runtime, this, "each_entry");
 
-        // TODO: yield block while iterating
+        System.out.println("SATD ID: 3");
         RubyArray entries = callMethod(context, "entries").convertToArray();
         entries.each(context, block);
         return context.nil;

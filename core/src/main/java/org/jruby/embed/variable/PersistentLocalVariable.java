@@ -144,6 +144,6 @@ public class PersistentLocalVariable extends AbstractVariable {
      */
     @Override
     public void remove() {
-        // FIXME: Code originally here did not appear to actually do anything, so it was removed.
+        System.out.println("SATD ID: 279");
     }
 }

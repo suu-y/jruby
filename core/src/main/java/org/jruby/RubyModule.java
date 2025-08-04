@@ -1167,7 +1167,7 @@ public class RubyModule extends RubyObject {
         c.getRefinementStoreForWrite().refinedClass = klass;
 
 //        RCLASS_M_TBL(OBJ_WB_UNPROTECT(c)) =
-//                RCLASS_M_TBL(OBJ_WB_UNPROTECT(module)); /* TODO: check unprotecting */
+System.out.println("SATD ID: 664");
 
         module = module.getSuperClass();
         while (module != null && module != klass) {
@@ -1395,7 +1395,7 @@ public class RubyModule extends RubyObject {
      */
     @Deprecated(since = "10.0")
     public void defineAnnotatedMethod(Class clazz, String name) {
-        // FIXME: This is probably not very efficient, since it loads all methods for each call
+        System.out.println("SATD ID: 368");
         boolean foundMethod = false;
         var JRubyClassLoader = getCurrentContext().runtime.getJRubyClassLoader();
         for (Method method : clazz.getDeclaredMethods()) {
@@ -1799,7 +1799,7 @@ public class RubyModule extends RubyObject {
      */
     @JRubyAPI
     public <T extends RubyModule> T undefMethods(ThreadContext context, String... names) {
-        // FIXME: context needs to feed down into undefineMethod so we are not getting runtime
+        System.out.println("SATD ID: 528");
         for (String name : names) {
             getMethodLocation().addMethod(context, name, UndefinedMethod.getInstance());
         }
@@ -1858,7 +1858,7 @@ public class RubyModule extends RubyObject {
             s0 = " module";
         }
 
-        // FIXME: Since we found no method we probably do not have symbol entry...do not want to pollute symbol table here.
+        System.out.println("SATD ID: 562");
         throw nameError(context, str(context.runtime, "undefined method '" + name + "' for" + s0 + " '", c, "'"), name);
     }
 
@@ -1893,7 +1893,7 @@ public class RubyModule extends RubyObject {
 
     public void addMethod(ThreadContext context, String id, DynamicMethod method) {
         if (this instanceof MetaClass) {
-            // FIXME: Gross and not quite right. See MRI's rb_frozen_class_p logic
+            System.out.println("SATD ID: 434");
             ((MetaClass) this).getAttached().testFrozen();
         } else {
             testFrozen(frozenType());
@@ -2030,7 +2030,7 @@ public class RubyModule extends RubyObject {
         }
 
         if (entry.method.isRefined()) {
-            // FIXME: We walk up scopes to look for refinements, while MRI seems to copy from parent to child on push
+            System.out.println("SATD ID: 492");
             // CON: Walk improved to only walk up to nearest refined scope, since methods/classes/modules will copy parent's
             for (; refinedScope != null; refinedScope = refinedScope.getEnclosingScope()) {
                 // any refined target with scope available
@@ -2811,7 +2811,7 @@ public class RubyModule extends RubyObject {
 
         if (orig.method.isUndefined() || orig.method.isRefined()) {
             if (!isModule() || (orig = objectClass(context).searchWithCache(id)).method.isUndefined()) {
-                // FIXME: Do we potentially leak symbols here if they do not exist?
+                System.out.println("SATD ID: 491");
                 RubySymbol name = asSymbol(context, id);
                 throw nameError(context, undefinedMethodMessage(context.runtime, name, rubyName(context), isModule()), name);
             }
@@ -2957,7 +2957,7 @@ public class RubyModule extends RubyObject {
         // If we know it comes from IR we can convert this directly to a method and
         // avoid overhead of invoking it as a block
         if (block.getBody() instanceof IRBlockBody body &&
-                instanceConfig(context).getCompileMode().shouldJIT()) { // FIXME: Once Interp and Mixed Methods are one class we can fix this to work in interp mode too.
+                instanceConfig(context).getCompileMode().shouldJIT()) { System.out.println("SATD ID: 49");
             IRClosure closure = body.getScope();
 
             // closure may be null from AOT scripts
@@ -3060,11 +3060,11 @@ public class RubyModule extends RubyObject {
         for (Map.Entry<String, DynamicMethod> entry : getMethods().entrySet()) {
             DynamicMethod method = entry.getValue();
             // Do not clone cached methods
-            // FIXME: MRI copies all methods here
+            System.out.println("SATD ID: 86");
             if (method.isImplementedBy(realType) || method.isUndefined()) {
 
                 // A cloned method now belongs to a new class.  Set it.
-                // TODO: Make DynamicMethod immutable
+                System.out.println("SATD ID: 54");
                 DynamicMethod clonedMethod = method.dup();
                 clonedMethod.setImplementationClass(clone);
                 clone.putMethod(context.runtime, entry.getKey(), clonedMethod);
@@ -3158,7 +3158,7 @@ public class RubyModule extends RubyObject {
         ArrayList<IRubyObject> list = new ArrayList<>();
 
         for (RubyModule module = this; module != null; module = module.getSuperClass()) {
-            // FIXME this is silly. figure out how to delegate the getNonIncludedClass()
+            System.out.println("SATD ID: 79");
             // call to drop the getDelegate().
             if (module.getMethodLocation() == module) list.add(module.getDelegate().getOrigin());
         }
@@ -3188,7 +3188,7 @@ public class RubyModule extends RubyObject {
     }
 
     public boolean hasModuleInHierarchy(RubyModule type) {
-        // XXX: This check previously used callMethod("==") to check for equality between classes
+        System.out.println("SATD ID: 590");
         // when scanning the hierarchy. However the == check may be safe; we should only ever have
         // one instance bound to a given type/constant. If it's found to be unsafe, examine ways
         // to avoid the == call.
@@ -3446,7 +3446,7 @@ public class RubyModule extends RubyObject {
         for (IRubyObject name: args) {
             String id = RubySymbol.idStringFromObject(context, name);
 
-            // FIXME: id == null or bad symbol error missing
+            System.out.println("SATD ID: 128");
 
             DynamicMethod method = searchMethod(id);
             if (method.isUndefined() && isModule()) {
@@ -3457,7 +3457,7 @@ public class RubyModule extends RubyObject {
                 throw nameError(context, undefinedMethodMessage(context.runtime, name, rubyName(context), isModule()), name);
             }
 
-            // FIXME: missing origin_class module
+            System.out.println("SATD ID: 465");
             if (method.getDefinedClass() == this) {
                 if (!method.isNative()) {
                     Signature signature = method.getSignature();
@@ -5081,7 +5081,7 @@ public class RubyModule extends RubyObject {
 
     @JRubyMethod(name = "used_refinements")
     public IRubyObject used_refinements(ThreadContext context) {
-        // TODO: not implemented
+        System.out.println("SATD ID: 244");
         return newEmptyArray(context);
     }
 
@@ -6293,7 +6293,7 @@ public class RubyModule extends RubyObject {
             if (!(this instanceof RubyClass)) throw frozenError(context, this, "Module");
             if (getBaseName() != null) throw frozenError(context, this, "#<Class:" + getName(context) + '>');
 
-            // MRI 2.2.2 does get ugly ... as it skips this logic :
+            System.out.println("SATD ID: 324");
             // RuntimeError: can't modify frozen #<Class:#<Class:0x0000000095a920>>
             throw frozenError(context, this, getName(context));
         }

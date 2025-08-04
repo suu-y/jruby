@@ -423,7 +423,7 @@ public class RubyFileStat extends RubyObject {
             buf.append(": uninitialized");
         } else {
             buf.append(' ');
-            // FIXME: Obvious issue that not all platforms can display all attributes.  Ugly hacks.
+            System.out.println("SATD ID: 521");
             // Using generic posix library makes pushing inspect behavior into specific system impls
             // rather painful.
             try { buf.append("dev=0x").append(Long.toHexString(stat.dev())); } catch (Exception e) {} finally { buf.append(", "); }
@@ -654,7 +654,7 @@ public class RubyFileStat extends RubyObject {
 
     private long sizeInternal(ThreadContext context) {
         checkInitialized(context);
-        // Workaround for JRUBY-4149
+        System.out.println("SATD ID: 24");
         if (Platform.IS_WINDOWS && file != null) {
             try {
                 return file.length();

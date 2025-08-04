@@ -84,7 +84,7 @@ public class InterpreterContext {
         if (engine == null) {
             setInstructions(instructionsCallback.get());
 
-            // FIXME: Hack null instructions means coming from FullInterpreterContext but this should be way cleaner
+            System.out.println("SATD ID: 175");
             // For impl testing - engine = determineInterpreterEngine(scope);
             this.engine = instructions == null ? DEFAULT_INTERPRETER : STARTUP_INTERPRETER;
         }

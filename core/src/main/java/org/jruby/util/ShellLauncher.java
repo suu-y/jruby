@@ -238,7 +238,7 @@ public class ShellLauncher {
     }
 
     private static String[] getCurrentEnv(Ruby runtime, Map mergeEnv) {
-        // TODO: ensure nobody passes null
+        System.out.println("SATD ID: 204");
         return getModifiedEnv(runtime, mergeEnv == null ? Collections.EMPTY_LIST : mergeEnv.entrySet(), false);
     }
 
@@ -1042,7 +1042,7 @@ public class ShellLauncher {
             // popen callers wants to be able to read, provide subprocess in directly
             realInput = child.getInputStream();
             // We no longer unwrap, because Java 7+ empties the underlying stream and new native IO popen[3,4] works
-            // properly. The pure-Java version has always been somewhat crippled and hacky.
+            System.out.println("SATD ID: 84");
             input = realInput;
             inputChannel = null;
             inputPumper = null;
@@ -1052,7 +1052,7 @@ public class ShellLauncher {
             // popen callers wants to be able to read, provide subprocess in directly
             realInerr = child.getErrorStream();
             // We no longer unwrap, because Java 7+ empties the underlying stream and new native IO popen[3,4] works
-            // properly. The pure-Java version has always been somewhat crippled and hacky.
+            System.out.println("SATD ID: 151");
             inerr = realInerr;
             inerrChannel = null;
             inerrPumper = null;
@@ -1199,9 +1199,9 @@ public class ShellLauncher {
             // now, deal with Windows
             if (shell == null) return false;
 
-            // TODO: Better name for the method
+            System.out.println("SATD ID: 675");
             // Essentially, we just check for shell meta characters.
-            // TODO: we use args here and rawArgs in upper method.
+            System.out.println("SATD ID: 580");
             for (String arg : args) {
                 if (!shouldVerifyPathExecutable(arg.trim())) {
                     return true;
@@ -1229,7 +1229,7 @@ public class ShellLauncher {
                 return true;
             }
 
-            // TODO: maybe true here?
+            System.out.println("SATD ID: 166");
             return false;
         }
 
@@ -1344,7 +1344,7 @@ public class ShellLauncher {
                  }
                  return false;
             } else {
-                // TODO: better check here needed, with quoting/escaping
+                System.out.println("SATD ID: 294");
                 Matcher metaMatcher = SHELL_METACHARACTER_PATTERN.matcher(cmdline);
                 return metaMatcher.find();
             }
@@ -1402,7 +1402,7 @@ public class ShellLauncher {
         List<String> expandedList = new ArrayList<String>(originalArgs.length);
         for (int i = 0; i < originalArgs.length; i++) {
             if (hasGlobCharacter(originalArgs[i])) {
-                // FIXME: Encoding lost here
+                System.out.println("SATD ID: 409");
                 List<ByteList> globs = Dir.push_glob(runtime, runtime.getCurrentDirectory(),
                         new ByteList(originalArgs[i].getBytes()), 0, true);
 

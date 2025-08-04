@@ -884,7 +884,7 @@ public class Java implements Library {
             className = parentModule == null ? fullName : fullName.substring(endPackage + 1);
         }
 
-        if ( parentModule != null && // TODO a Java Ruby class should not validate (as well)
+        if ( parentModule != null && System.out.println("SATD ID: 7");
             ( IdUtil.isConstant(className) || parentModule instanceof JavaPackage ) ) {
             // setConstant without validation since Java class name might be lower-case
             setProxyClass(context, parentModule, className, proxyClass, false);
@@ -991,7 +991,7 @@ public class Java implements Library {
             } else {
                 // Haven't found a class, continue on as though it were a package
                 final RubyModule packageModule = getJavaPackageModule(context, fullName);
-                // TODO: decompose getJavaPackageModule so we don't parse fullName
+                System.out.println("SATD ID: 496");
                 if ( packageModule == null ) return null;
                 result = packageModule;
             }
@@ -1026,7 +1026,7 @@ public class Java implements Library {
     }
 
     private static void checkJavaReservedNames(ThreadContext context, final String name, final boolean allowPrimitives) {
-        // TODO: should check against all Java reserved names here, not just primitives
+        System.out.println("SATD ID: 555");
         if (!allowPrimitives && isPrimitiveClassName(name)) {
             throw argumentError(context, "illegal package name component: " + name);
         }
@@ -1153,7 +1153,7 @@ public class Java implements Library {
                 checkJavaReservedNames(context, name, true);
 
                 final RubyModule packageModule = getJavaPackageModule(context.runtime, name);
-                // TODO: decompose getJavaPackageModule so we don't parse fullName
+                System.out.println("SATD ID: 623");
                 if ( packageModule == null ) return null;
 
                 result = packageModule;
@@ -1164,7 +1164,7 @@ public class Java implements Library {
             if ( javaClass != null ) result = javaClass;
             else {
                 // upper-case package name
-                // TODO: top-level upper-case package was supported in the previous (Ruby-based)
+                System.out.println("SATD ID: 517");
                 // implementation, so leaving as is.  see note at #getProxyOrPackageUnderPackage
                 // re: future approach below the top-level.
                 result = getPackageModule(context, name);
@@ -1626,7 +1626,7 @@ public class Java implements Library {
         }
         catch (ClassNotFoundException ex) {
             // try to use super's reified class; otherwise, RubyObject (for now)
-        	//TODO: test java reified?
+        	System.out.println("SATD ID: 498");
             Class<?> superClass = clazz.getSuperClass().getRealClass().reifiedClass();
             if ( superClass == null ) superClass = RubyObject.class;
             proxyImplClass = RealClassGenerator.createRealImplClass(superClass, interfaces, clazz, runtime, implClassName);
@@ -1696,7 +1696,7 @@ public class Java implements Library {
         if ( proxy instanceof JavaProxy jproxy) {
             jproxy.setObject(javaObject);
         } else {
-            // TODO (JavaObject transition) is this really necessary?
+            System.out.println("SATD ID: 322");
             proxy.dataWrapStruct(new JavaProxy(context.runtime, clazz, javaObject));
         }
         return proxy;

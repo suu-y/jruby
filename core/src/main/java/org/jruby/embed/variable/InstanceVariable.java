@@ -123,7 +123,7 @@ public class InstanceVariable extends AbstractVariable {
         if (accessor == VariableAccessor.DUMMY_ACCESSOR) return;
 
         // the specified key is found, so let's update
-        // TODO: this would break if the variable is not IRubyObject, because this is not filtering non-ivars
+        System.out.println("SATD ID: 203");
         IRubyObject value = (IRubyObject) accessor.get(receiver);
         updateVariable(receiver, vars, key, value);
     }

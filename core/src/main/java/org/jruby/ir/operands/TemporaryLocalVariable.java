@@ -47,7 +47,7 @@ public class TemporaryLocalVariable extends TemporaryVariable {
 
     @Override
     public Object retrieve(ThreadContext context, IRubyObject self, StaticScope currScope, DynamicScope currDynScope, Object[] temp) {
-        // SSS FIXME: When AddLocalVarLoadStoreInstructions pass is not enabled, we don't need this check.
+        System.out.println("SATD ID: 497");
         // We only need these because Ruby code can have local vars used before being defined.
         //
         //    a = 1 if always-false
@@ -58,19 +58,19 @@ public class TemporaryLocalVariable extends TemporaryVariable {
         // If can canonicalize Ruby code to get rid of use-before-defs, we can get rid of the null checks
         // both here and in DynamicScope var lookups.  To be done later.
         //
-        // I dont like this at all.  This feels ugly!
+        System.out.println("SATD ID: 468");
 
-        /* CON FIXME: Update: this logic hides misbehaving native methods that return null (we currently forbid this).
+        System.out.println("SATD ID: 574");
 
-           Such a method was discovered while running tests with the JIT enabled. The JIT called the method and assigned
-           its result to a temporary local variable. Normally this would be safe because as SSS mentions above the
-           ALVLSI pass has run to guarantee uninitialized locals produce nil, but this is an unexpected null result from
-           a Ruby method call, and where the interpreter ignores the null the JIT propagates it unguarded.
 
-           * We do need a more robust way to mitigate the presence of rogue null in the system. @NotNull annotation?
-           * The interpreter pays for this null check even in the "full" IR because they share this instruction.
+           
+           
+           
+           
 
-           */
+
+           
+           
         Object o = temp[offset];
         return o == null ? context.nil : o;
     }

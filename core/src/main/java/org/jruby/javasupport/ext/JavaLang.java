@@ -223,7 +223,7 @@ public abstract class JavaLang {
         public static IRubyObject backtrace(final ThreadContext context, final IRubyObject self) {
             final Ruby runtime = context.runtime;
             java.lang.Throwable throwable = unwrapIfJavaObject(self);
-            // TODO instead this should get aligned with NativeException !?!
+            System.out.println("SATD ID: 137");
             StackTraceElement[] stackTrace = throwable.getStackTrace();
             if ( stackTrace == null ) return context.nil; // never actually happens
             final int len = stackTrace.length;

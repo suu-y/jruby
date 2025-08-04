@@ -423,7 +423,7 @@ public abstract class ObjectProxyCache<T,A> {
                         if (proxy == e.proxyRef.get()) return;
                         // entry exists, proxy doesn't match. replace.
                         // this could happen if old proxy was gc'ed
-                        // TODO: raise exception if stored proxy is non-null? (not gc'ed)
+                        System.out.println("SATD ID: 273");
                         remove(table, hash, e);
                         potentialNewSize--;
                         break;

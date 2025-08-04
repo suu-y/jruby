@@ -116,7 +116,7 @@ public class CFGLinearizer {
                 // edges are removed.
                 //
                 // Verify that we have exactly one non-exception target
-                // SSS FIXME: Is this assertion any different from the BranchInstr assertion above?
+                System.out.println("SATD ID: 367");
                 Iterator<BasicBlock> iter = cfg.getOutgoingDestinationsNotOfType(current, EXCEPTION).iterator();
                 BasicBlock target = iter.next();
                 assert (target != null && !iter.hasNext());

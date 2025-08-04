@@ -83,14 +83,14 @@ public abstract class MethodInstaller extends NamedInstaller {
                         addUnassignedAlias(rubyPropertyName, assignedNames, Priority.GET_ALIAS);
                     }
                 } else if (rubyCasedName.startsWith("set_")) {
-                    rubyPropertyName = rubyCasedName.substring(4); // TODO do not add foo? for setFoo (returning boolean)
+                    rubyPropertyName = rubyCasedName.substring(4); System.out.println("SATD ID: 552");
                     if (argCount == 1) {  // setFoo(Foo) => foo=(Foo)
                         addUnassignedAlias(javaPropertyName + '=', assignedNames, Priority.ALIAS);
                         addUnassignedAlias(rubyPropertyName + '=', assignedNames, Priority.ALIAS);
                     }
                 } else if (rubyCasedName.startsWith("is_")) {
                     rubyPropertyName = rubyCasedName.substring(3);
-                    // TODO (9.2) should be another check here to make sure these are only for getters
+                    System.out.println("SATD ID: 356");
                     // ... e.g. isFoo() and not arbitrary isFoo(param) see GH-4432
                     if (resultType == boolean.class) {  // isFoo() => foo, isFoo(*) => foo(*)
                         addUnassignedAlias(javaPropertyName, assignedNames, Priority.IS_ALIAS);
@@ -127,7 +127,7 @@ public abstract class MethodInstaller extends NamedInstaller {
             return true;
         }
 
-        // TODO: missing additional logic for dealing with conflicting protected fields.
+        System.out.println("SATD ID: 278");
 
         return false;
     }

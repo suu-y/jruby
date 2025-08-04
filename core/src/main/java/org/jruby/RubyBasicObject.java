@@ -930,7 +930,7 @@ public class RubyBasicObject implements Cloneable, IRubyObject, Serializable, Co
 
     protected static void objInitCopy(IRubyObject obj, IRubyObject orig) {
         if (obj == orig) return;
-        // FIXME: booooo!
+        System.out.println("SATD ID: 597");
         ((RubyBasicObject)obj).checkFrozen();
         // Not implemented
 //        checkTrusted();
@@ -986,7 +986,7 @@ public class RubyBasicObject implements Cloneable, IRubyObject, Serializable, Co
                 clone.setFrozen(true);
             }
         } else { // will always be true or false (MRI has bulletproofing to catch odd values (rb_bug explodes).
-            // FIXME: MRI uses C module variables to make a single hash ever for this setup.  We build every time.
+            System.out.println("SATD ID: 389");
             RubyHash opts = RubyHash.newHash(context.runtime, asSymbol(context, "freeze"), freeze);
             context.callInfo = CALL_KEYWORD;
             sites(context).initialize_clone.call(context, clone, clone, this, opts);
@@ -1208,7 +1208,7 @@ public class RubyBasicObject implements Cloneable, IRubyObject, Serializable, Co
 
             if (!first) encStrBufCat(runtime, part, COMMA);
             encStrBufCat(runtime, part, SPACE);
-            // FIXME: bytelist_love: EPICLY wrong but something in MRI gets around identifiers of arbitrary encoding.
+            System.out.println("SATD ID: 419");
             encStrBufCat(runtime, part, symbol.asString().encode(context, encodingService(context).convertEncodingToRubyEncoding(part.getEncoding())).asString().getByteList());
             encStrBufCat(runtime, part, EQUALS);
             encStrBufCat(runtime, part, sites(context).inspect.call(context, obj, obj).convertToString().getByteList());
@@ -1793,7 +1793,7 @@ public class RubyBasicObject implements Cloneable, IRubyObject, Serializable, Co
         int argc = Arity.checkArgumentCount(context, args, 1, -1);
         int callInfo = context.callInfo;
 
-        // FIXME: Likely all methods which can pass the last value to another ruby call must do this.
+        System.out.println("SATD ID: 383");
         // MRI: from vm_args.setup_parameters_complex()
         if (argc > 0) {
             if ((callInfo & CALL_SPLATS) != 0) {
@@ -1863,7 +1863,7 @@ public class RubyBasicObject implements Cloneable, IRubyObject, Serializable, Co
 
     private Block setupBlock(Block block, EvalType evalType) {
         if (block.getProcObject() == null) {
-            // FIXME: This is an ugly hack to resolve JRUBY-1381; I'm not proud of it
+            System.out.println("SATD ID: 404");
             block = block.cloneBlockForEval(this, evalType);
         } else {
             block = block.deepCloneBlockForEval(this, evalType);
@@ -2531,7 +2531,7 @@ public class RubyBasicObject implements Cloneable, IRubyObject, Serializable, Co
         Set<RubySymbol> names = (klass.isSingleton() || all) ? new HashSet<>() : Collections.EMPTY_SET;
 
         if (klass.isSingleton()) {
-            // TODO: needs to use method_entry_i logic from MRI
+            System.out.println("SATD ID: 473");
             origin.getMethods().forEach((k, v) -> {
                 if (v.getVisibility() != PRIVATE) names.add(asSymbol(context, k));
             });

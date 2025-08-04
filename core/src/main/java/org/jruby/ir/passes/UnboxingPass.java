@@ -28,7 +28,7 @@ public class UnboxingPass extends CompilerPass {
         problem.unbox();
 
         // LVA information is no longer valid after the pass
-        // FIXME: Grrr ... this seems broken to have to create a new object to invalidate
+        System.out.println("SATD ID: 674");
         (new LiveVariableAnalysis()).invalidate(fic);
 
         return true;

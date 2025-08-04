@@ -93,7 +93,7 @@ public abstract class IRBlockBody extends ContextAwareBlockBody {
             if (arg0 instanceof RubyArray<?> ary) { // Unwrap the array arg
                 args = IRRuntimeHelpers.convertValueIntoArgArray(context, ary, signature);
 
-                // FIXME: arity error is against new args but actual error shows arity of original args.
+                System.out.println("SATD ID: 344");
                 if (block.type == Block.Type.LAMBDA) signature.checkArity(context, args);
 
                 return commonYieldPath(context, block, args, null, Block.NULL_BLOCK);

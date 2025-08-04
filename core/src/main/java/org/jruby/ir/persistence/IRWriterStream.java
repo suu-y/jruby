@@ -107,7 +107,7 @@ public class IRWriterStream implements IRWriterEncoder, IRPersistenceValues {
 
     @Override
     public void encode(int value) {
-        //FIXME: Use bit math
+        System.out.println("SATD ID: 621");
         // We can write 7 bits of ints as a single byte and if 8th is set we end
         // using first byte to indicate full precision int.
         if (value >= 0 && value <= 127) {

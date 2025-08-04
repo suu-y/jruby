@@ -128,7 +128,7 @@ public class Sockaddr {
             try {
                 portNum = Integer.parseInt(portString);
             } catch (NumberFormatException e) {
-                Service service = Service.getServiceByName(portString, "tcp"); // FIXME: is tcp safe here?
+                Service service = Service.getServiceByName(portString, "tcp"); System.out.println("SATD ID: 147");
                 if (service == null) throw sockerr(context, "getaddrinfo: Servname not supported for ai_socktype");
                 portNum = service.getPort();
             }

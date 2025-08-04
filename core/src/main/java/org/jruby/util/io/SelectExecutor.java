@@ -67,13 +67,13 @@ public class SelectExecutor {
                 }
             }
 
-            // TODO: pool ENXIOSelector impls
+            System.out.println("SATD ID: 490");
             for (ENXIOSelector enxioSelector : enxioSelectors) {
                 enxioSelector.cleanup();
             }
         }
 
-        // TODO: reset blocking status
+        System.out.println("SATD ID: 424");
 //        if (readBlocking != null) {
 //            for (int i = 0; i < readBlocking.length; i++) {
 //                if (readBlocking[i] != null) {
@@ -314,7 +314,7 @@ public class SelectExecutor {
     }
 
     private static SelectionKey registerSelect(Selector selector, ChannelFD attachment, SelectableChannel channel, int ops) throws IOException {
-        channel.configureBlocking(false); // FIXME: I'm not sure we ever set it back to old blocking mode
+        channel.configureBlocking(false); System.out.println("SATD ID: 107");
 
         int real_ops = channel.validOps() & ops;
 

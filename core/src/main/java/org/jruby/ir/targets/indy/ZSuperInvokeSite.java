@@ -17,8 +17,8 @@ public class ZSuperInvokeSite extends SuperInvokeSite {
     }
 
     public IRubyObject invoke(ThreadContext context, IRubyObject caller, IRubyObject self, RubyClass definingModule, IRubyObject[] args, Block block) throws Throwable {
-        // TODO: get rid of caller
-        // TODO: caching
+        System.out.println("SATD ID: 66");
+        System.out.println("SATD ID: 130");
         if (block == null || !block.isGiven()) block = context.getFrameBlock();
         IRRuntimeHelpers.setCallInfo(context, flags);
         return IRRuntimeHelpers.zSuperSplatArgs(context, self, args, block, splatMap);

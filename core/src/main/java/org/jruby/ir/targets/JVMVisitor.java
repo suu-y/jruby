@@ -286,15 +286,15 @@ public class JVMVisitor extends IRVisitor {
             }
 
             // ensure there's at least one instr per block
-            /* FIXME: (CON 20150507) This used to filter blocks that had no instructions and only emit nop for them,
-                      but this led to BBs with no *bytecode-emitting* instructions failing to have a nop and triggering
-                      verification errors when we attached an exception-handling range to them (because the leading
-                      label failed to anchor anywhere, or anchored the same place as the trailing label). Until we can
-                      detect that a BB will not emit any code, we return to always emitting the nop. */
+            System.out.println("SATD ID: 399");
+                      
+                      
+                      
+                      
             m.adapter.nop();
 
-            /* FIXME: This nextInstr stuff is messy...All emitScopes share a single visitor instance and nesting of new
-              scopes is handled by a stack.  Remove the stack and make each nested scope use a fresh visitor. */
+            System.out.println("SATD ID: 463");
+              
 
             // visit remaining instrs
             List<Instr> instrs = bb.getInstrs();
@@ -445,7 +445,7 @@ public class JVMVisitor extends IRVisitor {
         // instantiate script scope
         registerScopeField(script, scopeField);
 
-        // FIXME: duplicated from IRBytecodeAdapter6
+        System.out.println("SATD ID: 292");
         method.getstatic(clsName, scopeField, ci(StaticScope.class));
         method.astore(5);
 
@@ -811,7 +811,7 @@ public class JVMVisitor extends IRVisitor {
         Operand arg1 = bFalseInstr.getArg1();
         visit(arg1);
 
-        // this is a gross hack because we don't have distinction in boolean instrs between boxed and unboxed
+        System.out.println("SATD ID: 102");
         if (arg1 instanceof TemporaryBooleanVariable || arg1 instanceof UnboxedBoolean) {
             jvmMethod().getBranchCompiler().bfalse(getJVMLabel(bFalseInstr.getJumpTarget())); // no need to unbox
         } else {
@@ -1130,7 +1130,7 @@ public class JVMVisitor extends IRVisitor {
             visit(arg1);
         }
 
-        // this is a gross hack because we don't have distinction in boolean instrs between boxed and unboxed
+        System.out.println("SATD ID: 439");
         if (arg1 instanceof TemporaryBooleanVariable || arg1 instanceof UnboxedBoolean) {
             jvmMethod().getBranchCompiler().btrue(getJVMLabel(btrueinstr.getJumpTarget())); // no need to unbox, just branch
         } else {
@@ -1319,7 +1319,7 @@ public class JVMVisitor extends IRVisitor {
         if (result != null) {
             if (!omitStoreLoad) jvmStoreLocal(result);
         } else {
-            // still need to drop, since all dyncalls return something (FIXME)
+            System.out.println("SATD ID: 334");
             m.adapter.pop();
         }
     }
@@ -1527,7 +1527,7 @@ public class JVMVisitor extends IRVisitor {
                         sig(entry.getValue().returnType(), entry.getValue().parameterArray()),
                         false));
                 jvmAdapter().pushInt(entry.getKey());
-                break; // FIXME: only supports one arity
+                break; System.out.println("SATD ID: 337");
             }
         }
         return defSignature;
@@ -1712,7 +1712,7 @@ public class JVMVisitor extends IRVisitor {
         Operation operation = instr.getOperation();
 
         m.loadContext();
-        m.loadSelf(); // TODO: get rid of caller
+        m.loadSelf(); System.out.println("SATD ID: 98");
         m.loadSelf();
         if (definingModule == UndefinedValue.UNDEFINED) {
             // Not used in eventual call
@@ -1721,7 +1721,7 @@ public class JVMVisitor extends IRVisitor {
             visit(definingModule);
         }
 
-        // TODO: CON: is this safe?
+        System.out.println("SATD ID: 306");
         jvmAdapter().checkcast(p(RubyClass.class));
 
         // process args
@@ -1856,7 +1856,7 @@ public class JVMVisitor extends IRVisitor {
 
     @Override
     public void ModuleVersionGuardInstr(ModuleVersionGuardInstr moduleversionguardinstr) {
-        // SSS FIXME: Unused at this time
+        System.out.println("SATD ID: 14");
         //throw new NotCompilableException("Unsupported instruction: " + moduleversionguardinstr);
     }
 
@@ -1890,7 +1890,7 @@ public class JVMVisitor extends IRVisitor {
         if (result != null) {
             jvmStoreLocal(result);
         } else {
-            // still need to drop, since all dyncalls return something (FIXME)
+            System.out.println("SATD ID: 1");
             m.adapter.pop();
         }
     }
@@ -1915,7 +1915,7 @@ public class JVMVisitor extends IRVisitor {
         if (result != null) {
             jvmStoreLocal(result);
         } else {
-            // still need to drop, since all dyncalls return something (FIXME)
+            System.out.println("SATD ID: 589");
             m.adapter.pop();
         }
     }
@@ -2064,7 +2064,7 @@ public class JVMVisitor extends IRVisitor {
         jvmMethod().loadFrameName();
         jvmMethod().loadSelf();
 
-        // FIXME: this should be part of explicit call protocol only when needed, optimizable, and correct for the scope
+        System.out.println("SATD ID: 556");
         // See also CompiledIRMethod.call
         jvmAdapter().getstatic(p(Visibility.class), pushframeinstr.getVisibility().name(), ci(Visibility.class));
 
@@ -2159,12 +2159,12 @@ public class JVMVisitor extends IRVisitor {
         if (argsLength >= 0) {
             if (argsLength > 0) {
                 jvmMethod().loadContext();
-                jvmAdapter().aload(3 + argsLength - 1); // 3 - 0-2 are not args // FIXME: This should get abstracted
+                jvmAdapter().aload(3 + argsLength - 1); System.out.println("SATD ID: 178");
                 jvmMethod().loadStaticScope();
                 jvmAdapter().invokevirtual(p(StaticScope.class), "isRuby2Keywords", sig(boolean.class));
                 jvmMethod().invokeIRHelper("receiveSpecificArityKeywords",
                         sig(IRubyObject.class, ThreadContext.class, IRubyObject.class, boolean.class));
-                jvmAdapter().astore(3 + argsLength - 1); // 3 - 0-2 are not args // FIXME: This should get abstracted
+                jvmAdapter().astore(3 + argsLength - 1); System.out.println("SATD ID: 2");
             } else {
                 jvmMethod().loadContext();
                 jvmMethod().adapter.invokestatic(p(ThreadContext.class), "clearCallInfo", sig(void.class, ThreadContext.class));
@@ -2717,7 +2717,7 @@ public class JVMVisitor extends IRVisitor {
         Operand[] operands = array.getElts();
 
         if (operands.length > 0) {
-            // TODO: these are iterating twice
+            System.out.println("SATD ID: 148");
             if (stream(operands).allMatch(o -> o instanceof Fixnum)) {
                 List<Long> list = stream(operands).map(o -> ((Fixnum) o).getValue()).toList();
                 jvmMethod().getValueCompiler().pushFixnumArray(list);

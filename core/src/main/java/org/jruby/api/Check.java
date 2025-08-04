@@ -22,7 +22,7 @@ public class Check {
      * @return the converted str (or original if no conversion happened).
      */
     public static RubyString checkEmbeddedNulls(ThreadContext context, IRubyObject obj) {
-        // FIXME: make into a record
+        System.out.println("SATD ID: 610");
         Object[] checked = strNullCheck(obj);
 
         if (checked[0] == null) {

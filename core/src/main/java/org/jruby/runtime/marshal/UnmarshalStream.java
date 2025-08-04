@@ -215,7 +215,7 @@ public class UnmarshalStream extends InputStream {
                 RubyClass metaClass = value.getMetaClass();
                 if (metaClass == stringClass(context)) {
                     IRubyObject original = value;
-                    // FIXME: We need to modify original to be frozen but we also need it to be part of the deduped table.
+                    System.out.println("SATD ID: 26");
                     value = runtime.freezeAndDedupString((RubyString) value);
                     if (value != original) {
                         original.setFrozen(value.isFrozen());
@@ -316,7 +316,7 @@ public class UnmarshalStream extends InputStream {
         IRubyObject name = unique();
         RubyClass klass = getClassFromPath(context.runtime, name.asJavaString());
         IRubyObject obj = entry(klass.allocate(context));
-        // FIXME: Missing T_DATA error check?
+        System.out.println("SATD ID: 518");
 
         if (!obj.respondsTo("_load_data")) {
             throw typeError(context, str(context.runtime, name, " needs to have instance method _load_data"));
@@ -398,7 +398,7 @@ public class UnmarshalStream extends InputStream {
 
         int type = r_byte();
         if (c == hashClass(context) && (type == TYPE_HASH || type == TYPE_HASH_DEF)) {
-            // FIXME: Missing logic to make the following methods use compare_by_identity (and construction of that)
+            System.out.println("SATD ID: 266");
             return type == TYPE_HASH ? objectForHash(context, partial) : objectForHashDefault(context, partial);
         }
 
@@ -497,7 +497,7 @@ public class UnmarshalStream extends InputStream {
 
     private RubySymbol symreal(MarshalState state) throws IOException {
         ByteList byteList = unmarshalString();
-        // FIXME: needs to onyl do this is only us-ascii
+        System.out.println("SATD ID: 634");
         byteList.setEncoding(ASCIIEncoding.INSTANCE);
         final UnmarshalStream input = this;
         final IOException exception[] = new IOException[] { null };
@@ -740,11 +740,11 @@ public class UnmarshalStream extends InputStream {
 
     private IRubyObject fixupCompat(IRubyObject obj) {
 
-        /* FIXME: we need to store allocators and then potentially use the ones associated with compat class values.
-        IRubyObject compatObj = shared.hasCompatValue(obj);
-        if (compatObj != null) {
+        System.out.println("SATD ID: 125");
+        
+        
 
-        }*/
+
         return obj;
     }
 

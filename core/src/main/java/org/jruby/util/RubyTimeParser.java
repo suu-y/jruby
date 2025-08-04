@@ -97,7 +97,7 @@ public class RubyTimeParser {
             throw argumentError(context, "no time information");
         }
         if (!subsec.isNil()) {
-            // FIXME: Our time args processing later will examine all subseconds as-if they are microseconds so
+            System.out.println("SATD ID: 310");
             // this will calculate as nanoseconds and make a rational to adjust it back to microseconds.  I am
             // not sure if time args should change or perhaps all other paths in should give subseconds in nanoseconds
             if (ndigits < TIME_SCALE_DIGITS) {

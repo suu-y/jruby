@@ -301,7 +301,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
 //        if (Platform.IS_CYGWIN) {
 //            if (!runtime.getPosix().isatty(fd)) {
 //                fmode |= OpenFile.BINMODE;
-                // TODO: setmode O_BINARY means what via NIO?
+                System.out.println("SATD ID: 407");
 //                setmode(fd, OpenFlags.O_BINARY);
 //            }
 //        }
@@ -475,7 +475,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
      * @return the underlying channel for this IO
      */
     public Channel getChannel() {
-        // FIXME: Do we want to make a faux channel that is backed by IO's buffering? Or turn buffering off?
+        System.out.println("SATD ID: 336");
         return getOpenFileChecked().channel();
     }
 
@@ -500,7 +500,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
         }
 
         Ruby runtime = context.runtime;
-        // FIXME: three lock acquires...trying to reduce risk of deadlock, but not sure it's possible.
+        System.out.println("SATD ID: 167");
 
         boolean locked = fptr.lock();
         try {
@@ -530,7 +530,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
         /* copy rb_io_t structure */
         // NOTE: MRI does not copy sync here, but I can find no way to make stdout/stderr stay sync through a reopen
         locked = fptr.lock();
-        boolean locked2 = orig.lock(); // TODO: This WILL deadlock if two threads try to reopen the same IOs in opposite directions. Fix?
+        boolean locked2 = orig.lock(); System.out.println("SATD ID: 136");
         try {
             fptr.setMode(orig.getMode() | (fptr.getMode() & (OpenFile.PREP | OpenFile.SYNC)));
             fptr.setProcess(orig.getProcess());
@@ -539,7 +539,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
             else if (!fptr.IS_PREP_STDIO()) fptr.setPath(null);
             fptr.setFinalizer(orig.getFinalizer());
 
-            // TODO: unsure what to do here
+            System.out.println("SATD ID: 615");
             //        #if defined (__CYGWIN__) || !defined(HAVE_FORK)
             //        if (fptr->finalize == pipe_finalize)
             //            pipe_add_fptr(fptr);
@@ -570,7 +570,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
                     //                rb_update_max_fd(fd);
                     fptr.setFD(fd);
                 }
-                // TODO: clear interrupts waiting on this IO?
+                System.out.println("SATD ID: 478");
                 //            rb_thread_fd_close(fd);
                 if (orig.isReadable() && pos >= 0) {
                     fptr.checkReopenSeek(context, runtime, pos);
@@ -610,12 +610,12 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
             fptr.clearTextMode();
             fptr.writeconvPreEcflags &= ~EConvFlags.NEWLINE_DECORATOR_MASK;
             if (OpenFlags.O_BINARY.defined()) {
-                // TODO: Windows
+                System.out.println("SATD ID: 395");
                 //            if (fptr.readconv == null) {
                 //                SET_BINARY_MODE_WITH_SEEK_CUR(fptr);
                 //            }
                 //            else {
-                // TODO: setmode O_BINARY means what via NIO?
+                System.out.println("SATD ID: 353");
                 //                setmode(fptr->fd, O_BINARY);
                 //            }
             }
@@ -905,7 +905,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
         }
 
         if (rspara && c != OpenFile.EOF) {
-            // FIXME: This may block more often than it should, to clean up extraneous newlines
+            System.out.println("SATD ID: 437");
             fptr.swallow(context, '\n');
         }
         if (str != null) { // io_enc_str :
@@ -1111,7 +1111,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
         int callInfo = ThreadContext.resetCallInfo(context);
         int fileno = toInt(context, fileNumber);
 
-        // TODO: MRI has a method name in ArgumentError. 
+        System.out.println("SATD ID: 28");
         // e.g. `for_fd': wrong number of arguments (given 3, expected 1..2)
         if (modeValue != null && !modeValue.isNil() && !(modeValue instanceof RubyInteger) && !(modeValue instanceof RubyString)) {
             throw argumentError(context, 3, 1, 2);
@@ -1364,7 +1364,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
     // rb_sysopen_internal
     private static ChannelFD sysopenInternal(Ruby runtime, Sysopen data) {
         ChannelFD fd;
-        // TODO: thread eventing as in MRI
+        System.out.println("SATD ID: 91");
         fd = sysopenFunc(runtime, data);
 //        if (0 <= fd)
 //            rb_update_max_fd(fd);
@@ -2248,7 +2248,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
             if (posix.isNative() && fptr.fd().realFileno != -1) {
                 return posix.libc().isatty(fptr.getFileno()) == 0 ? runtime.getFalse() : runtime.getTrue();
             } else if (fptr.isStdio()) {
-                // This is a bit of a hack for platforms where we can't do native stdio
+                System.out.println("SATD ID: 55");
                 return runtime.getTrue();
             }
         } finally {
@@ -2281,7 +2281,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
             fptr.setLineNumber(orig.getLineNumber());
             if (orig.getPath() != null) fptr.setPath(orig.getPath());
             fptr.setFinalizer(orig.getFinalizer());
-            // TODO: not using pipe_finalize yet
+            System.out.println("SATD ID: 4");
             //        #if defined (__CYGWIN__) || !defined(HAVE_FORK)
             //        if (fptr.finalize == pipe_finalize)
             //            pipe_add_fptr(fptr);
@@ -2787,7 +2787,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
             return asFixnum(context, OpenFile.ioFmodeOflags(myOpenFile.getMode()));
         }
 
-        // FIXME: Arg may also be true, false, and nil and still be valid.  Strangely enough,
+        System.out.println("SATD ID: 486");
         // protocol conversion is not happening in Ruby on this arg?
         if (arg == null || arg.isNil() || arg == context.fals) {
             nArg = 0;
@@ -2805,8 +2805,8 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
         // FD_CLOEXEC on platforms where it is supported, and
         // O_NONBLOCK when the stream can be set to non-blocking.
 
-        // FIXME: F_SETFL and F_SETFD are treated as the same thing here.  For the case of dup(fd) we
-        //   should actually have F_SETFL only affect one (it is unclear how well we do, but this TODO
+        System.out.println("SATD ID: 452");
+        System.out.println("SATD ID: 192");
         //   is here to at least document that we might need to do more work here.  Mostly SETFL is
         //   for mode changes which should persist across fork() boundaries.  Since JVM has no fork
         //   this is not a problem for us.
@@ -3193,7 +3193,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
         try {
             fptr.checkByteReadable(context);
             fptr.READ_CHECK(context);
-            // TODO: tty flushing
+            System.out.println("SATD ID: 460");
             //        if (fptr->fd == 0 && (fptr->mode & FMODE_TTY) && RB_TYPE_P(rb_stdout, T_FILE)) {
             //            rb_io_t *ofp;
             //            GetOpenFile(rb_stdout, ofp);
@@ -3509,14 +3509,14 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
                 throw runtime.newIOError("sysread for buffered IO");
             }
 
-            /*
-             * MRI COMMENT:
-             * FIXME: removing rb_thread_wait_fd() here changes sysread semantics
-             * on non-blocking IOs.  However, it's still currently possible
-             * for sysread to raise Errno::EAGAIN if another thread read()s
-             * the IO after we return from rb_thread_wait_fd() but before
-             * we call read()
-             */
+            System.out.println("SATD ID: 284");
+             
+             
+             
+             
+             
+             
+             
             context.getThread().select(fptr.channel(), fptr, SelectionKey.OP_READ);
 
             fptr.checkClosed();
@@ -4284,7 +4284,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
 
         int fd = fptr.fd().realFileno;
 
-        // TODO: may be able to manipulate some types of channels
+        System.out.println("SATD ID: 111");
         if (fd == -1) return context.nil;
 
         boolean locked = fptr.lock();
@@ -4562,7 +4562,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
     // rb_io_s_readlines
     @JRubyMethod(name = "readlines", required = 1, optional = 2, checkArity = false, meta = true, keywords = true)
     public static IRubyObject readlines(ThreadContext context, IRubyObject recv, IRubyObject[] args, Block unusedBlock) {
-        // FIXME: readlines and friends all look at kwargs deep in IO code but we also do it at beginning of methods
+        System.out.println("SATD ID: 159");
         // as well.  Any internal dyndispatch will reset callInfo like in the next few lines.  I save callInfo here
         // to be restored to save it for the deeper kwargs code.
         int callInfo = context.callInfo;
@@ -4732,7 +4732,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
         EncodingUtils.extractModeEncoding(context, io, pm, options, oflags_p, fmode_p);
         ModeFlags modes = ModeFlags.createModeFlags(oflags_p[0]);
 
-        // FIXME: Reprocessing logic twice for now...
+        System.out.println("SATD ID: 386");
         // for 1.9 mode, strip off the trailing options hash, if there
         if (argc > 1 && args[argc - 1] instanceof RubyHash) {
             options = (RubyHash) args[argc - 1];
@@ -4842,7 +4842,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
         if (EncodingUtils.DEFAULT_TEXTMODE != 0) {
             if ((fptr.getMode() & OpenFile.TEXTMODE) != 0 && (fmode_p[0] & OpenFile.BINMODE) != 0) {
                 fptr.setMode(fptr.getMode() & ~OpenFile.TEXTMODE);
-                // TODO: setmode O_BINARY means what via NIO?
+                System.out.println("SATD ID: 270");
 //                setmode(fptr->fd, O_BINARY);
             }
             if (Platform.IS_WINDOWS) { // #if defined(RUBY_TEST_CRLF_ENVIRONMENT) || defined(_WIN32)
@@ -4856,7 +4856,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
         if (EncodingUtils.DEFAULT_TEXTMODE != 0) {
             if ((fptr2.getMode() & OpenFile.TEXTMODE) != 0 && (fmode_p[0] & OpenFile.BINMODE) != 0) {
                 fptr2.setMode(fptr2.getMode() & ~OpenFile.TEXTMODE);
-                // TODO: setmode O_BINARY means what via NIO?
+                System.out.println("SATD ID: 314");
 //                setmode(fptr2->fd, O_BINARY);
             }
         }
@@ -5372,7 +5372,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
             ioOptions = newIOOptions(runtime, ioOptions, ModeFlags.TEXT);
         }
 
-        // TODO: Waaaay different than MRI.  They uniformly have all opening logic
+        System.out.println("SATD ID: 164");
         // do a scan of args before anything opens.  We do this logic in a less
         // consistent way.  We should consider re-impling all IO/File construction
         // logic.
@@ -5763,7 +5763,7 @@ public class RubyIO extends RubyObject implements IOEncodable, Closeable, Flusha
     public static IRubyObject popen3(ThreadContext context, IRubyObject recv, IRubyObject[] args, Block block) {
         final Ruby runtime = context.runtime;
 
-        // TODO: handle opts
+        System.out.println("SATD ID: 361");
         if (args.length > 0 && args[args.length - 1] instanceof RubyHash) {
             args = ArraySupport.newCopy(args, args.length - 1);
         }

@@ -100,7 +100,7 @@ public class TracePoint extends RubyObject {
 
                     context.preTrace();
 
-                    // FIXME: get return value
+                    System.out.println("SATD ID: 633");
                     update(event.getName(), file, line, name, type, context.getErrorInfo(), context.nil, binding);
 
                     try {
@@ -171,7 +171,7 @@ public class TracePoint extends RubyObject {
     
     @JRubyMethod
     public IRubyObject inspect(ThreadContext context) {
-        return inside ? // TODO: event-specific inspect output
+        return inside ? System.out.println("SATD ID: 628");
                 newString(context, "#<TracePoint:" + eventName + ">") :
                 newString(context, "#<TracePoint:" + (enabled ? "enabled" : "disabled") + ">");
     }
@@ -194,7 +194,7 @@ public class TracePoint extends RubyObject {
     public IRubyObject callee_id(ThreadContext context) {
         checkInside(context);
 
-        // TODO: actually get called name, requires modifying trace handling in bindings
+        System.out.println("SATD ID: 304");
         return name == null ? context.nil : asSymbol(context, name);
     }
     
@@ -216,7 +216,7 @@ public class TracePoint extends RubyObject {
     public IRubyObject return_value(ThreadContext context) {
         checkInside(context);
         
-        // FIXME: get return value
+        System.out.println("SATD ID: 31");
         return returnValue;
     }
     
@@ -233,7 +233,7 @@ public class TracePoint extends RubyObject {
     }
     
     private void update(String eventName, String file, int line, String name, IRubyObject type, IRubyObject exception, IRubyObject returnValue, IRubyObject binding) {
-        // TODO: missing exception, self, return value
+        System.out.println("SATD ID: 582");
         this.eventName = eventName;
         this.file = file;
         this.line = line;

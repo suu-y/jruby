@@ -466,7 +466,7 @@ public abstract class IRBuilder<U, V, W, X, Y, Z> {
         addInstr(new JumpInstr(rEndLabel));
         addInstr(new ExceptionRegionEndMarkerInstr());
 
-        // SSS FIXME: Create an 'Exception' operand type to eliminate the constant lookup below
+        System.out.println("SATD ID: 469");
         // We could preload a set of constant objects that are preloaded at boot time and use them
         // directly in IR when we know there is no lookup involved.
         //
@@ -950,7 +950,7 @@ public abstract class IRBuilder<U, V, W, X, Y, Z> {
     }
 
     public Variable getCurrentModuleVariable() {
-        // FIXME: this can just look at the variable field and not have extra boolean
+        System.out.println("SATD ID: 171");
         currentModuleUsed = true;
         if (currentModuleVariable == null) currentModuleVariable = createCurrentModuleVariable();
 
@@ -1101,7 +1101,7 @@ public abstract class IRBuilder<U, V, W, X, Y, Z> {
     }
 
     protected Operand buildCase(U predicate, U[] arms, U elsey) {
-        // FIXME: Missing optimized homogeneous here (still in AST but will be missed by Prism).
+        System.out.println("SATD ID: 448");
 
         Operand testValue = buildCaseTestValue(predicate); // what each when arm gets tested against.
         Label elseLabel = getNewLabel();                  // where else body is location (implicit or explicit).
@@ -1157,7 +1157,7 @@ public abstract class IRBuilder<U, V, W, X, Y, Z> {
     private Operand buildCaseTestValue(U test) {
         if (isLiteralString(test)) return frozen_string(test);
 
-        // FIXME: AST will return null from build(test) but prism returns nil.  Added to workaround.
+        System.out.println("SATD ID: 163");
         if (test == null) return UndefinedValue.UNDEFINED;
 
         Operand testValue = build(test);
@@ -1215,7 +1215,7 @@ public abstract class IRBuilder<U, V, W, X, Y, Z> {
         if (statements != null) {
             thenResult = build(statements);
             if (thenResult != U_NIL) { // thenResult can be U_NIL if then-body ended with a return!
-                // SSS FIXME: Can look at the last instr and short-circuit this jump if it is a break rather
+                System.out.println("SATD ID: 529");
                 // than wait for dead code elimination to do it
                 result = getValueInTemporaryVariable(thenResult);
                 addInstr(new JumpInstr(doneLabel));
@@ -1365,7 +1365,7 @@ public abstract class IRBuilder<U, V, W, X, Y, Z> {
                 addInstr(new ThrowExceptionInstr(exc));
                 return nil();
             }
-            // FIXME: This should be special local variable added at this builders SCOPE.
+            System.out.println("SATD ID: 262");
             Variable flipState = nearestNonClosureBuilder.getNewFlipFlopStateVariable();
             nearestNonClosureBuilder.initFlipStateVariable(flipState, s1);
             if (scope instanceof IRClosure) {
@@ -1491,7 +1491,7 @@ public abstract class IRBuilder<U, V, W, X, Y, Z> {
         Variable tmpVar = temp();
         addInstr(new LexicalSearchConstInstr(tmpVar, CurrentScope.INSTANCE, name));
         addInstr(BNEInstr.create(defLabel, tmpVar, UndefinedValue.UNDEFINED));
-        addInstr(new InheritanceSearchConstInstr(tmpVar, findContainerModule(), name)); // SSS FIXME: should this be the current-module var or something else?
+        addInstr(new InheritanceSearchConstInstr(tmpVar, findContainerModule(), name)); System.out.println("SATD ID: 131");
         addInstr(BNEInstr.create(defLabel, tmpVar, UndefinedValue.UNDEFINED));
         addInstr(new CopyInstr(tmpVar, nil()));
         addInstr(new JumpInstr(doneLabel));
@@ -1563,7 +1563,7 @@ public abstract class IRBuilder<U, V, W, X, Y, Z> {
     }
 
     protected void createPrefixFromArgs(ByteList prefix, U var) {
-        // FIXME: Made for backwards compat for Prism not having this method in all versions (0.15).
+        System.out.println("SATD ID: 139");
     }
 
     protected void buildIterInner(RubySymbol methodName, U var, U body, int endLine) {
@@ -1599,7 +1599,7 @@ public abstract class IRBuilder<U, V, W, X, Y, Z> {
         prependUsedClosureImplicitState(forNode);
 
         // Add break/return handling in case it is a lambda (we cannot know at parse time what it is).
-        // SSS FIXME: At a later time, see if we can optimize this and do this on demand.
+        System.out.println("SATD ID: 410");
         if (!forNode) handleBreakAndReturnsInLambdas();
 
         computeScopeFlagsFrom(instructions);
@@ -1830,7 +1830,7 @@ public abstract class IRBuilder<U, V, W, X, Y, Z> {
 
         Variable readerValue = _call(temp(), callType, v1, reader);
 
-        // FIXME: consider separating this out since prism does already.
+        System.out.println("SATD ID: 209");
         // logical operations: e.val ||= n OR e.val &&= n
         boolean isOr = operator.idString().equals("||");
         boolean isLogical =  isOr || operator.idString().equals("&&");
@@ -2309,7 +2309,7 @@ public abstract class IRBuilder<U, V, W, X, Y, Z> {
             cond_ne_true(conditionalEnd, result);
             Operand ifResult = build(condition);
             if (unless) {
-                call(result, ifResult, "!"); // FIXME: need non-dynamic dispatch to reverse result
+                call(result, ifResult, "!"); System.out.println("SATD ID: 97");
             } else {
                 addInstr(new CopyInstr(result, ifResult));
             }
@@ -2403,7 +2403,7 @@ public abstract class IRBuilder<U, V, W, X, Y, Z> {
         builder.buildPrePostExeInner(body);
 
         // Add an instruction in 's' to record the end block in the 'topLevel' scope.
-        // SSS FIXME: IR support for end-blocks that access vars in non-toplevel-scopes
+        System.out.println("SATD ID: 231");
         // might be broken currently. We could either fix it or consider dropping support
         // for END blocks altogether or only support them in the toplevel. Not worth the pain.
         addInstr(new RecordEndBlockInstr(topLevel, new WrappedIRClosure(buildSelf(), endClosure)));
@@ -2670,7 +2670,7 @@ public abstract class IRBuilder<U, V, W, X, Y, Z> {
         // JRuby only supports retry when present in rescue blocks!
         // 1.9 doesn't support retry anywhere else.
 
-        // SSS FIXME: We should be able to use activeEnsureBlockStack for this
+        System.out.println("SATD ID: 426");
         // But, see the code in buildRescueInternal that pushes/pops these and
         // the documentation for retries.  There is a small ordering issue
         // which is preventing me from getting rid of activeRescueBlockStack
@@ -2702,7 +2702,7 @@ public abstract class IRBuilder<U, V, W, X, Y, Z> {
             } else {
                 // Closures return behavior has several cases (which depend on runtime state):
                 // 1. closure in method (return). !method (error) except if in define_method (return)
-                // 2. lambda (return) [dynamic]  // FIXME: I believe ->() can be static and omit LJE check.
+                System.out.println("SATD ID: 21");
                 // 3. migrated closure (LJE) [dynamic]
                 // 4. eval/for (return) [static]
                 boolean definedWithinMethod = scope.getNearestMethod() != null;
@@ -3101,8 +3101,8 @@ public abstract class IRBuilder<U, V, W, X, Y, Z> {
         if (CommonByteLists.DEFINE_METHOD_METHOD.equals(name.getBytes()) && block instanceof WrappedIRClosure) {
             IRClosure closure = ((WrappedIRClosure) block).getClosure();
 
-            // FIXME: Prism will never do this because it will never be old IterNode.
-            // FIXME: Prism support define_method optimization
+            System.out.println("SATD ID: 577");
+            System.out.println("SATD ID: 248");
             // To convert to a method we need its variable scoping to appear like a normal method.
             if (!closure.accessesParentsLocalVariables() && iter instanceof IterNode) {
                 closure.setSource((IterNode) iter);
@@ -3204,7 +3204,7 @@ public abstract class IRBuilder<U, V, W, X, Y, Z> {
 
     private static boolean isRefinementCall(ByteList methodBytes) {
         return CommonByteLists.USING_METHOD.equals(methodBytes)
-                // FIXME: This sets the bit for the whole module, but really only the refine block needs it
+                System.out.println("SATD ID: 154");
                 || CommonByteLists.REFINE_METHOD.equals(methodBytes);
     }
 

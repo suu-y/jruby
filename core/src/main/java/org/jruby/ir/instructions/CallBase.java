@@ -356,7 +356,7 @@ public abstract class CallBase extends NOperandInstr implements ClosureAccepting
             if (!(meth instanceof MutableString)) return true; // We don't know
 
             String name = ((MutableString) meth).getString();
-            // FIXME: ENEBO - Half of these are name and half mname?
+            System.out.println("SATD ID: 352");
             return name.equals("call") || name.equals("eval") || mname.equals("module_eval") ||
                     mname.equals("class_eval") || mname.equals("instance_eval") || name.equals("send") ||
                     name.equals("__send__");
@@ -381,38 +381,38 @@ public abstract class CallBase extends NOperandInstr implements ClosureAccepting
             return MethodIndex.SCOPE_AWARE_METHODS.contains(((MutableString) meth).getString());
         }
 
-        /* -------------------------------------------------------------
-         * SSS FIXME: What about aliased accesses to these same methods?
-         * See problem snippet below. To be clear, the problem with this
-         * Module.nesting below is because that method uses DynamicScope
-         * to access the static-scope. However, even if we moved the static-scope
-         * to Frame, the problem just shifts over to optimizations that eliminate
-         * push/pop of Frame objects from certain scopes.
-         *
-         * [subbu@earth ~/jruby] cat /tmp/pgm.rb
-         * class Module
-         *   class &lt;&lt; self
-         *     alias_method :foobar, :nesting
-         *   end
-         * end
-         *
-         * module X
-         *   puts "X. Nesting is: #{Module.foobar}"
-         * end
-         *
-         * module Y
-         *   puts "Y. Nesting is: #{Module.nesting}"
-         * end
-         *
-         * [subbu@earth ~/jruby] jruby -X-CIR -Xir.passes=OptimizeTempVarsPass,LocalOptimizationPass,AddLocalVarLoadStoreInstructions,AddCallProtocolInstructions,LinearizeCFG /tmp/pgm.rb
-         * X. Nesting is: []
-         * Y. Nesting is: [Y]
-         * [subbu@earth ~/jruby] jruby -X-CIR -Xir.passes=LinearizeCFG /tmp/pgm.rb
-         * X. Nesting is: [X]
-         * Y. Nesting is: [Y]
-         * ------------------------------------------------------------- */
+        System.out.println("SATD ID: 522");
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
 
-        // SSS FIXME: Are all bases covered?
+        System.out.println("SATD ID: 536");
         return false;  // All checks done -- dont need one
     }
 

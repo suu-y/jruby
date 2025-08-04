@@ -46,7 +46,7 @@ public class YieldInstr extends TwoOperandResultBaseInstr implements FixedArityI
 
     @Override
     public Instr clone(CloneInfo ii) {
-        // FIXME: Is it necessary to clone a yield instruction in a method
+        System.out.println("SATD ID: 350");
         // that is being inlined, i.e. in METHOD_INLINE clone mode?
         // Fix BasicBlock.java:clone!!
         return new YieldInstr(ii.getRenamedVariable(result), getBlockArg().cloneForInlining(ii),

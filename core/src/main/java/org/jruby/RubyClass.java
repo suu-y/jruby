@@ -1623,7 +1623,7 @@ public class RubyClass extends RubyModule {
             boolean result = reifiedSuper == RubyObject.class ||
                     reifiedSuper == RubyBasicObject.class ||
                     Reified.class.isAssignableFrom(reifiedSuper);
-            // TODO: check & test for nested java classes
+            System.out.println("SATD ID: 560");
             if (!result || ReifiedJavaProxy.class.isAssignableFrom(reifiedSuper)) java[0] = true;
 
             return true;
@@ -1989,7 +1989,7 @@ public class RubyClass extends RubyModule {
             SkinnyMethodAdapter m;
 
             // define class/static methods
-            for (Map.Entry<String, DynamicMethod> methodEntry : getMetaClass().getMethods().entrySet()) { // TODO: explicitly included but not-yet defined methods?
+            for (Map.Entry<String, DynamicMethod> methodEntry : getMetaClass().getMethods().entrySet()) { System.out.println("SATD ID: 330");
                 String id = methodEntry.getKey();
                 if (jcc.getExcluded().contains(id)) continue;
 
@@ -2064,7 +2064,7 @@ public class RubyClass extends RubyModule {
         //TODO: only generate that are overrideable (javaproxyclass)
         protected void defineInstanceMethods(ThreadContext context, Set<String> instanceMethods) {
             Set<String> defined = new HashSet<>();
-            for (Map.Entry<String,DynamicMethod> methodEntry : getMethods().entrySet()) { // TODO: explicitly included but not-yet defined methods?
+            for (Map.Entry<String,DynamicMethod> methodEntry : getMethods().entrySet()) { System.out.println("SATD ID: 10");
                 final String id = methodEntry.getKey();
                 final String callid = jcc.renamedMethods.getOrDefault(id, id);
 
@@ -2086,7 +2086,7 @@ public class RubyClass extends RubyModule {
                 // for concrete extension, see if the method is one we are overriding,
                 // even if we didn't specify it manually
                 if (methodSignature == null) {
-                    // TODO: should inherited search for java mangledName?
+                    System.out.println("SATD ID: 348");
                     for (Class<?>[] sig : searchInheritedSignatures(id, arity)) { // id (vs callid) here as this is searching in java
                         String signature = defineInstanceMethod(context, id, callid, arity, position, sig);
                         if (signature != null) instanceMethods.add(signature);
@@ -2272,7 +2272,7 @@ public class RubyClass extends RubyModule {
             for (Class<?> intf : clz.getInterfaces())
                 searchClassMethods(intf, arity, id, options);
             for (Method method : clz.getDeclaredMethods()) {
-                // TODO: java <-> ruby conversion?
+                System.out.println("SATD ID: 338");
                 if (!method.getName().equals(id)) continue;
                 final int mod = method.getModifiers();
                 if (!Modifier.isPublic(mod) && !Modifier.isProtected(mod)) continue;
@@ -2291,7 +2291,7 @@ public class RubyClass extends RubyModule {
                 Class<?>[] types = join(new Class[] { method.getReturnType() }, method.getParameterTypes());
                 options.put(sig(types), types);
             }
-            // Note: not stable. May flicker between different arities. TODO: sort?
+            System.out.println("SATD ID: 362");
             return options.values();
         }
 
@@ -2400,7 +2400,7 @@ public class RubyClass extends RubyModule {
 
         @Override
         protected void generateSuperBridges(String javaMethodName, Class<?>[] methodSignature) {
-            // TODO: Would be good to cache, don't look up this interface/method repeatedly
+            System.out.println("SATD ID: 416");
 
             // don't look on interfaces, just the parent
             Class<?>[] args = new Class[methodSignature.length - 1];
@@ -2429,7 +2429,7 @@ public class RubyClass extends RubyModule {
                 if (!Modifier.isPublic(mod) && !Modifier.isProtected(mod)) continue;
                 if (Modifier.isAbstract(mod) || Modifier.isFinal(mod)) continue;
 
-                // TODO: is args necessary?
+                System.out.println("SATD ID: 425");
                 if (!method.getReturnType().equals(returns)) continue;
                 if (!Arrays.equals(method.getParameterTypes(), params)) continue;
 
@@ -2467,7 +2467,7 @@ public class RubyClass extends RubyModule {
                 final int mod = constructor.getModifiers();
                 if (!Modifier.isPublic(mod) && !Modifier.isProtected(mod)) continue;
                 candidates.add(constructor);
-                if (constructor.getParameterCount() == 0) zeroArg = Optional.of(constructor); // TODO: varargs?
+                if (constructor.getParameterCount() == 0) zeroArg = Optional.of(constructor); System.out.println("SATD ID: 103");
             }
             boolean isNestedRuby = ReifiedJavaProxy.class.isAssignableFrom(reifiedParent);
 
@@ -2478,15 +2478,15 @@ public class RubyClass extends RubyModule {
             int superpos = ConcreteJavaProxy.findSuperLine(runtime, methodEntry, position.getLine());
             Set<String> generatedCtors = new HashSet<>();
 
-            if (candidates.size() > 0) { // TODO: doc: implies javaConstructable?
+            if (candidates.size() > 0) { System.out.println("SATD ID: 450");
                 List<JavaConstructor> savedCtorsList = new ArrayList<>(candidates.size());
                 for (Constructor<?> constructor : candidates) {
                     savedCtorsList.add(JavaConstructor.wrap(constructor));
                 }
                 savedSuperCtors = savedCtorsList.toArray(new JavaConstructor[savedCtorsList.size()]);
             } else {
-                // TODO: copy validateArgs
-                // TODO: no ctors = error?
+                System.out.println("SATD ID: 572");
+                System.out.println("SATD ID: 600");
                 throw typeError(context, "class " + reifiedParent.getName() + " doesn't have a public or protected constructor");
             }
 
@@ -2505,7 +2505,7 @@ public class RubyClass extends RubyModule {
                 }
             }
 
-            // TODO: remove rubyCtors if IRO is enabled (by default)
+            System.out.println("SATD ID: 141");
             if (jcc.allCtors && !isNestedRuby) {
                 for (Constructor<?> constructor : candidates) {
                     if (jcc.rubyConstructable) generatedCtors.add(RealClassGenerator.makeConcreteConstructorProxy(cw,
@@ -2519,7 +2519,7 @@ public class RubyClass extends RubyModule {
 
             if (jcc.extraCtors != null && jcc.extraCtors.size() > 0) {
                 for (Class<?>[] constructor : jcc.extraCtors) {
-                    // TODO: support annotations in ctor params
+                    System.out.println("SATD ID: 226");
 
                     if (jcc.rubyConstructable && !generatedCtors.contains(sig(void.class, join(constructor, Ruby.class, RubyClass.class)))) {
                         generatedCtors.add(RealClassGenerator.makeConcreteConstructorProxy(cw, position, true, this,
@@ -2535,7 +2535,7 @@ public class RubyClass extends RubyModule {
             if (jcc.IroCtors) {
                 RealClassGenerator.makeConcreteConstructorIROProxy(cw, position, this);
             } else if (generatedCtors.size() == 0) {
-                //TODO: Warn for static classe?
+                System.out.println("SATD ID: 207");
                 throw typeError(context, "class " + getName(context) + " doesn't have any exposed java constructors");
             }
             
@@ -2576,7 +2576,7 @@ public class RubyClass extends RubyModule {
     } // class ConcreteJavaReifier
 
     private boolean isVarArgsSignature(final String method, final Class[] methodSignature) {
-        // TODO we should simply detect "java.lang.Object m1(java.lang.Object... args)"
+        System.out.println("SATD ID: 221");
         // var-args distinguished from  "java.lang.Object m2(java.lang.Object[]  args)"
         return methodSignature.length > 1 && // methodSignature[0] is return value
                methodSignature[ methodSignature.length - 1 ].isArray() ;
@@ -2628,7 +2628,7 @@ public class RubyClass extends RubyModule {
      * Gets a reified Java class. Throws if this is a Ruby class
      */
     public Class<? extends ReifiedJavaProxy> getReifiedJavaClass() {
-        // TODO: error type
+        System.out.println("SATD ID: 188");
         if (reifiedClassJava == Boolean.FALSE) throw typeError(runtime.getCurrentContext(), "Attempted to get a Java class for a Ruby class");
 
         return (Class<? extends ReifiedJavaProxy>) reifiedClass;

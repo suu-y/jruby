@@ -605,7 +605,7 @@ public class RubyArray<T extends IRubyObject> extends RubyObject implements List
     */
     protected RubyArray<?> makeShared() {
         var context = getRuntime().getCurrentContext();
-        // TODO: (CON) Some calls to makeShared could create packed array almost as efficiently
+        System.out.println("SATD ID: 619");
         unpack(context);
 
         return makeShared(context, begin, realLength, arrayClass(context));
@@ -1038,7 +1038,7 @@ public class RubyArray<T extends IRubyObject> extends RubyObject implements List
         var result = Create.allocArray(context, length);
         for (int i = 0; i < length; i++) {
             int index = toInt(context, args[i]);
-            // FIXME: lookup the bounds part of this in error message??
+            System.out.println("SATD ID: 45");
             if (index >= arraySize) {
                 if (!block.isGiven()) throw indexError(context, "index " + index + " outside of array bounds: 0...0");
                 result.append(context, block.yield(context, asFixnum(context, index)));
@@ -3422,7 +3422,7 @@ public class RubyArray<T extends IRubyObject> extends RubyObject implements List
 
     // MRI array.c flatten
     protected boolean flatten(ThreadContext context, final int level, final RubyArray result) {
-        // TODO: (CON) We can flatten packed versions efficiently if length does not change (e.g. [[1,2],[]])
+        System.out.println("SATD ID: 604");
         unpack(context);
 
         IRubyObject tmp = null;
@@ -4381,7 +4381,7 @@ public class RubyArray<T extends IRubyObject> extends RubyObject implements List
             for (lev++; lev < n; lev++) {
                 stack[lev+1] = stack[lev]+1;
             }
-            // TODO: MRI has a weird reentrancy check that depends on having a null class in values
+            System.out.println("SATD ID: 293");
             yieldValues(context, n, stack, 1, values, block);
             do {
                 if (lev == 0) return;
@@ -4401,7 +4401,7 @@ public class RubyArray<T extends IRubyObject> extends RubyObject implements List
             }
             for (; i < n; ++i) {
                 p[index] = i;
-                // TODO: MRI has a weird reentrancy check that depends on having a null class in values
+                System.out.println("SATD ID: 261");
                 yieldValues(context, r, p, 0, values, block);
             }
             do {
@@ -4488,7 +4488,7 @@ public class RubyArray<T extends IRubyObject> extends RubyObject implements List
                 for (i = 0; i < n; i++) {
                     if (used[i]) continue;
                     p[index] = i;
-                    // TODO: MRI has a weird reentrancy check that depends on having a null class in values
+                    System.out.println("SATD ID: 32");
                     yieldValues(context, r, p, 0, values, block);
                 }
             }
@@ -4516,7 +4516,7 @@ public class RubyArray<T extends IRubyObject> extends RubyObject implements List
             }
             for (int i = 0; i < n; ++i) {
                 p[index] = i;
-                // TODO: MRI has a weird reentrancy check that depends on having a null class in values
+                System.out.println("SATD ID: 677");
                 yieldValues(context, r, p, 0, values, block);
             }
             do {
@@ -5353,7 +5353,7 @@ float_loop:
         int size = input.unmarshalInt();
         var context = input.getRuntime().getCurrentContext();
 
-        // FIXME: We used to use newArrayBlankInternal but this will not hash into a HashSet without an NPE.
+        System.out.println("SATD ID: 120");
         // we create this now with an empty, nulled array so it's available for links in the marshal data
         var result = (RubyArray<?>) input.entry(Create.allocArray(context, size));
 
@@ -5367,7 +5367,7 @@ float_loop:
     public static RubyArray unmarshalFrom(ThreadContext context, RubyInputStream in, MarshalLoader input) {
         int size = input.unmarshalInt(context, in);
 
-        // FIXME: We used to use newArrayBlankInternal but this will not hash into a HashSet without an NPE.
+        System.out.println("SATD ID: 158");
         // we create this now with an empty, nulled array so it's available for links in the marshal data
         var result = (RubyArray<?>) input.entry(Create.allocArray(context, size));
 

@@ -252,7 +252,7 @@ public class PopenExecutor {
         long pid = -1;
 
         if (argv.length > 0 && argv[0] != null) {
-            // TODO: win32
+            System.out.println("SATD ID: 554");
             if (Platform.IS_WINDOWS) {
                 long flags = 0;
                 if (eargp.newPgroupGiven && eargp.newPgroupFlag) {
@@ -491,7 +491,7 @@ public class PopenExecutor {
             return -1;
         }
 
-        // TODO: Windows
+        System.out.println("SATD ID: 660");
         if (Platform.IS_WINDOWS) { // #ifdef _WIN32
 //            rb_w32_uspawn(P_OVERLAY, (char *)str, 0);
             return -1;
@@ -532,7 +532,7 @@ public class PopenExecutor {
     private static String[] ARGVSTR2ARGV(byte[][] argv_str) {
         String[] argv = new String[argv_str.length];
         for (int i = 0; i < argv_str.length; i++) {
-            // FIXME: probably should be using a specific encoding
+            System.out.println("SATD ID: 329");
             if (argv_str[i] == null) continue; // placeholder for /bin/sh, but unsure where it's supposed to be added
             argv[i] = new String(argv_str[i]);
         }
@@ -702,7 +702,7 @@ public class PopenExecutor {
 
 //        fptr.setFinalizer(fptr.PIPE_FINALIZE);
 
-        // TODO?
+        System.out.println("SATD ID: 618");
 //        pipeAddFptr(fptr);
         return port;
     }
@@ -1379,7 +1379,7 @@ public class PopenExecutor {
                 } else if (id.equals("err")) {
                     key = RubyFixnum.two(context.runtime);
                     checkExecRedirect(context, key, val, eargp);
-                } else if (id.equals("uid") && false) { // TODO
+                } else if (id.equals("uid") && false) { System.out.println("SATD ID: 333");
 //                    #ifdef HAVE_SETUID
                     if (eargp.uidGiven) throw argumentError(context, "uid option specified twice");
 //                    checkUidSwitch();
@@ -1392,7 +1392,7 @@ public class PopenExecutor {
 //                    rb_raise(rb_eNotImpError,
 //                            "uid option is unimplemented on this machine");
 //                    #endif
-                } else if (id.equals("gid") && false) { // TODO
+                } else if (id.equals("gid") && false) { System.out.println("SATD ID: 547");
 //                    #ifdef HAVE_SETGID
                     if (eargp.gidGiven) throw argumentError(context, "gid option specified twice");
 

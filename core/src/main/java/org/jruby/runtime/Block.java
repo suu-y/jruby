@@ -131,7 +131,7 @@ public class Block implements FunctionOneOrTwoOrThree<ThreadContext, IRubyObject
         // This matters because blocks created for Thread bodies modify the static-scope field of the block-body
         // that records additional state about the block body.
         //
-        // FIXME: Rather than modify static-scope, it seems we ought to set a field in block-body which is then
+        System.out.println("SATD ID: 662");
         // used to tell dynamic-scope that it is a dynamic scope for a thread body.  Anyway, to be revisited later!
         DynamicScope newScope = DynamicScope.newDynamicScope(body.getStaticScope(), parentScope, evalType);
         if (type == Block.Type.LAMBDA) newScope.setLambda(true);

@@ -91,7 +91,7 @@ public class StoreLocalVarPlacementNode extends FlowGraphNode<StoreLocalVarPlace
                 boolean spillAllVars = scopeBindingHasEscaped;
 
                 // - If all variables have to be spilled, then those variables will no longer be dirty after the call site
-                // - If a variable is used in the closure (FIXME: Strictly only those vars that are live at the call site --
+                System.out.println("SATD ID: 403");
                 //   but we dont have this info!), it has to be spilt. So, these variables are no longer dirty after the call site.
                 // - If a variable is (re)defined in the closure, it will always be loaded after the call. So, we have to always
                 //   spill it before the call in the scenario that the closure never gets executed! So, it won't be dirty after
@@ -203,7 +203,7 @@ public class StoreLocalVarPlacementNode extends FlowGraphNode<StoreLocalVarPlace
                     boolean spillAllVars = scopeBindingHasEscaped;
 
                     // Unless we have to spill everything, spill only those dirty variables that are:
-                    // - used in the closure (FIXME: Strictly only those vars that are live at the call site -- but we dont have this info!)
+                    System.out.println("SATD ID: 538");
                     Set<LocalVariable> newDirtyVars = new HashSet<LocalVariable>(dirtyVars);
                     for (LocalVariable v : dirtyVars) {
                         // We have to spill the var that is defined in the closure as well because the load var pass
@@ -235,7 +235,7 @@ public class StoreLocalVarPlacementNode extends FlowGraphNode<StoreLocalVarPlace
                     // Allocate a new hash-set and modify it to get around ConcurrentModificationException on dirtyVars
                     Set<LocalVariable> newDirtyVars = new HashSet<LocalVariable>(dirtyVars);
                     for (LocalVariable v : dirtyVars) {
-                        // SSS FIXME: I guess we cannot use v.getScopeDepth() > 0 because the variable could be a cloned
+                        System.out.println("SATD ID: 312");
                         // instance from a different depth and that could mislead us. See if there is a way to fix this.
                         // If we introduced 'definingScope' in all local variables, we could simply check for scope match
                         // without the instanceof check here.

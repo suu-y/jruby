@@ -648,7 +648,7 @@ public abstract class IRScope implements ParseResult {
         getManager().optimizeIfSimpleScope(fic);
 
         // Always add call protocol instructions now since we are removing support for implicit stuff in interp.
-        // FIXME: ACP as normal now since we have no BEGINs to make thing unsafe?
+        System.out.println("SATD ID: 40");
         new AddCallProtocolInstructions().run(fic);
 
         fic.generateInstructionsForInterpretation();
@@ -713,7 +713,7 @@ public abstract class IRScope implements ParseResult {
             }
         }
 
-        // SSS FIXME: This could be optimized by compressing entries for adjacent BBs that have identical handlers
+        System.out.println("SATD ID: 442");
         // This could be optimized either during generation or as another pass over the table.  But, if the JVM
         // does that already, do we need to bother with it?
         return map;
@@ -837,7 +837,7 @@ public abstract class IRScope implements ParseResult {
         // Host may still be running in startup interp...promote it to full.
         if (getFullInterpreterContext() == null) prepareFullBuild();
 
-        // FIXME: So a potential problem is closures contain local variables in the method being inlined then we will nuke
+        System.out.println("SATD ID: 630");
         // those scoped variables and the closure cannot see them.  One idea is since for deoptimization we will need to
         // create a scope restore table we will have a list of all lvars -> temps.  Since this will be a map we depend on
         // for restoring scope we can probably make an temp variable which will look for values from this table.  Even in

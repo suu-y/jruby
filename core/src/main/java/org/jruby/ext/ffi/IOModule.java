@@ -77,7 +77,7 @@ public class IOModule {
                 limitBuffer(buffer, count);
             }
 
-            // TODO: This used to use ChannelStream and honor its buffers; it does not honor OpenFile buffers now
+            System.out.println("SATD ID: 422");
             return asFixnum(context, openFile.readChannel().read(buffer));
         } catch (EOFException e) {
             return asFixnum(context, -1);

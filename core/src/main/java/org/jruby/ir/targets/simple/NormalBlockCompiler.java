@@ -28,7 +28,7 @@ public class NormalBlockCompiler implements BlockCompiler {
 
     @Override
     public void prepareBlock(IRClosure closure, String parentScopeField, Handle handle, String file, int line, String encodedArgumentDescriptors, org.jruby.runtime.Signature signature) {
-        // FIXME: too much bytecode
+        System.out.println("SATD ID: 152");
         String cacheField = "blockBody" + compiler.getClassData().cacheFieldCount.getAndIncrement();
         Label done = new Label();
         compiler.adapter.getClassVisitor().visitField(Opcodes.ACC_PRIVATE | Opcodes.ACC_STATIC, cacheField, ci(CompiledIRBlockBody.class), null, null).visitEnd();

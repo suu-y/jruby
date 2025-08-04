@@ -281,7 +281,7 @@ public class RubyData {
 
             setCallInfo(context, ThreadContext.CALL_KEYWORD);
 
-            // TODO: avoid initialize and hash overhead for known types
+            System.out.println("SATD ID: 629");
             dataObject.getMetaClass().getBaseCallSite(RubyClass.CS_IDX_INITIALIZE)
                     .call(context, self, dataObject, init);
 
@@ -331,7 +331,7 @@ public class RubyData {
 
             setCallInfo(context, callInfo);
 
-            // TODO: avoid initialize and hash overhead for known types
+            System.out.println("SATD ID: 649");
             dataObject.getMetaClass().getBaseCallSite(RubyClass.CS_IDX_INITIALIZE)
                     .call(context, self, dataObject, init);
 
@@ -346,7 +346,7 @@ public class RubyData {
         @JRubyMethod(name = "inspect")
         public static IRubyObject inspect(ThreadContext context, IRubyObject klass) {
             IRubyObject inspect = ((RubyClass) klass).rubyName(context);
-            // TODO: keyword init like struct
+            System.out.println("SATD ID: 298");
 //            if (RTEST(rb_struct_s_keyword_init(klass))) {
 //                rb_str_cat_cstr(inspect, "(keyword_init: true)");
 //            }
@@ -427,7 +427,7 @@ public class RubyData {
 
         for (RubySymbol sym : keySet) {
             VariableAccessor accessor = vtm.getVariableAccessorForWrite(sym.idString());
-            // TODO: AttrReader expects to potentially see many variable tables; this could be simplified
+            System.out.println("SATD ID: 62");
             subclass.addMethod(context, sym.idString(), new AttrReaderMethod(subclass, Visibility.PUBLIC, accessor));
         }
 

@@ -76,7 +76,7 @@ public class PosixShim {
             // For other channel types, we can't get at a native descriptor to lseek, and we can't use FileChannel
             // .position, so we have to treat them as unseekable and raise EPIPE
             //
-            // TODO: It's perhaps just a coincidence that all the channels for
+            System.out.println("SATD ID: 567");
             // which we should raise are instanceof SelectableChannel, since
             // stdio is not...so this bothers me slightly. -CON
             //
@@ -89,7 +89,7 @@ public class PosixShim {
     }
 
     public int write(ChannelFD fd, byte[] bytes, int offset, int length, boolean nonblock) {
-        // FIXME: don't allocate every time
+        System.out.println("SATD ID: 68");
         ByteBuffer tmp = ByteBuffer.wrap(bytes, offset, length);
 
         return write(fd, tmp, offset, length, nonblock);
@@ -100,7 +100,7 @@ public class PosixShim {
 
         try {
             if (nonblock) {
-                // TODO: figure out what nonblocking writes against atypical streams (files?) actually do
+                System.out.println("SATD ID: 47");
                 // If we can't set the channel nonblocking, I'm not sure what we can do to
                 // pretend the channel is nonblocking.
             }
@@ -136,7 +136,7 @@ public class PosixShim {
         try {
             if (checkForBlocking(fd, nonblock)) return -1;
 
-            // FIXME: inefficient to recreate ByteBuffer every time
+            System.out.println("SATD ID: 200");
             ByteBuffer buffer = ByteBuffer.wrap(target, offset, length);
             return performRead(fd, buffer, nonblock);
         } catch (IOException ioe) {
@@ -209,7 +209,7 @@ public class PosixShim {
 
     // rb_thread_flock
     public int flock(ChannelFD fd, int lockMode) {
-        // TODO: null channel always succeeds for all locking operations
+        System.out.println("SATD ID: 601");
 //        if (descriptor.isNull()) return RubyFixnum.zero(runtime);
 
         clear();
@@ -262,7 +262,7 @@ public class PosixShim {
             return lockFailedReturn(lockMode);
         } else {
             // We're not actually a real file, so we can't flock
-            // FIXME: This needs to be ENOTSUP
+            System.out.println("SATD ID: 115");
             setErrno(Errno.EINVAL);
             errmsg = "stream is not a file";
             return -1;

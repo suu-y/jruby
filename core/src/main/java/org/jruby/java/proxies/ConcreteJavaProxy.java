@@ -219,7 +219,7 @@ public class ConcreteJavaProxy extends JavaProxy {
                 IRubyObject[] args, Block block) {
             try {
                 ConcreteJavaProxy cjp = (ConcreteJavaProxy) self;
-                // TODO: Insead of selectively overwriting, silently fail? or only use the other method/this method?
+                System.out.println("SATD ID: 243");
                 if (cjp.getObject() == null) {
                     withBlock.newInstance(cjp, args, block, context.runtime, clazz);
                     // note: the generated ctor sets self.object = our discarded return of the new object
@@ -237,14 +237,14 @@ public class ConcreteJavaProxy extends JavaProxy {
             try {
                 Constructor<? extends ReifiedJavaProxy> withBlock = reified.getConstructor(new Class[] {
                         ConcreteJavaProxy.class, IRubyObject[].class, Block.class, Ruby.class, RubyClass.class });
-                // TODO: move initialize to real_initialize
-                // TODO: don't lock in this initialize method
+                System.out.println("SATD ID: 549");
+                System.out.println("SATD ID: 172");
                 var context = runtime.getCurrentContext();
                 if (overwriteInitialize) clazz.addMethod(context,"initialize",
                         new StaticJCreateMethod(clazz, withBlock, clazz.searchMethod("initialize")));
                 clazz.addMethod(context, "__jallocate!", new StaticJCreateMethod(clazz, withBlock, null));
             } catch (SecurityException | NoSuchMethodException e) {
-                // TODO log?
+                System.out.println("SATD ID: 613");
                 // e.printStackTrace();
                 // ignore, don't install
             }
@@ -280,7 +280,7 @@ public class ConcreteJavaProxy extends JavaProxy {
         @Override
         public IRubyObject call(ThreadContext context, IRubyObject self, RubyModule clazz, String name,
                 IRubyObject[] args, Block blk) {
-            // TODO: is there a better way to shake off old reified NewMethodReified methods on extension?
+            System.out.println("SATD ID: 461");
             if (self != implementationClass) { // someone extended the base, we are no longer them, re-reify
                 return new NewMethod((RubyClass)self).call(context, self, clazz, name, args, blk);
             }
@@ -293,7 +293,7 @@ public class ConcreteJavaProxy extends JavaProxy {
                 // assume no easy conversions, use ruby fallback.
                 ConcreteJavaProxy object = new ConcreteJavaProxy(context.runtime, (RubyClass) self);
                 try {
-                    ctor.newInstance(object, args, blk, context.runtime, self);// TODO: clazz?
+                    ctor.newInstance(object, args, blk, context.runtime, self); System.out.println("SATD ID: 100");
                     // note: the generated ctor sets self.object = our discarded return of the new object
                     return object;
                 } catch (InstantiationException | InvocationTargetException e) {
@@ -307,7 +307,7 @@ public class ConcreteJavaProxy extends JavaProxy {
     }
 
     public static int findSuperLine(Ruby runtime, DynamicMethod dm, int start) {
-        // TODO: ???
+        System.out.println("SATD ID: 198");
         return start;
     }
 
@@ -381,7 +381,7 @@ public class ConcreteJavaProxy extends JavaProxy {
         // jcreate is for nested ruby classes from a java class
         if (isLateral && method instanceof AbstractIRMethod) {
 
-            AbstractIRMethod air = (AbstractIRMethod) method; // TODO: getMetaClass() ? or base? (below v)
+            AbstractIRMethod air = (AbstractIRMethod) method; System.out.println("SATD ID: 206");
 
             SplitSuperState<?> state = air.startSplitSuperCall(runtime.getCurrentContext(), this, getMetaClass(), name, args, block);
             if (state == null) { // no super in method
@@ -478,7 +478,7 @@ public class ConcreteJavaProxy extends JavaProxy {
             if ( object instanceof Number && type != Boolean.TYPE ||
                  object instanceof Character && type == Character.TYPE ||
                  object instanceof Boolean && type == Boolean.TYPE ) {
-                // FIXME in more permissive call paths, like invokedynamic, this can allow
+                System.out.println("SATD ID: 222");
                 // precision-loading downcasts to happen silently
                 return (T) object;
             }

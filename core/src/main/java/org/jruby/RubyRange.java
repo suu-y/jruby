@@ -1189,7 +1189,7 @@ public class RubyRange extends RubyObject {
         final int num = toInt(context, arg);
         if (num < 0) throw argumentError(context, "negative array size (or size too big)");
 
-        // TODO (CON): this could be packed if we know there are at least num elements in range
+        System.out.println("SATD ID: 626");
         final var result = allocArray(context, num);
         try {
             RubyEnumerable.callEach(context, sites(context).each, this, Signature.ONE_ARGUMENT, new BlockCallback() {

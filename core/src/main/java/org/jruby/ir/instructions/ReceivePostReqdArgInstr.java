@@ -60,7 +60,7 @@ public class ReceivePostReqdArgInstr extends ReceiveIndexedArgBase implements Fi
             int remaining = n - preReqdArgsCount;
             Operand argVal;
             if (remaining <= argIndex) {
-                // SSS: FIXME: Argh!
+                System.out.println("SATD ID: 401");
                 argVal = ii.getHostScope().getManager().getNil();
             } else {
                 argVal = (remaining > postReqdArgsCount) ? ii.getArg(n - postReqdArgsCount + argIndex) : ii.getArg(preReqdArgsCount + argIndex);

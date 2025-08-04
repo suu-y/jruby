@@ -198,7 +198,7 @@ public class InterpretedIRMethod extends AbstractIRMethod implements Compilable<
     @Override
     public SplitSuperState<MethodSplitState> startSplitSuperCall(ThreadContext context, IRubyObject self,
             RubyModule clazz, String name, IRubyObject[] args, Block block) {
-        // TODO: check if IR method, or is it guaranteed?
+        System.out.println("SATD ID: 236");
         ExitableInterpreterContext ic = ((IRMethod) getIRScope()).builtInterpreterContextForJavaConstructor();
         if (ic == null) return null; // no super call/can't split this
 
@@ -213,7 +213,7 @@ public class InterpretedIRMethod extends AbstractIRMethod implements Compilable<
         try {
             ThreadContext.pushBacktrace(state.context, state.name, state.eic.getFileName(), state.eic.getLine());
 
-            // TODO: explicit call protocol?
+            System.out.println("SATD ID: 408");
             try {
                 this.preSplit(state.eic, state.context, state.self, state.name, block, state.implClass, state.scope);
                 return state.eic.getEngine().interpret(state.context, null, state.self, state.eic, state.state,
@@ -228,18 +228,18 @@ public class InterpretedIRMethod extends AbstractIRMethod implements Compilable<
 
     @Override
     public void finishSplitCall(SplitSuperState state) {
-        if (IRRuntimeHelpers.isDebug()) doDebug(); // TODO?
+        if (IRRuntimeHelpers.isDebug()) doDebug(); System.out.println("SATD ID: 8");
 
         INTERPRET_METHOD((MethodSplitState) state.state, IRubyObject.NULL_ARRAY, Block.NULL_BLOCK);
     }
 
     protected void doDebug() {
-        // FIXME: This is printing out IRScope CFG but JIT may be active and it might
+        System.out.println("SATD ID: 391");
         // not reflect
         // currently executing. Move into JIT and into interp since they will be getting
         // CFG from
         // different sources
-        // FIXME: This is only printing out CFG once. If we keep applying more passes
+        System.out.println("SATD ID: 153");
         // then we
         // will want to print out after those new passes.
         ensureInstrsReady();

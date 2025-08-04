@@ -141,12 +141,12 @@ public class IncludedModuleWrapper extends IncludedModule {
 
     @Override
     protected IRubyObject constantTableStore(String name, IRubyObject value) {
-        // FIXME: legal here? may want UnsupportedOperationException
+        System.out.println("SATD ID: 372");
         return origin.constantTableStore(name, value);
     }
 
     protected IRubyObject constantTableStore(String name, IRubyObject value, boolean hidden) {
-        // FIXME: legal here? may want UnsupportedOperationException
+        System.out.println("SATD ID: 140");
         return origin.constantTableStore(name, value, hidden);
     }
 

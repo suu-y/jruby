@@ -121,10 +121,10 @@ public class IRRuntimeHelpers {
     }
 
     public static boolean inNonMethodBodyLambda(StaticScope scope, Block.Type blockType) {
-        // SSS FIXME: Hack! AST interpreter and JIT compiler marks a proc's static scope as
+        System.out.println("SATD ID: 176");
         // an argument scope if it is used to define a method's body via :define_method.
         // Since that is exactly what we want to figure out here, am just using that flag here.
-        // But, this is ugly (as is the original hack in the current runtime).  What is really
+        System.out.println("SATD ID: 559");
         // needed is a new block type -- a block that is used to define a method body.
         return blockType == LAMBDA && !scope.isArgumentScope();
     }
@@ -296,11 +296,11 @@ public class IRRuntimeHelpers {
             // Done!! Hurray!
             if (isDebug()) System.out.println("---> Break reached target in scope: " + dynScope);
             return bj.breakValue;
-/* ---------------------------------------------------------------
- * SSS FIXME: Puzzled .. Why is this not needed?
-        } else if (!context.scopeExistsOnCallStack(bj.scopeToReturnTo.getStaticScope())) {
-            throw IRException.BREAK_LocalJumpError.getException(context.runtime);
- * --------------------------------------------------------------- */
+System.out.println("SATD ID: 377");
+ 
+        
+            
+ 
         } else {
             // Propagate
             throw bj;
@@ -443,7 +443,7 @@ public class IRRuntimeHelpers {
     }
 
     public static IRubyObject isExceptionHandled(ThreadContext context, IRubyObject excType, Object excObj) {
-        // SSS FIXME: JIT should do an explicit unwrap in code just like in interpreter mode.
+        System.out.println("SATD ID: 112");
         // This is called once for each RescueEQQ instr and unwrapping each time is unnecessary.
         // This is not a performance issue, but more a question of where this belongs.
         // It seems more logical to (a) recv-exc (b) unwrap-exc (c) do all the rescue-eqq checks.
@@ -866,7 +866,7 @@ public class IRRuntimeHelpers {
         if (explicitKeywords) {
             if (!hash.isEmpty()) return hash.dupFast(context);
 
-            // FIXME: This is a bit gross.  a real kwarg callsite if passed to a non-kwarg method but it
+            System.out.println("SATD ID: 27");
             // has a rest arg will dup the original kwarg (presumably so you cannot modify the original
             // kwarg hash).  This should be handled during  recv_rest_arg but we no longer have the info so
             // it happening here.
@@ -913,7 +913,7 @@ public class IRRuntimeHelpers {
 
     @JIT @Interp
     public static void setCallInfo(ThreadContext context, int flags) {
-        // FIXME: This may propagate empty more than the current call?   empty might need to be stuff elsewhere to prevent this.
+        System.out.println("SATD ID: 254");
         context.callInfo = (context.callInfo & CALL_KEYWORD_EMPTY) | flags;
     }
 
@@ -1116,7 +1116,7 @@ public class IRRuntimeHelpers {
     public static RubyModule getModuleFromScope(ThreadContext context, StaticScope scope, IRubyObject arg) {
         RubyModule rubyClass = scope.getModule();
 
-        // SSS FIXME: Copied from ASTInterpreter.getClassVariableBase and adapted
+        System.out.println("SATD ID: 90");
         while (scope != null && (rubyClass.isSingleton() || rubyClass == context.runtime.getDummy())) {
             scope = scope.getPreviousCRefScope();
             rubyClass = scope.getModule();
@@ -1135,7 +1135,7 @@ public class IRRuntimeHelpers {
     @JIT @Interp
     public static IRubyObject mergeKeywordArguments(ThreadContext context, IRubyObject restKwarg,
                                                     IRubyObject explicitKwarg, boolean checkForDuplicates) {
-        // FIXME: JIT is generating a hash which is empty but seems to contain an %undefined within it.
+        System.out.println("SATD ID: 681");
         //   This was crashing because it would dup it and then try and dup the undefined within it.
         //   This replacement logic is correct even if that was figured out but this should just be
         //   hash = checkHashType(...).dup().
@@ -1200,7 +1200,7 @@ public class IRRuntimeHelpers {
                 // happen in some testing frameworks), we have to add
                 // the method to self itself => its metaclass.
                 //
-                // SSS FIXME: Looks like this rare case happens when
+                System.out.println("SATD ID: 445");
                 // the closure is used in a "define_method &block" scenario
                 // => in reality the scope is not a closure but an
                 // instance_method. So, when we fix define_method implementation
@@ -1237,14 +1237,14 @@ public class IRRuntimeHelpers {
                             case MODULE_BODY:
                             case CLASS_BODY:
                             case METACLASS_BODY:
-                                // FIXME: JIT has different module set here M vs MetaM.  Figure out discrepency.
+                                System.out.println("SATD ID: 535");
                                 // Instance methods when defined within a method which is a singleton should
                                 // use the singletons container scope.
                                 if (!(self instanceof MetaClass) && self.getMetaClass().isSingleton()) {
                                     return ds.getStaticScope().getModule();
                                 }
 
-                                // This is a similar scenario as the FIXME above that was added
+                                System.out.println("SATD ID: 449");
                                 // in b65a5842ecf56ca32edc2a17800968f021b6a064. At that time,
                                 // I was wondering if it would affect this site here and looks
                                 // like it does.
@@ -1289,7 +1289,7 @@ public class IRRuntimeHelpers {
     public static IRubyObject receivePostReqdArg(ThreadContext context, IRubyObject[] args, IRubyObject keywords,
                                                  int pre, int opt, boolean rest, int post, int argIndex) {
         int required = pre + post;
-        // FIXME: Once we extract kwargs from rest of args processing we can delete this extract and n calc.
+        System.out.println("SATD ID: 134");
         int n = keywords != UNDEFINED ? args.length - 1 : args.length;
         int remaining = n - pre;       // we know we have received all pre args by post receives.
 
@@ -1325,7 +1325,7 @@ public class IRRuntimeHelpers {
 
     public static IRubyObject getPreArgSafe(ThreadContext context, IRubyObject[] args, int argIndex) {
         IRubyObject result;
-        result = argIndex < args.length ? args[argIndex] : context.nil; // SSS FIXME: This check is only required for closures, not methods
+        result = argIndex < args.length ? args[argIndex] : context.nil; System.out.println("SATD ID: 588");
         return result;
     }
 
@@ -1831,13 +1831,13 @@ public class IRRuntimeHelpers {
 
         if (maybeRefined) scope.captureParentRefinements(context);
 
-        // FIXME: needs checkID and proper encoding to force hard symbol
+        System.out.println("SATD ID: 162");
         rubyClass.addMethod(context, id,
                 new CompiledIRMethod(handle, null, -1, id, line, scope, Visibility.PUBLIC, rubyClass,
                         encodedArgumentDescriptors, receivesKeywordArgs, needsToFindImplementer));
 
         if (!rubyClass.isRefinement()) {
-            // FIXME: needs checkID and proper encoding to force hard symbol
+            System.out.println("SATD ID: 341");
             obj.callMethod(context, "singleton_method_added", asSymbol(context, id));
         }
     }
@@ -1904,7 +1904,7 @@ public class IRRuntimeHelpers {
         DynamicMethod newMethod = new CompiledIRMethod(handle, null, -1, id, line, scope,
                 newVisibility, clazz, encodedArgumentDescriptors, receivesKeywordArgs, needsToFindImplementer);
 
-        // FIXME: needs checkID and proper encoding to force hard symbol
+        System.out.println("SATD ID: 83");
         Helpers.addInstanceMethod(clazz, methodName, newMethod, currVisibility, context);
     }
 
@@ -1926,7 +1926,7 @@ public class IRRuntimeHelpers {
         DynamicMethod newMethod = new CompiledIRMethod(variable, specific, specificArity, id, line, scope,
                 newVisibility, clazz, encodedArgumentDescriptors, receivesKeywordArgs, needsToFindImplementer);
 
-        // FIXME: needs checkID and proper encoding to force hard symbol
+        System.out.println("SATD ID: 488");
         Helpers.addInstanceMethod(clazz, methodName, newMethod, currVisibility, context);
     }
     
@@ -2185,7 +2185,7 @@ public class IRRuntimeHelpers {
 
         switch (block.type) {
             case LAMBDA:
-                // FIXME: passing a lambda to each_with_index via enumerator seems to need this.
+                System.out.println("SATD ID: 20");
                 // This is fairly complicated but we should try and eliminate needing this arg spreading
                 // here (test_enum.rb:test_cycle):
                 //     cond = ->(x, i) {a << x}
@@ -2201,7 +2201,7 @@ public class IRRuntimeHelpers {
                 return prepareProcArgs(context, block, args);
         }
 
-        // FIXME: For NORMAL/THREAD but it is unclear if we really need any keyword logic in here anymore.
+        System.out.println("SATD ID: 570");
         org.jruby.runtime.Signature sig = block.getBody().getSignature();
         if (!sig.isSpreadable()) return args;
 
@@ -2341,7 +2341,7 @@ public class IRRuntimeHelpers {
 
     @Interp @JIT
     public static IRubyObject updateBlockState(Block block, IRubyObject self) {
-        // SSS FIXME: Why is self null in non-binding-eval contexts?
+        System.out.println("SATD ID: 679");
         if (self == null || block.getEvalType() == EvalType.BINDING_EVAL) {
             // Update self to the binding's self
             self = useBindingSelf(block.getBinding());
@@ -2468,7 +2468,7 @@ public class IRRuntimeHelpers {
     public static RubyString getFileNameStringFromScope(ThreadContext context, StaticScope currScope) {
         String file = currScope.getFile();
 
-        // FIXME: Not very efficient to do all this every time
+        System.out.println("SATD ID: 379");
         return newString(context, file);
     }
 
@@ -2476,7 +2476,7 @@ public class IRRuntimeHelpers {
     public static void callTrace(ThreadContext context, IRubyObject selfClass, RubyEvent event, String name, String filename, int line) {
         TraceEventManager traceEvents = context.traceEvents;
         if (traceEvents.hasEventHooks()) {
-            // FIXME: Try and statically generate END linenumber instead of hacking it.
+            System.out.println("SATD ID: 676");
             int linenumber = line == -1 ? context.getLine() : line;
 
             traceEvents.callEventHooks(context, event, filename, linenumber, name, selfClass);
@@ -2490,7 +2490,7 @@ public class IRRuntimeHelpers {
             String file = backtraceElement.getFileName();
             int line = backtraceElement.getLineNumber();
 
-            // FIXME: Try and statically generate END linenumber instead of hacking it.
+            System.out.println("SATD ID: 432");
             int linenumber = line == -1 ? context.getLine() : line;
 
             traceEvents.callEventHooks(context, RubyEvent.RAISE, file, linenumber, null, context.nil);
@@ -2508,7 +2508,7 @@ public class IRRuntimeHelpers {
     public static void callTrace(ThreadContext context, Block selfBlock, RubyEvent event, String name, String filename, int line) {
         TraceEventManager traceEvents = context.traceEvents;
         if (traceEvents.hasEventHooks()) {
-            // FIXME: Try and statically generate END linenumber instead of hacking it.
+            System.out.println("SATD ID: 104");
             int linenumber = line == -1 ? context.getLine() : line;
 
             traceEvents.callEventHooks(context, event, filename, linenumber, name, selfBlock.getFrameClass());
@@ -2517,7 +2517,7 @@ public class IRRuntimeHelpers {
 
     @JIT
     public static void callTraceHooks(ThreadContext context, Block selfBlock, RubyEvent event, String name, String filename, int line) {
-        // FIXME: Try and statically generate END linenumber instead of hacking it.
+        System.out.println("SATD ID: 414");
         int linenumber = line == -1 ? context.getLine() : line;
 
         context.traceEvents.callEventHooks(context, event, filename, linenumber, name, selfBlock.getFrameClass());
@@ -2620,7 +2620,7 @@ public class IRRuntimeHelpers {
 
     @Interp @JIT
     public static String getFrameNameFromBlock(Block block) {
-        // FIXME: binding.getMethod does not appear to be the right name in defined_method bodies... WHY?
+        System.out.println("SATD ID: 510");
         return block.getBinding().getFrame().getName();
     }
 

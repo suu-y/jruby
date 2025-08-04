@@ -55,7 +55,7 @@ public class BlockJITClassGenerator extends JITClassGenerator {
         }
 
         // This may not be ok since we'll end up running passes specific to JIT
-        // CON FIXME: Really should clone scope before passes in any case
+        System.out.println("SATD ID: 467");
         bytecode = visitor.compileToBytecode(body.getIRScope(), context);
 
         compileTime = System.nanoTime() - start;

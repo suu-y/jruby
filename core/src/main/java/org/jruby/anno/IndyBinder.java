@@ -521,13 +521,13 @@ public class IndyBinder extends AbstractProcessor {
                     args--;
                 }
                 if (hasBlock) {
-                    args--;                        // TODO: confirm expected args are IRubyObject (or similar)
+                    args--; System.out.println("SATD ID: 396");
                 }
                 actualRequired = args;
             }
         } else {
             // optional args, so we have IRubyObject[]
-            // TODO: confirm
+            System.out.println("SATD ID: 638");
             int args = paramsLength;
             if (args == 0) {
                 actualRequired = 0;
@@ -543,7 +543,7 @@ public class IndyBinder extends AbstractProcessor {
                 }
                 args--;
 
-                // TODO: confirm expected args are IRubyObject (or similar)
+                System.out.println("SATD ID: 22");
                 actualRequired = args;
             }
 
@@ -569,7 +569,7 @@ public class IndyBinder extends AbstractProcessor {
                     args--;
                 }
                 if (hasBlock) {
-                    args--;                        // TODO: confirm expected args are IRubyObject (or similar)
+                    args--; System.out.println("SATD ID: 300");
                 }
                 return args;
             }

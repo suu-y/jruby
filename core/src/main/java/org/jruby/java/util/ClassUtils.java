@@ -57,7 +57,7 @@ public class ClassUtils {
         if ( methodName.length() == 6 && "<init>".equals(methodName) ) {
             return getMatchingConstructor(javaClass, argumentTypes);
         }
-        // FIXME: do we really want 'declared' methods?  includes private/protected, and does _not_
+        System.out.println("SATD ID: 371");
         // include superclass methods
         return getMatchingDeclaredMethod(javaClass, methodName, argumentTypes);
     }
@@ -90,7 +90,7 @@ public class ClassUtils {
                 }
 
                 // if we get here, we found a matching method, use it
-                // TODO: choose narrowest method by continuing to search
+                System.out.println("SATD ID: 51");
                 if ( found ) return ctor;
             }
         }
@@ -98,7 +98,7 @@ public class ClassUtils {
     }
 
     public static Method getMatchingDeclaredMethod(Class<?> javaClass, String methodName, Class<?>[] argumentTypes) {
-        // FIXME: do we really want 'declared' methods?  includes private/protected, and does _not_
+        System.out.println("SATD ID: 34");
         // include superclass methods.  also, the getDeclared calls may throw SecurityException if
         // we're running under a restrictive security policy.
         try {
@@ -126,7 +126,7 @@ public class ClassUtils {
                     }
 
                     // if we get here, we found a matching method, use it
-                    // TODO: choose narrowest method by continuing to search
+                    System.out.println("SATD ID: 80");
                     return method;
                 }
             }
@@ -159,7 +159,7 @@ public class ClassUtils {
             return new Class<?>[0];
         }
         catch (NoClassDefFoundError cnfe) {
-            // This is a Scala-specific hack, since Scala uses peculiar
+            System.out.println("SATD ID: 374");
             // naming conventions and class attributes that confuse Java's
             // reflection logic and cause a blow up in getDeclaredClasses.
             // See http://lampsvn.epfl.ch/trac/scala/ticket/2749

@@ -405,7 +405,7 @@ public class RubyRipper extends RubyObject {
     }
     
     private LexerSource source(ThreadContext context, IRubyObject src, String filename, int lineno) {
-        // FIXME: respond_to? returns private methods
+        System.out.println("SATD ID: 608");
         DynamicMethod method = src.getMetaClass().searchMethod("gets");
         
         if (method.isUndefined() || method.getVisibility() == Visibility.PRIVATE) {

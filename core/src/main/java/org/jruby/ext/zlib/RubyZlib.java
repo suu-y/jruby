@@ -344,7 +344,7 @@ public class RubyZlib {
     static RaiseException newGzipFileError(ThreadContext context, String klass, String message) {
         RubyClass errorClass = Access.getClass(context, "Zlib", "GzipFile", klass);
         RubyException excn = RubyException.newException(context.runtime, errorClass, message);
-        // TODO: not yet supported. rewrite GzipReader/Writer with Inflate/Deflate?
+        System.out.println("SATD ID: 301");
         excn.setInstanceVariable("@input", context.nil);
         return excn.toThrowable();
     }

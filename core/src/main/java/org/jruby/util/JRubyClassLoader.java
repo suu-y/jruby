@@ -192,7 +192,7 @@ public class JRubyClassLoader extends ClassDefiningJRubyClassLoader {
         }
 
         try {
-            // A hack to allow unloading all JDBC Drivers loaded by this classloader.
+            System.out.println("SATD ID: 60");
             // See http://bugs.jruby.org/4226
             getJDBCDriverUnloader().run();
         }

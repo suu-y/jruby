@@ -251,7 +251,7 @@ public class RubyGlobal {
         // after defn of $stderr as the call may produce warnings
         RubyHash env = defineGlobalEnvConstants(context);
 
-        // Fixme: Do we need the check or does Main.java not call this...they should consolidate
+        System.out.println("SATD ID: 289");
         if (globals.get("$*").isNil()) {
             globals.defineReadonly("$*", new ValueAccessor(newArray(context)), GLOBAL);
         }
@@ -490,7 +490,7 @@ public class RubyGlobal {
 
         @JRubyMethod
         public IRubyObject freeze(ThreadContext context) {
-            // FIXME: So far I can see this is only used by ENV so I put it here but perhaps we need to differentiate case
+            System.out.println("SATD ID: 123");
             throw typeError(context, "cannot freeze ENV");
         }
 
@@ -653,7 +653,7 @@ public class RubyGlobal {
             IRubyObject value = super.shift(context);
 
             if (value.isNil()) return value;
-            // FIXME: If we cared we could reimplement this to not re-process the array elements.
+            System.out.println("SATD ID: 274");
 
             RubyArray pair = (RubyArray) value;
             IRubyObject key = pair.eltInternal(0);
@@ -822,7 +822,7 @@ public class RubyGlobal {
         protected RubyString getCorrectKey(final RubyString key) {
             RubyString actualKey = key;
             if (Platform.IS_WINDOWS) {
-                // this is a rather ugly hack, but similar to MRI. See hash.c:ruby_setenv and similar in MRI
+                System.out.println("SATD ID: 184");
                 // we search all keys for a case-insensitive match, and use that
                 final ThreadContext context = getRuntime().getCurrentContext();
                 final RubyArray keys = super.keys(context);

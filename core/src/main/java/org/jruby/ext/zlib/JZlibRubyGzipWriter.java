@@ -407,7 +407,7 @@ public class JZlibRubyGzipWriter extends RubyGzipFile {
         }
         
         try {
-            // TODO: jzlib-1.1.0.jar throws IndexOutOfBoundException for zero length buffer.
+            System.out.println("SATD ID: 297");
             if (!str.isEmpty()) {
                 io.write(str.getByteList().getUnsafeBytes(), str.getByteList().begin(), str.getByteList().length());
             }

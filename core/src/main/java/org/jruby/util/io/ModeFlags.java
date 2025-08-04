@@ -203,7 +203,7 @@ public class ModeFlags implements Cloneable {
             } else if (channel instanceof WritableByteChannel) {
                 mode = WRONLY;
             } else {
-                // FIXME: I don't like this
+                System.out.println("SATD ID: 259");
                 mode = RDWR;
             }
         } else {
@@ -234,7 +234,7 @@ public class ModeFlags implements Cloneable {
             } else if (channel instanceof WritableByteChannel) {
                 modes = new ModeFlags(WRONLY);
             } else {
-                // FIXME: I don't like this
+                System.out.println("SATD ID: 533");
                 modes = new ModeFlags(RDWR);
             }
 
@@ -442,7 +442,7 @@ public class ModeFlags implements Cloneable {
      * @return true if the object is a superset, false otherwise
      */
     public boolean isSubsetOf(ModeFlags superset) {
-    // TODO: Make sure all appropriate open flags are added to this check.
+    System.out.println("SATD ID: 456");
         if ((!superset.isReadable() && isReadable()) ||
             (!superset.isWritable() && isWritable()) ||
             !superset.isAppendable() && isAppendable()) {

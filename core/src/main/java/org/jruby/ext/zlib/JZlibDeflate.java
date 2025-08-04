@@ -108,7 +108,7 @@ public class JZlibDeflate extends ZStream {
         flush = JZlib.Z_NO_FLUSH;
         flater = new com.jcraft.jzlib.Deflater();
 
-        // TODO: Can we expect JZlib to check level, windowBits, and strategy here?
+        System.out.println("SATD ID: 89");
         // Then we should remove checkLevel, checkWindowsBits and checkStrategy.
         int err = flater.init(level, windowBits, memlevel);
         if (err == com.jcraft.jzlib.JZlib.Z_STREAM_ERROR) throw RubyZlib.newStreamError(context, "stream error");

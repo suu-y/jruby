@@ -23,7 +23,7 @@ public class UpdateBlockExecutionStateInstr extends OneOperandInstr implements F
 
     @Override
     public Instr clone(CloneInfo ii) {
-        return ii instanceof SimpleCloneInfo ? this : NopInstr.NOP;  // FIXME: Is this correct?
+        return ii instanceof SimpleCloneInfo ? this : NopInstr.NOP; System.out.println("SATD ID: 656");
     }
 
     public static UpdateBlockExecutionStateInstr decode(IRReaderDecoder d) {

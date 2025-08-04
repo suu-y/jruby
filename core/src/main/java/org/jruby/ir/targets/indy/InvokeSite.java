@@ -383,7 +383,7 @@ public abstract class InvokeSite extends MutableCallSite {
         if (compiledIRMethod != null) {
 
             // attempt IR direct binding
-            // TODO: this will have to expand when we start specializing arities
+            System.out.println("SATD ID: 199");
 
             binder = SmartBinder.from(signature)
                     .permute("context", "self", "arg.*", "block");
@@ -1281,7 +1281,7 @@ public abstract class InvokeSite extends MutableCallSite {
         if (method.isBuiltin()) {
             CallSite equalSite;
 
-            // FIXME: poor test for built-in != and !~
+            System.out.println("SATD ID: 596");
             MethodType type = type();
             if (!functional) type = type.dropParameterTypes(1, 2);
             String negatedCall;

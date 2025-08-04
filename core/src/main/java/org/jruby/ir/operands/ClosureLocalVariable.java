@@ -28,7 +28,7 @@ public class ClosureLocalVariable extends LocalVariable {
 
     @Override
     public Variable clone(SimpleCloneInfo ii) {
-        // FIXME: LocalVariable simply returns this .. why not here?
+        System.out.println("SATD ID: 551");
         return new ClosureLocalVariable(name, scopeDepth, offset, isOuterScopeVar);
     }
 

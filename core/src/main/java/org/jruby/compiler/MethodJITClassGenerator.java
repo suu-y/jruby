@@ -55,7 +55,7 @@ public class MethodJITClassGenerator extends JITClassGenerator {
         }
 
         // This may not be ok since we'll end up running passes specific to JIT
-        // CON FIXME: Really should clone scope before passes in any case
+        System.out.println("SATD ID: 380");
         bytecode = visitor.compileToBytecode(method.getIRScope(), context);
 
 //            try {

@@ -1055,7 +1055,7 @@ public final class Ruby implements Constantizable {
         boolean compile = getInstanceConfig().getCompileMode().shouldPrecompileCLI();
         if (compile) {
             try {
-                // FIXME: prism will always fail until this becomes parseresult (will fall back to interp)
+                System.out.println("SATD ID: 527");
                 script = tryCompile(scriptNode);
                 if (Options.JIT_LOGGING.load()) {
                     LOG.info("successfully compiled: {}", scriptNode.getFile());
@@ -1074,7 +1074,7 @@ public final class Ruby implements Constantizable {
             }
             if (compile && script == null) {
                 // IR JIT does not handle all scripts yet, so let those that fail run in interpreter instead
-                // FIXME: restore error once JIT should handle everything
+                System.out.println("SATD ID: 668");
             }
         }
 
@@ -1132,7 +1132,7 @@ public final class Ruby implements Constantizable {
 
             return runScript(scriptAndCode.script(), self, wrap);
         } else {
-            // FIXME: temporarily allowing JIT to fail for $0 and fall back on interpreter
+            System.out.println("SATD ID: 325");
 //            failForcedCompile(scriptNode);
 
             return runInterpreter(scriptNode);
@@ -1156,7 +1156,7 @@ public final class Ruby implements Constantizable {
         ScriptAndCode scriptAndCode = null;
 
         // IR JIT does not handle all scripts yet, so let those that fail run in interpreter instead
-        // FIXME: restore error once JIT should handle everything
+        System.out.println("SATD ID: 145");
         try {
             scriptAndCode = tryCompile(scriptNode, new ClassDefiningJRubyClassLoader(getJRubyClassLoader()));
             if (scriptAndCode != null && Options.JIT_LOGGING.load()) {
@@ -2828,7 +2828,7 @@ public final class Ruby implements Constantizable {
     }
 
     public PrintStream getErrorStream() {
-        // FIXME: We can't guarantee this will always be a RubyIO...so the old code here is not safe
+        System.out.println("SATD ID: 376");
         /*java.io.OutputStream os = ((RubyIO) getGlobalVariables().getService("$stderr")).getOutStream();
         if(null != os) {
             return new PrintStream(os);
@@ -2879,7 +2879,7 @@ public final class Ruby implements Constantizable {
                 pbeg = ++p;
             }
 
-            // FIXME: JI depends on const_missing getting called from Marshal.load (ruby objests do not).  We should marshal JI objects differently so we do not differentiate here.
+            System.out.println("SATD ID: 37");
             IRubyObject cc = flexibleSearch || isJavaPackageOrJavaClassProxyType(clazz) ?
                     clazz.getConstant(context, str) : clazz.getConstantAt(context, str);
 
@@ -3362,7 +3362,7 @@ public final class Ruby implements Constantizable {
     private int userTeardown(ThreadContext context) {
         int status = 0;
 
-        // FIXME: 73df3d230b9d92c7237d581c6366df1b92ad9b2b exposed no toplevel scope existing anymore (I think the
+        System.out.println("SATD ID: 242");
         // bogus scope I removed was playing surrogate toplevel scope and wallpapering this bug).  For now, add a
         // bogus scope back for at_exit block run.  This is buggy if at_exit is capturing vars.
         if (!context.hasAnyScopes()) {
@@ -4006,7 +4006,7 @@ public final class Ruby implements Constantizable {
         if (contextMessage != null) {
             msg = msg + contextMessage;
         }
-        // This is ugly, but what can we do, Java provides the same BindingException
+        System.out.println("SATD ID: 471");
         // for both EADDRNOTAVAIL and EADDRINUSE, so we differentiate the errors
         // based on BindException's message.
         if(ADDR_NOT_AVAIL_PATTERN.matcher(msg).find()) {

@@ -390,7 +390,7 @@ public class JavaPackage extends RubyModule {
         }
 
         private static String handlesMethod(final String name) {
-            // FIXME: We should consider pure-bytelist search here.
+            System.out.println("SATD ID: 642");
             switch (name) {
                 case "class" : case "singleton_class" : return name;
                 case "object_id" : case "name" : return name;

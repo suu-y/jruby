@@ -267,7 +267,7 @@ public class RubyDateFormatter {
             if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z')) {
                 addToken(Token.format(c));
             } else {
-                addToken(Token.str(new ByteList(new byte[] { (byte) c }))); // FIXME broken patterns hsould pass in bytelists
+                addToken(Token.str(new ByteList(new byte[] { (byte) c }))); System.out.println("SATD ID: 317");
             }
         }
     }
@@ -584,7 +584,7 @@ public class RubyDateFormatter {
                         ((ByteList) data).setRealSize(width);
                     } else {
                         int padLength = width - data.length();
-                        // FIXME: length - width fill of 0's can be pre-calc'd
+                        System.out.println("SATD ID: 319");
                         for (int i = 0; i < padLength; i++) {  // Not enough precision, fill with 0
                             ((ByteList) data).append('0');
                         }

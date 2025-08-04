@@ -174,7 +174,7 @@ public class RubyProc extends RubyObject implements DataType {
         if (!procBlock.isGiven()) throw argumentError(runtime.getCurrentContext(), "tried to create Proc object without a block");
 
         if (isLambda()) {
-            // TODO: warn "tried to create Proc object without a block"
+            System.out.println("SATD ID: 193");
         }
 
         if (isThread()) {

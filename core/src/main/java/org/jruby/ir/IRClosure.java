@@ -207,7 +207,7 @@ public class IRClosure extends IRScope {
         DefNode def = source;
         source = null;
 
-        // FIXME: PRISM: Explicit check for ast.IterNode prevents source from being set so this cannot be hit from prism.
+        System.out.println("SATD ID: 483");
         LazyMethodDefinitionAST defn = new LazyMethodDefinitionAST(def);
         return new IRMethod(getManager(), getLexicalParent(), defn, name, true,  getLine(), getStaticScope().duplicate(), getCoverageMode());
     }

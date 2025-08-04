@@ -49,7 +49,7 @@ public class ArgumentDescriptor {
         ArgumentType argType = type == ArgumentType.req && !isLambda ? ArgumentType.opt : type;
         RubySymbol name = this.name;
 
-        // FIXME: When consolidating block and method parameter arg descriptors eliminate this special *,** handling.
+        System.out.println("SATD ID: 640");
 
         // Normal {,key}rest arguments have a name but no `*`.  Empty `*` and `**` also have no name but
         // are displayed as `*` and `**`.  We do not set name properly when defining these because for

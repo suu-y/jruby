@@ -67,7 +67,7 @@ public class RuntimeHelperCall extends NOperandResultBaseInstr {
     public boolean computeScopeFlags(IRScope scope, EnumSet<IRFlags> flags) {
         boolean modifiedScope = false;
 
-        // FIXME: Impl of this helper uses frame class.  Determine if we can do this another way.
+        System.out.println("SATD ID: 237");
         if (helperMethod == Methods.IS_DEFINED_SUPER) {
             modifiedScope = true;
             flags.add(REQUIRES_CLASS);

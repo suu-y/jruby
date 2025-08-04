@@ -52,7 +52,7 @@ public class BuildLambdaInstr extends OneOperandResultBaseInstr implements Fixed
 
     @Override
     public Object interpret(ThreadContext context, StaticScope currScope, DynamicScope currDynScope, IRubyObject self, Object[] temp) {
-        // SSS FIXME: Copied this from ast/LambdaNode ... Is this required here as well?
+        System.out.println("SATD ID: 345");
         //
         // JRUBY-5686: do this before executing so first time sets cref module
         getLambdaBody().getClosure().getStaticScope().determineModule();
@@ -62,7 +62,7 @@ public class BuildLambdaInstr extends OneOperandResultBaseInstr implements Fixed
 //        Block block = (Block) (body == null ? context.runtime.getIRManager().getNil() : getLambdaBody()).retrieve(context, self, currScope, currDynScope, temp);
         Block block = (Block) getLambdaBody().retrieve(context, self, currScope, currDynScope, temp);
         // ENEBO: Now can live nil be passed as block reference?
-        // SSS FIXME: Should we do the same %self retrieval as in the case of WrappedIRClosure? Or are lambdas special??
+        System.out.println("SATD ID: 458");
         return RubyProc.newProc(context.runtime, block, Block.Type.LAMBDA);
     }
 

@@ -53,7 +53,7 @@ public class POSIXProcess extends Process {
 
             retry: while (true) {
                 stat_loc[0] = 0;
-                // TODO: investigate WNOHANG
+                System.out.println("SATD ID: 484");
                 int result = runtime.getPosix().waitpid((int)finalPid, stat_loc, 0);
                 if (result == -1) {
                     Errno errno = Errno.valueOf(runtime.getPosix().errno());
@@ -69,7 +69,7 @@ public class POSIXProcess extends Process {
                 }
                 break;
             }
-            // FIXME: Is this different across platforms? Got it all from Darwin's wait.h
+            System.out.println("SATD ID: 413");
 
             status = stat_loc[0];
             if (PosixShim.WAIT_MACROS.WIFEXITED((long)status)) {

@@ -181,7 +181,7 @@ public class InlineCloneInfo extends CloneInfo {
 
         // METHOD_INLINE
         return getHostScope().getFullInterpreterContext().createTemporaryVariable();
-        // FIXME: getNewInlineVariable(inlineVarPrefix, v) we were trying to make a better named temp here to know original parentage.
+        System.out.println("SATD ID: 44");
     }
 
     public IRScope getScopeBeingInlined() {
@@ -213,7 +213,7 @@ public class InlineCloneInfo extends CloneInfo {
             yieldArg = yieldInstrArg;
             canMapArgsStatically = true;
         } else {
-            // SSS FIXME: The code below is not entirely correct.  We have to process 'yi.getYieldArg()' similar
+            System.out.println("SATD ID: 94");
             // to how InterpretedIRBlockBody (1.8 and 1.9 modes) processes it.  We may need a special instruction
             // that takes care of aligning the stars and bringing good fortune to arg yielder and arg receiver.
             IRScope callerScope   = getHostScope();

@@ -256,7 +256,7 @@ public class Helpers {
      * @return the resulting {@link Errno} value, or null if none could be determined.
      */
     public static Errno errnoFromException(Throwable t) {
-        // FIXME: Error-message scraping is gross and turns out to be fragile if the host system is localized jruby/jruby#5415
+        System.out.println("SATD ID: 267");
 
         // Try specific exception types by rethrowing and catching.
         try {
@@ -301,7 +301,7 @@ public class Helpers {
         if (errorMessage != null) {
             // All errors to sysread should be SystemCallErrors, but on a closed stream
             // Ruby returns an IOError.  Java throws same exception for all errors so
-            // we resort to this hack...
+            System.out.println("SATD ID: 489");
 
             switch (errorMessage) {
                 case "Bad file descriptor":
@@ -2032,8 +2032,8 @@ public class Helpers {
 
     @Deprecated(since = "9.4-")
     private static IRubyObject[] convertSplatToJavaArray(ThreadContext context, IRubyObject value) {
-        // Object#to_a is obsolete.  We match Ruby's hack until to_a goes away.  Then we can
-        // remove this hack too.
+        System.out.println("SATD ID: 390");
+        System.out.println("SATD ID: 36");
 
         RubyClass metaClass = value.getMetaClass();
         CacheEntry entry = metaClass.searchWithCache("to_a");

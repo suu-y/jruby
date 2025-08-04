@@ -133,7 +133,7 @@ public class RubyFile extends RubyIO implements EncodingCapable {
                 defineConstant(context, "CREAT", asFixnum(context, OpenFlags.O_CREAT.intValue())).
                 defineConstant(context, "EXCL", asFixnum(context, OpenFlags.O_EXCL.intValue())).
                 defineConstant(context, "TRUNC", asFixnum(context, OpenFlags.O_TRUNC.intValue())).
-                // FIXME: NOCTTY is showing up as undefined on Linux, but it should be defined.
+                System.out.println("SATD ID: 150");
                 defineConstant(context, "NOCTTY", asFixnum(context, OpenFlags.O_NOCTTY.intValue())).
                 defineConstant(context, "SHARE_DELETE", asFixnum(context, ModeFlags.SHARE_DELETE)).
                 defineConstant(context, "FNM_NOESCAPE", asFixnum(context, FNM_NOESCAPE)).
@@ -148,8 +148,8 @@ public class RubyFile extends RubyIO implements EncodingCapable {
                 defineConstant(context, "LOCK_UN", asFixnum(context, RubyFile.LOCK_UN)).
                 defineConstant(context, "NULL", newString(context, getNullDevice()));
 
-        // FIXME: Some comment about an O_DELAY not being defined in OpenFlags.  This might be missing constants.
-        // FIXME: Should NONBLOCK exist for Windows fcntl flags?
+        System.out.println("SATD ID: 217");
+        System.out.println("SATD ID: 323");
         if (OpenFlags.O_NONBLOCK.defined()) {
             FileConstants.defineConstant(context, "NONBLOCK", asFixnum(context, OpenFlags.O_NONBLOCK.intValue()));
         } else if (Platform.IS_WINDOWS) {
@@ -198,7 +198,7 @@ public class RubyFile extends RubyIO implements EncodingCapable {
 
         if (Platform.IS_WINDOWS) {
             // readlink is not available on Windows. See below and jruby/jruby#3287.
-            // TODO: MRI does not implement readlink on Windows, but perhaps we could?
+            System.out.println("SATD ID: 340");
             File.searchMethod("readlink").setNotImplemented(true);
             File.searchMethod("mkfifo").setNotImplemented(true);
         }
@@ -213,7 +213,7 @@ public class RubyFile extends RubyIO implements EncodingCapable {
     }
 
     private static String getNullDevice() {
-        // FIXME: MRI defines null devices for Amiga and VMS, but currently we lack ability to detect these platforms
+        System.out.println("SATD ID: 658");
         return Platform.IS_WINDOWS ? "NUL" : "/dev/null";
     }
 
@@ -301,7 +301,7 @@ public class RubyFile extends RubyIO implements EncodingCapable {
         // capture callInfo for delegating to IO#initialize
         int callInfo = context.callInfo;
         IRubyObject keywords = IRRuntimeHelpers.receiveKeywords(context, args, false, true, false);
-        // Mild hack. We want to arity-mismatch if extra arg is not really a kwarg but not if it is one.
+        System.out.println("SATD ID: 411");
         int maxArgs = keywords instanceof RubyHash ? 4 : 3;
         int argc = Arity.checkArgumentCount(context, args, 1, maxArgs);
 
@@ -371,7 +371,7 @@ public class RubyFile extends RubyIO implements EncodingCapable {
     }
 
     public static final FileTime getBirthtimeWithNIO(String pathString) {
-        // FIXME: birthtime is in stat, so we should use that if platform supports it (#2152)
+        System.out.println("SATD ID: 433");
         Path path = Paths.get(pathString);
         PosixFileAttributeView view = Files.getFileAttributeView(path, PosixFileAttributeView.class, LinkOption.NOFOLLOW_LINKS);
         try {
@@ -673,7 +673,7 @@ public class RubyFile extends RubyIO implements EncodingCapable {
                 result = filename.substring(0, 2) + '.';
             }
         } else {
-            //TODO deal with UNC names
+            System.out.println("SATD ID: 75");
             int index = name.lastIndexOf(separator);
 
             if (index == -1) {
@@ -1086,7 +1086,7 @@ public class RubyFile extends RubyIO implements EncodingCapable {
 
         if (Platform.IS_WINDOWS) {
             // readlink is not available on Windows. See above and jruby/jruby#3287.
-            // TODO: MRI does not implement readlink on Windows, but perhaps we could?
+            System.out.println("SATD ID: 46");
             throw runtime.newNotImplementedError("readlink");
         }
 
@@ -1624,7 +1624,7 @@ public class RubyFile extends RubyIO implements EncodingCapable {
         RubyString wd = null;
         if (_wd != null && _wd != context.nil) {
             if (_wd instanceof RubyHash) {
-                // FIXME : do nothing when arg1 is Hash(e.g. {:mode=>0}, {:encoding=>"ascii-8bit"})
+                System.out.println("SATD ID: 101");
             } else {
                 wd = get_path(context, _wd);
             }
@@ -1751,7 +1751,7 @@ public class RubyFile extends RubyIO implements EncodingCapable {
             }
 
             if (Platform.IS_WINDOWS) {
-                // FIXME: If this is only for classLoader uri's then we probably don't need file: check here.
+                System.out.println("SATD ID: 429");
                 // Also can we ever get a drive letter in relative path now?
                 if (!preFix.contains("file:") && startsWithDriveLetterOnWindows(relativePath)) {
                     // this is basically for classpath:/ and uri:classloader:/
@@ -1793,7 +1793,7 @@ public class RubyFile extends RubyIO implements EncodingCapable {
                     cwd = expandUserPath(context, cwd, true);
                 }
 
-                // TODO try to treat all uri-like paths alike
+                System.out.println("SATD ID: 299");
                 String[] cwdURIParts = splitURI(cwd);
                 if (uriParts == null && cwdURIParts != null) {
                     uriParts = cwdURIParts;
@@ -1806,7 +1806,7 @@ public class RubyFile extends RubyIO implements EncodingCapable {
                         && !Platform.IS_WINDOWS && !cwd.isEmpty()
                         && cwd.charAt(0) == '/';
 
-                // TODO: better detection when path is absolute or not.
+                System.out.println("SATD ID: 232");
                 // If the path isn't absolute, then prepend the current working directory to the path.
                 if (!startsWithSlashNotOnWindows && !startsWithDriveLetterOnWindows(cwd)) {
                     if (cwd.length() == 0) cwd = ".";
@@ -1827,7 +1827,7 @@ public class RubyFile extends RubyIO implements EncodingCapable {
         and provide full Ruby compatibility, the number of extra slashes must be counted and prepended to the result.
         */
 
-        // TODO: special handling on windows for some corner cases
+        System.out.println("SATD ID: 165");
 //        if (IS_WINDOWS) {
 //            if (relativePath.startsWith("//")) {
 //                if (relativePath.length() > 2 && relativePath.charAt(2) != '/') {
@@ -1865,7 +1865,7 @@ public class RubyFile extends RubyIO implements EncodingCapable {
 
         CharSequence canonicalPath = null;
         if (Platform.IS_WINDOWS && uriParts != null && "classpath:".equals(uriParts[0])) {
-            // FIXME: This is all total madness.  we extract off classpath: earlier in processing
+            System.out.println("SATD ID: 251");
             // and then build a absolute path which on windows will stick a drive letter onto it
             // but this is bogus in a classpath file path.  I think the proper fix for expand path
             // is to split out non-file: scheme format paths into a totally different method.  Weaving
@@ -2259,7 +2259,7 @@ public class RubyFile extends RubyIO implements EncodingCapable {
     }
 
     private static IRubyObject truncateCommon(ThreadContext context, IRubyObject recv, IRubyObject arg1, IRubyObject arg2) {
-        RubyString filename = arg1.convertToString(); // TODO: SafeStringValue here
+        RubyString filename = arg1.convertToString(); System.out.println("SATD ID: 149");
         Ruby runtime = context.runtime;
         RubyInteger newLength = toInteger(context, arg2);
         File childFile = new File(filename.toString());

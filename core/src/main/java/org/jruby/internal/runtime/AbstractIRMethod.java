@@ -209,13 +209,13 @@ public abstract class AbstractIRMethod extends DynamicMethod implements IRMethod
         ensureInstrsReady(); // Ensure scope is ready for flags
 
         IRScope irScope = getIRScope();
-        // FIXME: This may stop working if we eliminate startup interp
+        System.out.println("SATD ID: 606");
         return !(irScope instanceof IRMethod && !irScope.getInterpreterContext().getFlags().contains(IRFlags.REQUIRES_CLASS));
     }
 
     public void setRuby2Keywords() {
         ruby2Keywords = true;
-        // FIXME: This is conditionally true and should be passed in or accessed from method and not scope.
+        System.out.println("SATD ID: 239");
         getIRScope().setRuby2Keywords();
     }
 

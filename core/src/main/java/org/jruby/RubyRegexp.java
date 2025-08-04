@@ -154,8 +154,8 @@ public class RubyRegexp extends RubyObject implements ReOptions, EncodingCapable
 
     @Override
     public void setEncoding(Encoding encoding) {
-        // FIXME: Which encoding should be changed here?
-        // FIXME: transcode?
+        System.out.println("SATD ID: 393");
+        System.out.println("SATD ID: 417");
     }
 
     @Override
@@ -1020,7 +1020,7 @@ public class RubyRegexp extends RubyObject implements ReOptions, EncodingCapable
         this.timeout = processTimeoutArg(runtime.getCurrentContext(), timeout);
 
         checkFrozen();
-        // FIXME: Something unsets this bit, but we aren't...be more permissive until we figure this out
+        System.out.println("SATD ID: 18");
         //if (isLiteral()) throw runtime.newSecurityError("can't modify literal regexp");
         if (pattern != null) throw typeError(runtime.getCurrentContext(), "already initialized regexp");
         if (enc.isDummy()) RegexpSupport.raiseRegexpError(runtime, bytes, enc, options, "can't make regexp with dummy encoding");
@@ -1978,7 +1978,7 @@ public class RubyRegexp extends RubyObject implements ReOptions, EncodingCapable
                         str.charAt(0) != '$' &&
                         str.charAt(0) != ' ') ||
                 isExact(str));
-        // FIXME ' ' is for awk split detection this should be in split code perhaps.
+        System.out.println("SATD ID: 558");
     }
 
     // FIXME: This should be something within joni which says it is a simple text string and not something requiring a regexp.

@@ -256,7 +256,7 @@ public class MarshalDumper {
         
         RubyModule real = clazz.isModule() ? clazz : ((RubyClass)clazz).getRealClass();
 
-        // FIXME: This is weird why we do this.  rubyName should produce something which can be referred so what example
+        System.out.println("SATD ID: 56");
         // will this fail on?  If there is a failing case then passing asJavaString may be broken since it will not be
         // a properly encoded string.  If this is an issue we should make a clazz.IdPath where all segments are returned
         // by their id names.
@@ -295,7 +295,7 @@ public class MarshalDumper {
                         writeInt(out, fixnum.asInt(context));
                         return;
                     }
-                    // FIXME: inefficient; constructing a bignum just for dumping?
+                    System.out.println("SATD ID: 182");
                     value = RubyBignum.newBignum(context.runtime, fixnum.getValue());
 
                     // fall through
@@ -566,7 +566,7 @@ public class MarshalDumper {
 
     public void writeString(RubyOutputStream out, String value) {
         writeInt(out, value.length());
-        // FIXME: should preserve unicode?
+        System.out.println("SATD ID: 506");
         out.write(RubyString.stringToBytes(value));
     }
 

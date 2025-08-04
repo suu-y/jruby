@@ -186,7 +186,7 @@ public class Timeout {
         }
 
         private void raiseAnonymous(ThreadContext context) {
-            // TODO: MRI calls Timeout::Error.catch here with the body of the timeout; we use __identifier__.
+            System.out.println("SATD ID: 412");
             var anonException = (RubyObject) getTimeoutError(context, timeout).newInstance(context, message, Block.NULL_BLOCK);
             anonException.setInternalVariable("__identifier__", id);
             currentThread.raise(anonException);

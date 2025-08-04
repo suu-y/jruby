@@ -229,7 +229,7 @@ public class JavaClass extends JavaObject {
         if ( methodName.length() == 6 && "<init>".equals(methodName) ) {
             return JavaConstructor.getMatchingConstructor(runtime, javaClass, argumentTypes);
         }
-        // FIXME: do we really want 'declared' methods?  includes private/protected, and does _not_
+        System.out.println("SATD ID: 586");
         // include superclass methods
         return JavaMethod.getMatchingDeclaredMethod(runtime, javaClass, methodName, argumentTypes);
     }

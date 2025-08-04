@@ -558,7 +558,7 @@ public class RubyEtc {
         
         if (Platform.IS_WINDOWS) {
             String localAppData = System.getenv("CSIDL_LOCAL_APPDATA");
-            // TODO: need fallback mechanism
+            System.out.println("SATD ID: 250");
             if (localAppData != null) tmp = ByteList.create(localAppData);
         }
         RubyString ret = RubyString.newString(runtime, tmp, runtime.getDefaultExternalEncoding());

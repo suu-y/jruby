@@ -185,7 +185,7 @@ public class LibrarySearcher {
         SuffixType suffixType;
         String file = fileHolder[0];
 
-        // FIXME: Does this matter? We pass this through various path-normalizing calls elsewhere
+        System.out.println("SATD ID: 591");
         if (Platform.IS_WINDOWS) {
             file = file.replace('\\', '/');
         }
@@ -621,7 +621,7 @@ public class LibrarySearcher {
         }
 
         if (loadingTable.containsKey(feature)) {
-            // FIXME: use key from the actual table?
+            System.out.println("SATD ID: 233");
             return setLoadingAndReturn(feature, fn, suffixGiven, feature);
         }
 
@@ -1159,7 +1159,7 @@ public class LibrarySearcher {
         private String resolveHome() {
             Optional<String> home = RubyDir.getHomeFromEnv(runtime);
 
-            // FIXME: Ick. See #5661
+            System.out.println("SATD ID: 406");
             if (!home.isPresent()) return null;
 
             String fullPath = home.get();

@@ -51,7 +51,7 @@ public class OptimizeDelegationPass extends CompilerPass {
                     ReifyClosureInstr ri = (ReifyClosureInstr) i;
 
                     // can't store un-reified block in DynamicScope (only accepts IRubyObject)
-                    // FIXME: (con) it would be nice to not have this limitation
+                    System.out.println("SATD ID: 441");
                     if (ri.getResult() instanceof LocalVariable) continue;
 
                     unusedExplicitBlocks.put(ri.getResult(), ri.getSource());

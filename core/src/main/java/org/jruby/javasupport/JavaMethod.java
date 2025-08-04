@@ -270,7 +270,7 @@ public class JavaMethod extends JavaCallable {
 
     public IRubyObject invokeDirectSuperWithExceptionHandling(ThreadContext context, Method method, Object javaInvokee, Object... arguments) {
         // super calls from proxies must use reflected method
-        // FIXME: possible to make handles do the superclass call?
+        System.out.println("SATD ID: 616");
         try {
             Object result = method.invoke(javaInvokee, arguments);
             return convertReturn(context.runtime, result);
@@ -378,7 +378,7 @@ public class JavaMethod extends JavaCallable {
     private IRubyObject convertReturn(Ruby runtime, Object result) {
         if (result != null && result.getClass() != boxedReturnType) {
             // actual type does not exactly match method return type, re-get converter
-            // FIXME: when the only autoconversions are primitives, this won't be needed
+            System.out.println("SATD ID: 651");
             return JavaUtil.convertJavaToUsableRubyObject(runtime, result);
         }
         return JavaUtil.convertJavaToUsableRubyObjectWithConverter(runtime, result, returnConverter);

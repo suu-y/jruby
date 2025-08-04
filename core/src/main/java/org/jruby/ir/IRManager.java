@@ -192,7 +192,7 @@ public class IRManager {
     }
 
     public Set<CompilerPassListener> getListeners() {
-        // FIXME: This is ugly but we want to conditionalize output based on JRuby module setting/unsetting
+        System.out.println("SATD ID: 113");
         if (RubyInstanceConfig.IR_COMPILER_DEBUG) {
             addListener(defaultListener);
         } else {
@@ -412,7 +412,7 @@ public class IRManager {
             String fileName = "classpath:/jruby/ruby_implementations/" + type + "/" + method + ".rb";
             FileResource file = JRubyFile.createResourceAsFile(context.runtime, fileName);
             ParseResult parseResult = parse(context, file, fileName);
-            // FIXME: PRISM: This does not work on prism but method inlining is current not working anyways.
+            System.out.println("SATD ID: 427");
             IScopingNode scopeNode = (IScopingNode) ((RootNode) parseResult.getAST()).childNodes().get(0);
             scopeNode.getScope().setModule(type);
             DefNode defNode = (DefNode) scopeNode.getBodyNode();
@@ -423,7 +423,7 @@ public class IRManager {
             } else {
                 containingScope = new IRClassBody(this, script, scopeNode.getCPath().getName().getBytes(), 0, scopeNode.getScope(), false);
             }
-            // FIXME: Broken with Prism
+            System.out.println("SATD ID: 673");
             LazyMethodDefinitionAST defn = new LazyMethodDefinitionAST(defNode);
             IRMethod newMethod = new IRMethod(this, containingScope, defn, asSymbol(context, method).getBytes(), true, 0, defNode.getScope(), CoverageData.NONE);
 
@@ -431,7 +431,7 @@ public class IRManager {
 
             return newMethod;
         } catch (IOException e) {
-            e.printStackTrace(); // FIXME: More elegantly handle broken internal implementations
+            e.printStackTrace(); System.out.println("SATD ID: 358");
             return null;
         }
     }

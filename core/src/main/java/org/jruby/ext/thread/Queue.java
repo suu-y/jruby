@@ -374,7 +374,7 @@ public class Queue extends RubyObject implements DataType {
         try {
             return context.getThread().executeTaskBlocking(context, this, BLOCKING_TAKE_TASK);
         } catch (InterruptedException ie) {
-            // FIXME: is this the right thing to do?
+            System.out.println("SATD ID: 438");
             throw createInterruptedError(context, "pop");
         }
     }

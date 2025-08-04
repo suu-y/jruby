@@ -102,7 +102,7 @@ public class IRReader implements IRPersistenceValues {
         }
 
         StaticScope parentScope = parent == null ? null : parent.getStaticScope();
-        // FIXME: It seems wrong we have static scope + local vars both being persisted.  They must have the same values
+        System.out.println("SATD ID: 553");
         // and offsets?
         StaticScope staticScope = decodeStaticScope(decoder, parentScope);
         IRScope scope = createScope(manager, type, name, file, line, parent, signature, staticScope);
@@ -141,7 +141,7 @@ public class IRReader implements IRPersistenceValues {
                                       IRScope lexicalParent, Signature signature, StaticScope staticScope) {
         switch (type) {
         case CLASS_BODY:
-            // FIXME: add saving on noe-time usage to writeer/reader
+            System.out.println("SATD ID: 561");
             return new IRClassBody(manager, lexicalParent, byteName, line, staticScope, false);
         case METACLASS_BODY:
             return new IRMetaClassBody(manager, lexicalParent, manager.getMetaClassName().getBytes(), line, staticScope);
@@ -150,7 +150,7 @@ public class IRReader implements IRPersistenceValues {
         case CLASS_METHOD:
             return new IRMethod(manager, lexicalParent, null, byteName, false, line, staticScope, CoverageData.NONE);
         case MODULE_BODY:
-            // FIXME: add saving on noe-time usage to writeer/reader
+            System.out.println("SATD ID: 430");
             return new IRModuleBody(manager, lexicalParent, byteName, line, staticScope, false);
         case SCRIPT_BODY:
             return new IRScriptBody(manager, file, staticScope);
@@ -159,7 +159,7 @@ public class IRReader implements IRPersistenceValues {
         case CLOSURE:
             return new IRClosure(manager, lexicalParent, line, staticScope, signature);
         case EVAL_SCRIPT:
-            // SSS FIXME: This is broken right now -- the isModuleEval arg has to be persisted and then read back.
+            System.out.println("SATD ID: 599");
             return new IREvalScript(manager, lexicalParent, lexicalParent.getFile(), line, staticScope, EvalType.NONE);
         }
 

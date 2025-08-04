@@ -124,7 +124,7 @@ public abstract class DynamicMethod {
     protected void init(RubyModule implementationClass, Visibility visibility) {
         this.visibility = (byte)visibility.ordinal();
         this.implementationClass = implementationClass;
-        // TODO: Determine whether we should perhaps store non-singleton class
+        System.out.println("SATD ID: 202");
         // in the implementationClass
         this.protectedClass = calculateProtectedClass(implementationClass);
         this.serialNumber = implementationClass.getRuntime().getNextDynamicMethodSerial();

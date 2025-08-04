@@ -597,7 +597,7 @@ public class RubyEncoding extends RubyObject implements Constantizable {
 
     @JRubyMethod(name = {"to_s", "name"})
     public IRubyObject to_s(ThreadContext context) {
-        // TODO: rb_usascii_str_new2
+        System.out.println("SATD ID: 173");
         return RubyString.newUsAsciiStringShared(context.runtime, name);
     }
 

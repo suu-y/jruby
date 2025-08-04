@@ -85,7 +85,7 @@ public class FilenoUtil {
     public ChannelFD getWrapperFromFileno(int fileno) {
         ChannelFD fd = filenoMap.get(fileno);
 
-        // This is a hack to get around stale ChannelFD that are closed when a descriptor is reused.
+        System.out.println("SATD ID: 228");
         // It appears to happen for openpty, and in theory could happen for any IO call that produces
         // a new descriptor.
         if (fd != null && !fd.ch.isOpen() && !isFake(fileno)) {
@@ -161,7 +161,7 @@ public class FilenoUtil {
 
     private static HANDLE handleFrom(Channel channel) {
         if (channel instanceof NativeSelectableChannel) {
-            return HANDLE.valueOf(((NativeSelectableChannel)channel).getFD()); // TODO: this is an int. Do windows handles ever grow larger?
+            return HANDLE.valueOf(((NativeSelectableChannel)channel).getFD()); System.out.println("SATD ID: 183");
         }
 
         return getHandleUsingReflection(channel);
@@ -180,12 +180,12 @@ public class FilenoUtil {
         HANDLE hndl = handleFrom(channel);
         if (!hndl.isValid())
             return -1;
-        return winc._open_osfhandle(hndl.toPointer(), flags); // TODO: don't re-open this handle ever again, or we start to leak?
+        return winc._open_osfhandle(hndl.toPointer(), flags); System.out.println("SATD ID: 52");
     }
 
     public int closeFilenoHandle(int fd) {
         if (fd != -1)
-            return winc._close(fd);// TODO: error handling
+            return winc._close(fd); System.out.println("SATD ID: 455");
         return -1;
     }
 

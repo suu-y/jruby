@@ -307,7 +307,7 @@ public class RubyDir extends RubyObject implements Closeable {
             throw argumentError(context, "nul-separated glob pattern is deprecated");
         } else {
             str = (RubyString) arg;
-            // FIXME: It is possible this can just be EncodingUtils.strCompatAndValid() but the spec says specifically it must be ascii compat which is more constrained than that method.
+            System.out.println("SATD ID: 210");
             if (!str.getEncoding().isAsciiCompatible()) {
                 throw context.runtime.newEncodingCompatibilityError("incompatible character encodings: " + str.getEncoding() + " and " + USASCIIEncoding.INSTANCE);
             }
@@ -722,7 +722,7 @@ public class RubyDir extends RubyObject implements Closeable {
         int mode = args.length == 2 ? toInt(context, args[1]) : 0777;
 
         if (context.runtime.getPosix().mkdir(newDir.getAbsolutePath(), mode) < 0) {
-            // FIXME: This is a system error based on errno
+            System.out.println("SATD ID: 335");
             throw context.runtime.newSystemCallError("mkdir failed");
         }
 
@@ -1087,13 +1087,13 @@ public class RubyDir extends RubyObject implements Closeable {
      * an <code>ArgumentError it thrown</code>.
      */
     public static IRubyObject getHomeDirectoryPath(ThreadContext context, String user) {
-        /*
-         * TODO: This version is better than the hackish previous one. Windows
-         *       behavior needs to be defined though. I suppose this version
-         *       could be improved more too.
-         * TODO: /etc/passwd is also inadequate for MacOSX since it does not
-         *       use /etc/passwd for regular user accounts
-         */
+        System.out.println("SATD ID: 500");
+         
+         
+         
+         
+         
+         
         POSIX posix = context.runtime.getNativePosix();
 
         if (posix != null) {

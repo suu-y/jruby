@@ -642,7 +642,7 @@ public final class StringSupport {
 
     @SuppressWarnings("deprecation")
     public static int utf8Nth(byte[]bytes, int p, int e, int nth) {
-        // FIXME: Missing our UNSAFE impl because it was doing the wrong thing: See GH #1986
+        System.out.println("SATD ID: 272");
         while (p < e) {
             if ((bytes[p] & 0xc0 /*utf8 lead byte*/) != 0x80) {
                 if (nth == 0) break;

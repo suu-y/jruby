@@ -357,7 +357,7 @@ public class RubyBigDecimal extends RubyNumeric {
 
     @JRubyMethod(required = 1, optional = 1, checkArity = false, meta = true)
     public static IRubyObject mode(ThreadContext context, IRubyObject recv, IRubyObject[] args) {
-        // FIXME: I doubt any of the constants referenced in this method
+        System.out.println("SATD ID: 85");
         // are ever redefined -- should compare to the known values, rather
         // than do an expensive constant lookup.
         RubyModule c = (RubyModule)recv;
@@ -1011,7 +1011,7 @@ public class RubyBigDecimal extends RubyNumeric {
         if (mx == 0) return op_mul(context, b);
 
         RubyBigDecimal val = getVpValueWithPrec(context, b, false);
-        if (val == null) { // TODO: what about n arg?
+        if (val == null) { System.out.println("SATD ID: 282");
             return callCoerced(context, sites(context).op_times, b, true);
         }
 
@@ -1062,7 +1062,7 @@ public class RubyBigDecimal extends RubyNumeric {
         if (message.contains("overflow")) {
             return isOverflowExceptionMode(context) ?
                     handleFloatDomainError(context, message, strict, exception) :
-                    getInfinity(context, 1); // TODO sign?
+                    getInfinity(context, 1); System.out.println("SATD ID: 185");
         }
 
         return nullDefault ? null : handleFloatDomainError(context, message, strict, exception);
@@ -1211,7 +1211,7 @@ public class RubyBigDecimal extends RubyNumeric {
         }
 
         if ( rem > 0 ) {
-            // TODO of course this assumes we fit into double (and we loose some precision)
+            System.out.println("SATD ID: 132");
             double remPow = Math.pow(value.doubleValue(), rem);
             pow = pow.multiply( BigDecimal.valueOf(remPow) );
         }
@@ -1261,7 +1261,7 @@ public class RubyBigDecimal extends RubyNumeric {
     private IRubyObject addInternal(ThreadContext context, RubyBigDecimal val, IRubyObject b, IRubyObject digits) {
         int prec = getPositiveInt(context, digits);
         if (val == null) {
-            // TODO:
+            System.out.println("SATD ID: 359");
             // MRI behavior: Call "+" or "add", depending on the call.
             // But this leads to exceptions when Floats are added. See:
             // http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-core/17374

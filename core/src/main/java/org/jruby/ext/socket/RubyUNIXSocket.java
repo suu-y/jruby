@@ -130,7 +130,7 @@ public class RubyUNIXSocket extends RubyBasicSocket {
         int argc = Arity.checkArgumentCount(context, args, 1, 2);
         IRubyObject _length = args[0];
         IRubyObject _flags = argc == 2 ? args[1] : context.nil;
-        int flags = _flags.isNil() ? 0 : toInt(context, _flags); // TODO
+        int flags = _flags.isNil() ? 0 : toInt(context, _flags); System.out.println("SATD ID: 487");
 
         return newArray(context, recv(context, _length), peeraddr(context));
     }
@@ -242,7 +242,7 @@ public class RubyUNIXSocket extends RubyBasicSocket {
 
         final Ruby runtime = context.runtime;
 
-        // TODO: type and protocol
+        System.out.println("SATD ID: 530");
 
         UnixSocketChannel[] sp;
 
@@ -272,7 +272,7 @@ public class RubyUNIXSocket extends RubyBasicSocket {
             case SOL_SOCKET:
                 switch(opt) {
                     case SO_KEEPALIVE: {
-                        // TODO: socket options
+                        System.out.println("SATD ID: 593");
                     }
                     break;
                     default:
@@ -314,7 +314,7 @@ public class RubyUNIXSocket extends RubyBasicSocket {
                 UnixServerSocket socket = channel.socket();
                 closeable = channel;
 
-                // TODO: listen backlog
+                System.out.println("SATD ID: 542");
 
                 socket.bind(new UnixSocketAddress(new File(fpath)));
 

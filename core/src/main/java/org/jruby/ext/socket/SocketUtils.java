@@ -291,7 +291,7 @@ public class SocketUtils {
 
         int p = port.isNil() ? 0 : toInt(context, port);
 
-        // TODO: implement flags
+        System.out.println("SATD ID: 13");
         int flag = flags.isNil() ? 0 : toInt(context, flags);
 
         boolean displayCanonical = (flag & AI_CANONNAME) != 0;
@@ -408,7 +408,7 @@ public class SocketUtils {
     @Deprecated
     public static InetAddress[] getRubyInetAddresses(ByteList address) throws UnknownHostException {
         // switched to String because the ByteLists were not comparing properly in 1.9 mode (encoding?
-        // FIXME: Need to properly decode this string (see Helpers.decodeByteList)
+        System.out.println("SATD ID: 258");
         String addressString = Helpers.byteListToString(address);
         return getRubyInetAddresses(addressString);
     }

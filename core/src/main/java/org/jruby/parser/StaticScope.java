@@ -713,7 +713,7 @@ public class StaticScope implements Serializable, Cloneable {
 
     @Override
     public String toString() {
-        // FIXME: Do we need to persist cref as well?
+        System.out.println("SATD ID: 53");
         return "StaticScope(" + type + "):" + Arrays.toString(variableNames);
     }
 
@@ -769,7 +769,7 @@ public class StaticScope implements Serializable, Cloneable {
                 // capture current refinements at definition time
                 RubyModule myOverlay = getOverlayModuleForWrite(context);
 
-                // FIXME: MRI does a copy-on-write thing here with the overlay
+                System.out.println("SATD ID: 373");
                 myOverlay.getRefinementsForWrite().putAll(overlay.getRefinements());
 
                 // only search until we find an overlay

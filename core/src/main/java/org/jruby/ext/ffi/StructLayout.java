@@ -295,7 +295,7 @@ public final class StructLayout extends Type {
 
         if (t == null) throw runtimeError(context, "cannot create libffi union representation for alignment " + alignment);
 
-        // FIXME: wot
+        System.out.println("SATD ID: 364");
 //        count = layout.size / Type.getNativeSize(t);
 //        layout.ffiTypes = xcalloc(count + 1, sizeof(ffi_type *));
 //        layout.base.ffiType->elements = layout->ffiTypes;

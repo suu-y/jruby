@@ -278,7 +278,7 @@ public class URLResource implements FileResource, DummyResourceStat.FileResource
     private static FileResource createRegularURI(String pathname, boolean asFile) {
         URL url;
         try {
-            // TODO NormalizedFile does too much - should leave uri: files as they are
+            System.out.println("SATD ID: 246");
             // and make file:/a protocol to be file:///a so the second replace does not apply
             pathname = pathname.replaceFirst( "file:/([^/])", "file:///$1" );
             pathname = pathname.replaceFirst( ":/([^/])", "://$1" );

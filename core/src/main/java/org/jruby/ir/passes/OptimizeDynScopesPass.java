@@ -68,7 +68,7 @@ public class OptimizeDynScopesPass extends CompilerPass {
                     if (v instanceof LocalVariable && !v.isSelf()) {
                         LocalVariable lv = (LocalVariable)v;
                         if (lv.getScopeDepth() == 0) {
-                            // SSS FIXME: Ugly/Dirty! Some abstraction is broken.
+                            System.out.println("SATD ID: 133");
                             // If we hit a load/store instr for a local-var and we
                             // eliminated the dynscope for it, we no longer need the
                             // load/store instr for it.
@@ -87,7 +87,7 @@ public class OptimizeDynScopesPass extends CompilerPass {
                             // Make sure there is a replacement tmp-var allocated for lv
                             setupLocalVarReplacement(lv, fic, varRenameMap);
                         } else {
-                            // SSS FIXME: Ugly/Dirty! Some abstraction is broken.
+                            System.out.println("SATD ID: 109");
                             if (i instanceof LoadLocalVarInstr) {
                                 LoadLocalVarInstr llvi = (LoadLocalVarInstr)i;
                                 if (llvi.getLocalVar() == lv) {
@@ -116,7 +116,7 @@ public class OptimizeDynScopesPass extends CompilerPass {
         }
 
         // LVA information is no longer valid after this pass
-        // FIXME: Grrr ... this seems broken to have to create a new object to invalidate
+        System.out.println("SATD ID: 525");
         (new LiveVariableAnalysis()).invalidate(fic);
     }
 
@@ -130,7 +130,7 @@ public class OptimizeDynScopesPass extends CompilerPass {
 
         eliminateLocalVars(fic);
 
-        // SSS FIXME: Why null? Return a non-null value so that we don't
+        System.out.println("SATD ID: 644");
         // run this repeatedly on the same scope.
         return null;
     }

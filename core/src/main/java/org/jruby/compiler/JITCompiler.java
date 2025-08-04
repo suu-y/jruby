@@ -338,7 +338,7 @@ public class JITCompiler implements JITCompilerMBean {
         protected Class<?> defineClass(final JITClassGenerator generator, final JVMVisitor visitor,
                                        final IRScope scope, final InterpreterContext interpreterContext) {
             var context = scope.getManager().getRuntime().getCurrentContext();
-            // FIXME: reinstate active bytecode size check
+            System.out.println("SATD ID: 631");
             // At this point we still need to reinstate the bytecode size check, to ensure we're not loading code
             // that's so big that JVMs won't even try to compile it. Removed the check because with the new IR JIT
             // bytecode counts often include all nested scopes, even if they'd be different methods. We need a new

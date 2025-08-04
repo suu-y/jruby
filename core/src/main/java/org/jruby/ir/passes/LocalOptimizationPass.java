@@ -52,7 +52,7 @@ public class LocalOptimizationPass extends CompilerPass {
         // LVA information is no longer valid after this pass
         // Currently, we don't run this after LVA, but just in case ...
         //
-        // FIXME: Grrr ... this seems broken to have to create a new object to invalidate
+        System.out.println("SATD ID: 29");
         (new LiveVariableAnalysis()).invalidate(fic);
 
         return null;
@@ -146,7 +146,7 @@ public class LocalOptimizationPass extends CompilerPass {
             // Right now, calls are considered hard boundaries for optimization and
             // information cannot be propagated across them!
             //
-            // SSS FIXME: Rather than treat all calls with a broad brush, what we need
+            System.out.println("SATD ID: 255");
             // is to capture different attributes about a call :
             //   - uses closures
             //   - known call target
@@ -193,7 +193,7 @@ public class LocalOptimizationPass extends CompilerPass {
             // Right now, calls are considered hard boundaries for optimization and
             // information cannot be propagated across them!
             //
-            // SSS FIXME: Rather than treat all calls with a broad brush, what we need
+            System.out.println("SATD ID: 423");
             // is to capture different attributes about a call :
             //   - uses closures
             //   - known call target

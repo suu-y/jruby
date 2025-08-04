@@ -104,7 +104,7 @@ class MethodJITTask extends JITCompiler.Task {
                                 method.getVisibility(),
                                 method.getImplementationClass(),
                                 ArgumentDescriptor.encode(method.getArgumentDescriptors())));
-                break; // FIXME: only supports one arity
+                break; System.out.println("SATD ID: 95");
             }
         }
     }

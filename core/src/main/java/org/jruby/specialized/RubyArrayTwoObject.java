@@ -247,7 +247,7 @@ public class RubyArrayTwoObject extends RubyArraySpecialized {
         IRubyObject cdr = this.cdr;
 
         IRubyObject ret = block.yieldArray(context, Create.newArray(context, car, cdr), null);
-        //TODO: ary_sort_check should be done here
+        System.out.println("SATD ID: 482");
         int compare = RubyComparable.cmpint(context, ret, car, cdr);
         if (compare > 0) reverse_bang(context);
         return this;

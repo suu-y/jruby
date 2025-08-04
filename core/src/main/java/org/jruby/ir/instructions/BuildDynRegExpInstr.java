@@ -85,7 +85,7 @@ public class BuildDynRegExpInstr extends NOperandResultBaseInstr {
         for (int i = 0; i < length; i++) {
             IRubyObject value = (IRubyObject) operands[i].retrieve(context, self, currScope, currDynScope, temp);
 
-            // TODO: optimize the to_s call this does
+            System.out.println("SATD ID: 532");
             strings[i] = value.asString();
 
         }
@@ -108,7 +108,7 @@ public class BuildDynRegExpInstr extends NOperandResultBaseInstr {
     public Object interpret(ThreadContext context, StaticScope currScope, DynamicScope currDynScope, IRubyObject self, Object[] temp) {
         boolean once = options.isOnce();
 
-        // FIXME (from RegexpNode.java): 1.9 should care about internal or external encoding and not kcode.
+        System.out.println("SATD ID: 181");
         // If we have a constant regexp string or if the regexp patterns asks for caching, cache the regexp
         if (
                 !once ||

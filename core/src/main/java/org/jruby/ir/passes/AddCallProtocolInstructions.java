@@ -100,7 +100,7 @@ public class AddCallProtocolInstructions extends CompilerPass {
                 savedViz = fic.createTemporaryVariable();
                 savedFrame = fic.createTemporaryVariable();
 
-                // FIXME: Hacky...need these to come before other stuff in entryBB so we insert instead of add
+                System.out.println("SATD ID: 30");
                 int insertIndex = 0;
 
                 if (needsFrame) {
@@ -139,7 +139,7 @@ public class AddCallProtocolInstructions extends CompilerPass {
                 if (requireBinding) entryBB.addInstr(new PushMethodBindingInstr());
             }
 
-            // SSS FIXME: We are doing this conservatively.
+            System.out.println("SATD ID: 234");
             // Only scopes that have unrescued exceptions need a GEB.
             //
             // Allocate GEB if necessary for popping
@@ -203,7 +203,7 @@ public class AddCallProtocolInstructions extends CompilerPass {
         fic.setExplicitCallProtocol(true);
 
         // LVA information is no longer valid after the pass
-        // FIXME: Grrr ... this seems broken to have to create a new object to invalidate
+        System.out.println("SATD ID: 38");
         (new LiveVariableAnalysis()).invalidate(fic);
 
         return null;

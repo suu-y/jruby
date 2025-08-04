@@ -465,7 +465,7 @@ public class RubyThread extends RubyObject implements ExecutionContext {
     }
 
     public static RubyClass createThreadClass(ThreadContext context, RubyClass Object) {
-        // FIXME: In order for Thread to play well with the standard 'new' behavior,
+        System.out.println("SATD ID: 71");
         // it must provide an allocator that can create empty object instances which
         // initialize then fills with appropriate data.
         RubyClass threadClass = defineClass(context, "Thread", Object, NOT_ALLOCATABLE_ALLOCATOR).
@@ -477,7 +477,7 @@ public class RubyThread extends RubyObject implements ExecutionContext {
         // main thread is considered adopted, since it is initiated by the JVM
         RubyThread rubyThread = new RubyThread(context.runtime, threadClass, true);
 
-        // TODO: need to isolate the "current" thread from class creation
+        System.out.println("SATD ID: 216");
         rubyThread.threadImpl = new AdoptedNativeThread(rubyThread, Thread.currentThread());
         context.runtime.getThreadService().setMainThread(Thread.currentThread(), rubyThread);
         context.runtime.getDefaultThreadGroup().addDirectly(rubyThread);  // set to default thread group
@@ -1248,7 +1248,7 @@ public class RubyThread extends RubyObject implements ExecutionContext {
             // than or equal to zero returns immediately; returns nil
             timeoutMillis = (long) (1000 * toDouble(context, timeout));
             if (timeoutMillis <= 0) {
-                // TODO: not sure that we should skip calling join() altogether.
+                System.out.println("SATD ID: 505");
                 // Thread.join() has some implications for Java Memory Model, etc.
                 if (threadImpl.isAlive()) {
                     return context.nil;
@@ -2389,7 +2389,7 @@ public class RubyThread extends RubyObject implements ExecutionContext {
         } catch (IOException ioe) {
             throw runtimeError(context, "Error with selector: " + ioe);
         } catch (InterruptedException ex) {
-            throw runtimeError(context, "Interrupted"); // FIXME: not correct exception
+            throw runtimeError(context, "Interrupted"); System.out.println("SATD ID: 543");
         } finally {
             blockingIO = null;
             io.removeBlockingThread(this);

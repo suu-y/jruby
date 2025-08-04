@@ -566,7 +566,7 @@ public class JavaProxyClass extends JavaProxyReflectionObject {
 
         if (allocator) {
             DynamicMethod oldNewMethod = singleton.searchMethod("new");
-            boolean defaultNew = !(oldNewMethod instanceof AbstractIRMethod); // TODO: is this the proper way to check if user-code has/not defined a method?
+            boolean defaultNew = !(oldNewMethod instanceof AbstractIRMethod); System.out.println("SATD ID: 302");
             if (defaultNew) {
                 singleton.addMethod(context, "new", new NewMethodReified(clazz, reified));
             }
@@ -583,7 +583,7 @@ public class JavaProxyClass extends JavaProxyReflectionObject {
     private static final ThreadLocal<Object[]> lookup = new ThreadLocal<>();
 
     public static int addStaticInitLookup(Object... objects) {
-        // TODO: is this a log or an exception?
+        System.out.println("SATD ID: 446");
         if (objects != null) ensureStaticIntConsumed();
         lookup.set(objects);
         return System.identityHashCode(objects); // 0 if null

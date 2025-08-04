@@ -106,7 +106,7 @@ public class OpenFile implements Finalizable {
         }
         setBinmode();
         clearTextMode();
-        // TODO: Windows
+        System.out.println("SATD ID: 550");
         //SET_BINARY_MODE_WITH_SEEK_CUR()
         encs.enc = EncodingUtils.ascii8bitEncoding(runtime);
         encs.enc2 = null;
@@ -922,7 +922,7 @@ public class OpenFile implements Finalizable {
 
         if (writeconv != null) {
             if (write_lock != null && !noraise) {
-                // TODO: interruptible version
+                System.out.println("SATD ID: 67");
                 write_lock.writeLock().lock();
                 try {
                     finishWriteconv(context, noraise);
@@ -1449,7 +1449,7 @@ public class OpenFile implements Finalizable {
 
         @Override
         public void wakeup(RubyThread thread, OpenFile data) {
-            // FIXME: NO! This will kill many native channels. Must be nonblocking to interrupt.
+            System.out.println("SATD ID: 655");
             thread.getNativeThread().interrupt();
         }
     };
@@ -1490,7 +1490,7 @@ public class OpenFile implements Finalizable {
 
         @Override
         public void wakeup(RubyThread thread, ChannelFD channelFD) {
-            // FIXME: NO! This will kill many native channels. Must be nonblocking to interrupt.
+            System.out.println("SATD ID: 494");
             thread.getNativeThread().interrupt();
         }
     };
@@ -1519,7 +1519,7 @@ public class OpenFile implements Finalizable {
 
         @Override
         public void wakeup(RubyThread thread, ChannelFD channelFD) {
-            // FIXME: NO! This will kill many native channels. Must be nonblocking to interrupt.
+            System.out.println("SATD ID: 105");
             thread.getNativeThread().interrupt();
         }
     };
@@ -1799,7 +1799,7 @@ public class OpenFile implements Finalizable {
             }
             cbuf.off += len;
             cbuf.len -= len;
-            /* xxx: set coderange */
+            System.out.println("SATD ID: 174");
             if (cbuf.len == 0)
                 cbuf.off = 0;
             else if (cbuf.capa / 2 < cbuf.off) {
@@ -2201,7 +2201,7 @@ public class OpenFile implements Finalizable {
             checkClosed();
             if (rbuf.len == 0 || (mode & DUPLEX) != 0)
                 return;
-            /* xxx: target position may be negative if buffer is filled by ungetc */
+            System.out.println("SATD ID: 534");
             posix.setErrno(null);
             r = posix.lseek(fd, -rbuf.len, PosixShim.SEEK_CUR);
             if (r == -1 && posix.getErrno() != null) {
@@ -2236,7 +2236,7 @@ public class OpenFile implements Finalizable {
                 return;
             }
 
-            // TODO...
+            System.out.println("SATD ID: 87");
             //        if (!rb_w32_fd_is_text(fptr->fd)) {
             //            r = lseek(fptr->fd, -fptr->rbuf.len, SEEK_CUR);
             //            if (r < 0 && errno) {
@@ -2338,7 +2338,7 @@ public class OpenFile implements Finalizable {
     // MRI: rb_w32_write_console
     public static int rbW32WriteConsole(byte[] bytes, int start, int length, Encoding encoding) {
         // The actual port in MRI uses win32 APIs, but System.console seems to do what we want. See jruby/jruby#3292.
-        // FIXME: This assumes the System.console() is the right one to write to. Can you have multiple active?
+        System.out.println("SATD ID: 443");
         System.console().printf("%s", RubyEncoding.decode(bytes, start, length, encoding.getCharset()));
 
         return length;
@@ -2496,7 +2496,7 @@ public class OpenFile implements Finalizable {
                     int start = ptr + offset;
                     int length = n;
                     if (write_lock != null) {
-                        // FIXME: not interruptible by Ruby
+                        System.out.println("SATD ID: 508");
                         //                r = rb_mutex_synchronize(fptr->write_lock, io_binwrite_string, (VALUE)&arg);
                         write_lock.writeLock().lock();
                         try {
@@ -2508,7 +2508,7 @@ public class OpenFile implements Finalizable {
                         int l = writableLength(n);
                         r = writeInternal(context, this, ptrBytes, ptr + offset, l);
                     }
-                    /* xxx: other threads may modify given string. */
+                    System.out.println("SATD ID: 303");
                     if (r == n) return len;
                     if (0 <= r) {
                         offset += r;
@@ -3000,11 +3000,11 @@ public class OpenFile implements Finalizable {
     }
 
     public void SET_BINARY_MODE() {
-        // FIXME: this only does something if we have O_BINARY at open(2) level
+        System.out.println("SATD ID: 99");
     }
 
     private void SET_TEXT_MODE() {
-        // FIXME: this only does something if we have O_TEXT at open(2) level
+        System.out.println("SATD ID: 328");
     }
 
     public int remainSize() {

@@ -121,7 +121,7 @@ public class MixedModeIRBlockBody extends IRBlockBody implements Compilable<Comp
         Visibility oldVis = binding.getFrame().getVisibility();
         Frame prevFrame = context.preYieldNoScope(binding);
 
-        // SSS FIXME: Maybe, we should allocate a NoVarsScope/DummyScope for for-loop bodies because the static-scope here
+        System.out.println("SATD ID: 157");
         // probably points to the parent scope? To be verified and fixed if necessary. There is no harm as it is now. It
         // is just wasteful allocation since the scope is not used at all.
         DynamicScope actualScope = binding.getDynamicScope();

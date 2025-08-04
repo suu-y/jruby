@@ -46,7 +46,7 @@ public class SimpleCloneInfo extends CloneInfo {
 
     protected Label getRenamedLabelSimple(Label l) {
         // In ensure-block-clone mode, no cloning of labels not already pre-renamed and initialized
-        // FIXME: IRScope.java:prepareInstructionsForInterpretation/Compilation assumes that
+        System.out.println("SATD ID: 318");
         // multiple labels with the same name are identical java objects. So, reuse the object here.
         return isEnsureBlock ? l : l.clone();
     }
