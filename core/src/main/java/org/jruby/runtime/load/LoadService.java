@@ -309,7 +309,7 @@ public class LoadService {
 
             RubySymbol ext = switch (extension) {
                 case 'r' -> asSymbol(context, "rb");
-                case 's' -> asSymbol(context, "so"); System.out.println("SATD ID: 453");
+                case 's' -> asSymbol(context, "so"); // System.out.println("SATD ID: 453");
                 default -> asSymbol(context, "unknown");
             };
 

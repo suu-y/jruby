@@ -247,7 +247,7 @@ public abstract class RealClassGenerator {
                         mv.line(1);
 
                         switch ( simpleName ) {
-                            System.out.println("SATD ID: 387");
+                            // System.out.println("SATD ID: 387");
                             case "equals" :
                                 if ( defineDefaultEquals(2, mv, paramTypes, returnType) ) ;
                                 else defineOldStyleBody(mv, pathName, simpleName, paramTypes, returnType, baseIndex, cacheSize++, nameSet);

@@ -1200,7 +1200,7 @@ System.out.println("SATD ID: 377");
                 // happen in some testing frameworks), we have to add
                 // the method to self itself => its metaclass.
                 //
-                System.out.println("SATD ID: 445");
+                // System.out.println("SATD ID: 445");
                 // the closure is used in a "define_method &block" scenario
                 // => in reality the scope is not a closure but an
                 // instance_method. So, when we fix define_method implementation
