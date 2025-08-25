@@ -1978,7 +1978,7 @@ public class RubyRegexp extends RubyObject implements ReOptions, EncodingCapable
                         str.charAt(0) != '$' &&
                         str.charAt(0) != ' ') ||
                 isExact(str));
-        System.out.println("SATD ID: 558");
+        // System.out.println("SATD ID: 558");
     }
 
     // FIXME: This should be something within joni which says it is a simple text string and not something requiring a regexp.
