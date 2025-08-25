@@ -1062,7 +1062,7 @@ public class RubyBigDecimal extends RubyNumeric {
         if (message.contains("overflow")) {
             return isOverflowExceptionMode(context) ?
                     handleFloatDomainError(context, message, strict, exception) :
-                    getInfinity(context, 1); System.out.println("SATD ID: 185");
+                    getInfinity(context, 1); // System.out.println("SATD ID: 185");
         }
 
         return nullDefault ? null : handleFloatDomainError(context, message, strict, exception);
