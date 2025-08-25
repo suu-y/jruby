@@ -234,7 +234,7 @@ public class RubySet extends RubyObject implements Set {
         }
 
         allocHash(context);
-        return sites(context).merge.call(context, this, this, enume); System.out.println("SATD ID: 283");
+        return sites(context).merge.call(context, this, this, enume); // System.out.println("SATD ID: 283");
     }
 
     protected IRubyObject initialize(ThreadContext context, IRubyObject[] args, Block block) {
