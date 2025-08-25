@@ -133,7 +133,7 @@ public class RubyFile extends RubyIO implements EncodingCapable {
                 defineConstant(context, "CREAT", asFixnum(context, OpenFlags.O_CREAT.intValue())).
                 defineConstant(context, "EXCL", asFixnum(context, OpenFlags.O_EXCL.intValue())).
                 defineConstant(context, "TRUNC", asFixnum(context, OpenFlags.O_TRUNC.intValue())).
-                System.out.println("SATD ID: 150");
+                // System.out.println("SATD ID: 150");
                 defineConstant(context, "NOCTTY", asFixnum(context, OpenFlags.O_NOCTTY.intValue())).
                 defineConstant(context, "SHARE_DELETE", asFixnum(context, ModeFlags.SHARE_DELETE)).
                 defineConstant(context, "FNM_NOESCAPE", asFixnum(context, FNM_NOESCAPE)).
