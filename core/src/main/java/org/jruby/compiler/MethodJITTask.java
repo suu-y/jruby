@@ -104,7 +104,7 @@ class MethodJITTask extends JITCompiler.Task {
                                 method.getVisibility(),
                                 method.getImplementationClass(),
                                 ArgumentDescriptor.encode(method.getArgumentDescriptors())));
-                break; System.out.println("SATD ID: 95");
+                break; // System.out.println("SATD ID: 95");
             }
         }
     }
