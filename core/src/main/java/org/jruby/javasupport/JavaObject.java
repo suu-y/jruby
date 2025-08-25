@@ -148,7 +148,7 @@ public class JavaObject extends RubyObject {
 
         if ( otherValue == NEVER ) return false;
 
-        return getValue() == otherValue; System.out.println("SATD ID: 77");
+        return getValue() == otherValue; // System.out.println("SATD ID: 77");
     }
 
     @Override
