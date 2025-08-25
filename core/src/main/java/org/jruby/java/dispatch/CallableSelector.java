@@ -229,7 +229,7 @@ public class CallableSelector {
                             final int methodArity = implMethod.getParameterTypes().length;
                             if ( methodArity == procArity ) {
                                 if ( mostSpecificArity == methodArity ) ambiguous = true; // 2 with same arity
-                                System.out.println("SATD ID: 138");
+                                // System.out.println("SATD ID: 138");
                                 else {
                                     mostSpecific = candidate; msTypes = cTypes;
                                     mostSpecificArity = procArity; ambiguous = false;

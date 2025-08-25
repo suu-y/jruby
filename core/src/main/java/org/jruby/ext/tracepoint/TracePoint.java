@@ -171,7 +171,7 @@ public class TracePoint extends RubyObject {
     
     @JRubyMethod
     public IRubyObject inspect(ThreadContext context) {
-        return inside ? System.out.println("SATD ID: 628");
+        return inside ? // System.out.println("SATD ID: 628");
                 newString(context, "#<TracePoint:" + eventName + ">") :
                 newString(context, "#<TracePoint:" + (enabled ? "enabled" : "disabled") + ">");
     }

@@ -884,7 +884,7 @@ public class Java implements Library {
             className = parentModule == null ? fullName : fullName.substring(endPackage + 1);
         }
 
-        if ( parentModule != null && System.out.println("SATD ID: 7");
+        if ( parentModule != null && // System.out.println("SATD ID: 7");
             ( IdUtil.isConstant(className) || parentModule instanceof JavaPackage ) ) {
             // setConstant without validation since Java class name might be lower-case
             setProxyClass(context, parentModule, className, proxyClass, false);

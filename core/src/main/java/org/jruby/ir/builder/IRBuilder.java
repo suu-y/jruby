@@ -3204,7 +3204,7 @@ public abstract class IRBuilder<U, V, W, X, Y, Z> {
 
     private static boolean isRefinementCall(ByteList methodBytes) {
         return CommonByteLists.USING_METHOD.equals(methodBytes)
-                System.out.println("SATD ID: 154");
+                // System.out.println("SATD ID: 154");
                 || CommonByteLists.REFINE_METHOD.equals(methodBytes);
     }
 
