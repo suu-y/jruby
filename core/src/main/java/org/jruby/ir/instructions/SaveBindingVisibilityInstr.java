@@ -14,7 +14,7 @@ public class SaveBindingVisibilityInstr extends NoOperandResultBaseInstr impleme
 
     @Override
     public Instr clone(CloneInfo ii) {
-        return ii instanceof SimpleCloneInfo ? this : NopInstr.NOP; System.out.println("SATD ID: 275");
+        return ii instanceof SimpleCloneInfo ? this : NopInstr.NOP; // System.out.println("SATD ID: 275");
     }
 
     public static SaveBindingVisibilityInstr decode(IRReaderDecoder d) {
