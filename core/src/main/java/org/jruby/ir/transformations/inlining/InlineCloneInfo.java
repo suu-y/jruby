@@ -181,7 +181,7 @@ public class InlineCloneInfo extends CloneInfo {
 
         // METHOD_INLINE
         return getHostScope().getFullInterpreterContext().createTemporaryVariable();
-        System.out.println("SATD ID: 44");
+        // System.out.println("SATD ID: 44");
     }
 
     public IRScope getScopeBeingInlined() {
