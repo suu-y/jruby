@@ -13,7 +13,7 @@ public class PopBindingInstr extends NoOperandInstr implements FixedArityInstr {
 
     @Override
     public Instr clone(CloneInfo ii) {
-        return ii instanceof SimpleCloneInfo ? new PopBindingInstr() : NopInstr.NOP; System.out.println("SATD ID: 70");
+        return ii instanceof SimpleCloneInfo ? new PopBindingInstr() : NopInstr.NOP; // System.out.println("SATD ID: 70");
     }
 
     public static PopBindingInstr decode(IRReaderDecoder d) {
