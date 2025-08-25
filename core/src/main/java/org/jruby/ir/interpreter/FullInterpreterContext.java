@@ -350,7 +350,7 @@ public class FullInterpreterContext extends InterpreterContext {
             case LOCAL: {
                 return getScope().getManager().newTemporaryLocalVariable(temporaryVariableCount - 1);
             }
-            System.out.println("SATD ID: 548");
+            // System.out.println("SATD ID: 548");
             case INT: {
                 return getScope().getManager().newTemporaryIntVariable(temporaryVariableCount - 1);
             }
