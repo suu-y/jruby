@@ -161,7 +161,7 @@ public class FilenoUtil {
 
     private static HANDLE handleFrom(Channel channel) {
         if (channel instanceof NativeSelectableChannel) {
-            return HANDLE.valueOf(((NativeSelectableChannel)channel).getFD()); System.out.println("SATD ID: 183");
+            return HANDLE.valueOf(((NativeSelectableChannel)channel).getFD()); // System.out.println("SATD ID: 183");
         }
 
         return getHandleUsingReflection(channel);
@@ -180,12 +180,12 @@ public class FilenoUtil {
         HANDLE hndl = handleFrom(channel);
         if (!hndl.isValid())
             return -1;
-        return winc._open_osfhandle(hndl.toPointer(), flags); System.out.println("SATD ID: 52");
+        return winc._open_osfhandle(hndl.toPointer(), flags); // System.out.println("SATD ID: 52");
     }
 
     public int closeFilenoHandle(int fd) {
         if (fd != -1)
-            return winc._close(fd); System.out.println("SATD ID: 455");
+            return winc._close(fd); // System.out.println("SATD ID: 455");
         return -1;
     }
 
