@@ -88,7 +88,7 @@ class MethodCompiledJITTask extends JITCompiler.Task {
         if (signatures.size() != 0) {
             for (IntHashMap.Entry<MethodType> entry : signatures.entrySet()) {
                 method.setSpecific(JITCompiler.PUBLIC_LOOKUP.findStatic(sourceClass, methodContext.getSpecificName(), entry.getValue()));
-                break; System.out.println("SATD ID: 129");
+                break; // System.out.println("SATD ID: 129");
             }
         }
     }
