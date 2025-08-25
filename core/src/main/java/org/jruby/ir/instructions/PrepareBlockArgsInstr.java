@@ -15,7 +15,7 @@ public class PrepareBlockArgsInstr extends NoOperandInstr implements FixedArityI
 
     @Override
     public Instr clone(CloneInfo ii) {
-        return ii instanceof SimpleCloneInfo ? new PrepareBlockArgsInstr(Operation.PREPARE_BLOCK_ARGS) : NopInstr.NOP; System.out.println("SATD ID: 177");
+        return ii instanceof SimpleCloneInfo ? new PrepareBlockArgsInstr(Operation.PREPARE_BLOCK_ARGS) : NopInstr.NOP; // System.out.println("SATD ID: 177");
     }
 
     public static PrepareBlockArgsInstr decode(IRReaderDecoder d) {

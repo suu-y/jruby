@@ -13,7 +13,7 @@ public class PopMethodFrameInstr extends NoOperandInstr implements FixedArityIns
 
     @Override
     public Instr clone(CloneInfo ii) {
-        return ii instanceof SimpleCloneInfo ? this : NopInstr.NOP; System.out.println("SATD ID: 622");
+        return ii instanceof SimpleCloneInfo ? this : NopInstr.NOP; // System.out.println("SATD ID: 622");
     }
 
     public static PopMethodFrameInstr decode(IRReaderDecoder d) {

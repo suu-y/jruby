@@ -15,7 +15,7 @@ public class PrepareSingleBlockArgInstr extends PrepareBlockArgsInstr  {
 
     @Override
     public Instr clone(CloneInfo ii) {
-        return ii instanceof SimpleCloneInfo ? new PrepareSingleBlockArgInstr() : NopInstr.NOP; System.out.println("SATD ID: 476");
+        return ii instanceof SimpleCloneInfo ? new PrepareSingleBlockArgInstr() : NopInstr.NOP; // System.out.println("SATD ID: 476");
     }
 
     public static PrepareSingleBlockArgInstr decode(IRReaderDecoder d) {

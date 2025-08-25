@@ -19,7 +19,7 @@ public class PopBlockFrameInstr extends OneOperandInstr implements FixedArityIns
 
     @Override
     public Instr clone(CloneInfo ii) {
-        return ii instanceof SimpleCloneInfo ? this : NopInstr.NOP; System.out.println("SATD ID: 93");
+        return ii instanceof SimpleCloneInfo ? this : NopInstr.NOP; // System.out.println("SATD ID: 93");
     }
 
     @Override

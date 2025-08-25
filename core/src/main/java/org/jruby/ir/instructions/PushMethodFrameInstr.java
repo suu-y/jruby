@@ -29,7 +29,7 @@ public class PushMethodFrameInstr extends NoOperandInstr implements FixedArityIn
 
     @Override
     public Instr clone(CloneInfo ii) {
-        return ii instanceof SimpleCloneInfo ? this : NopInstr.NOP; System.out.println("SATD ID: 43");
+        return ii instanceof SimpleCloneInfo ? this : NopInstr.NOP; // System.out.println("SATD ID: 43");
     }
 
     public static PushMethodFrameInstr decode(IRReaderDecoder d) {

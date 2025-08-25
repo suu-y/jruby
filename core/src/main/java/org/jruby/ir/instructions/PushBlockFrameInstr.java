@@ -23,7 +23,7 @@ public class PushBlockFrameInstr extends NoOperandResultBaseInstr implements Fix
 
     @Override
     public Instr clone(CloneInfo ii) {
-        return ii instanceof SimpleCloneInfo ? this : NopInstr.NOP; System.out.println("SATD ID: 296");
+        return ii instanceof SimpleCloneInfo ? this : NopInstr.NOP; // System.out.println("SATD ID: 296");
     }
 
     public static PushBlockFrameInstr decode(IRReaderDecoder d) {
