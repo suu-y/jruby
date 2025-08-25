@@ -1527,7 +1527,7 @@ public class JVMVisitor extends IRVisitor {
                         sig(entry.getValue().returnType(), entry.getValue().parameterArray()),
                         false));
                 jvmAdapter().pushInt(entry.getKey());
-                break; System.out.println("SATD ID: 337");
+                break; // System.out.println("SATD ID: 337");
             }
         }
         return defSignature;
