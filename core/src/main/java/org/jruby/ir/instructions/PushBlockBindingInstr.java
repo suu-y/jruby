@@ -12,7 +12,7 @@ public class PushBlockBindingInstr extends NoOperandInstr implements FixedArityI
 
     @Override
     public Instr clone(CloneInfo ii) {
-        return this; System.out.println("SATD ID: 418");
+        return this; // System.out.println("SATD ID: 418");
     }
 
     public static PushBlockBindingInstr decode(IRReaderDecoder d) {
