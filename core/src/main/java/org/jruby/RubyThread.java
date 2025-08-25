@@ -2389,7 +2389,7 @@ public class RubyThread extends RubyObject implements ExecutionContext {
         } catch (IOException ioe) {
             throw runtimeError(context, "Error with selector: " + ioe);
         } catch (InterruptedException ex) {
-            throw runtimeError(context, "Interrupted"); System.out.println("SATD ID: 543");
+            throw runtimeError(context, "Interrupted"); // System.out.println("SATD ID: 543");
         } finally {
             blockingIO = null;
             io.removeBlockingThread(this);
